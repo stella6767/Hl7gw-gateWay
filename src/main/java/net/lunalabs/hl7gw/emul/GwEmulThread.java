@@ -20,8 +20,8 @@ import org.springframework.stereotype.Service;
 import com.google.gson.Gson;
 
 import lombok.RequiredArgsConstructor;
-import net.lunalabs.hl7gw.beans.CMRespDto;
-import net.lunalabs.hl7gw.beans.PR100RespDto;
+import net.lunalabs.hl7gw.dto.CMRespDto;
+import net.lunalabs.hl7gw.dto.PR100RespDto;
 import net.lunalabs.hl7gw.utills.Common;
 
 @EnableAsync
@@ -35,6 +35,8 @@ public class GwEmulThread {
 
 
 	private final Common common;
+	private final TestServerReqThread serverReqThread;
+	
 	
 	@Async
 	public void socketWork(SocketChannel schn) {
@@ -53,7 +55,7 @@ public class GwEmulThread {
 				long lThId = Thread.currentThread().getId();
 				
 				//ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
-				ByteBuffer readBuf = ByteBuffer.allocate(300); 
+				ByteBuffer readBuf = ByteBuffer.allocate(10240); 
 				ByteBuffer writeBuf = ByteBuffer.allocate(10240);
 
 				
@@ -87,16 +89,11 @@ public class GwEmulThread {
 				
 				// 무한 루프 
 				
-				
-				
-			
-				
+
 				
 				String result = ""; // 요기서 초기화, 요까지는 다 처리하고 가야된다.
 				
 				
-				//while (byteCount >= 0 && byteCount != 0) {   
-			
 				while (byteCount >= 0 ) {   
 					long time = System.currentTimeMillis();
 					String strDT;
@@ -330,11 +327,7 @@ public class GwEmulThread {
 									}
 
 								}
-								
-								
-								
-								
-								
+														
 							}
 			
 						} // #ETX# 단위로 루프 
@@ -366,6 +359,10 @@ public class GwEmulThread {
 			ByteBuffer writeBuf, long lThId) {
 		
 		logger.debug("strMessage:" + strMessage);
+		
+		
+		serverReqThread.reqThreadStart(strMessage);
+		
 		
 		Gson gson = new Gson();
 		

@@ -53,8 +53,7 @@ public class Emulator {
 					socketChannel.configureBlocking(true);
 
 					//System.out.println("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread Start");
-					logger.info("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread Start");
-					
+					logger.info("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread Start");					
 					gwEmulThread.socketWork(socketChannel);					
 					
 				} catch (Exception e) {

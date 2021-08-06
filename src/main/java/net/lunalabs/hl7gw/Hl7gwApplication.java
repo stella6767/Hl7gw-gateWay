@@ -4,10 +4,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 import net.lunalabs.hl7gw.emul.Emulator;
 
 @SpringBootApplication
+@EnableScheduling
 public class Hl7gwApplication {
 
 	public static void main(String[] args) {

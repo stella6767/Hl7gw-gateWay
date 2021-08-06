@@ -1,4 +1,4 @@
-package net.lunalabs.hl7gw.beans;
+package net.lunalabs.hl7gw.dto;
 
 import java.util.List;
 
