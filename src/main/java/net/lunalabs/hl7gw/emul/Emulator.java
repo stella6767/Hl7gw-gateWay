@@ -31,9 +31,11 @@ import net.lunalabs.hl7gw.utills.Common;
 @RestController
 public class Emulator {
 
-	private final GwEmulThread gwEmulThread;
 	
 	private static final Logger logger = LoggerFactory.getLogger(Emulator.class);
+	
+	private final GwEmulThread gwEmulThread;
+
 	
 	public void start(){
 		

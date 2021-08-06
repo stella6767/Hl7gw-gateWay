@@ -361,7 +361,7 @@ public class GwEmulThread {
 		logger.debug("strMessage:" + strMessage);
 		
 		
-		serverReqThread.reqThreadStart(strMessage);
+		serverReqThread.socketSend(strMessage);
 		
 		
 		Gson gson = new Gson();
