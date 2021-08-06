@@ -29,8 +29,10 @@ import net.lunalabs.hl7gw.utills.Common;
 @Service("gwEmulThread")
 public class GwEmulThread {
 
-	private Logger logger = LoggerFactory.getLogger(this.getClass());
+	//private Logger logger = LoggerFactory.getLogger(this.getClass());
 	
+	private static final Logger logger = LoggerFactory.getLogger(Emulator.class);
+
 
 	private final Common common;
 	
@@ -339,8 +341,8 @@ public class GwEmulThread {
 						
 					} // byteCount > 0
 			        
-			        //Thread.sleep(100); 
-			        Thread.sleep(1000); //일단 1초로
+			        Thread.sleep(100); 
+			        //Thread.sleep(1000); //일단 1초로
 				} // 무한루프 
 		        
 		        schn.close(); //소켓 닫기

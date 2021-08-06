@@ -5,6 +5,8 @@ import java.net.InetSocketAddress;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
@@ -31,6 +33,8 @@ public class Emulator {
 
 	private final GwEmulThread gwEmulThread;
 	
+	private static final Logger logger = LoggerFactory.getLogger(Emulator.class);
+	
 	public void start(){
 		
 		try {
@@ -48,7 +52,8 @@ public class Emulator {
 					socketChannel = serverSocketChannel.accept();
 					socketChannel.configureBlocking(true);
 
-					System.out.println("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread Start");
+					//System.out.println("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread Start");
+					logger.info("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread Start");
 					
 					gwEmulThread.socketWork(socketChannel);					
 					
