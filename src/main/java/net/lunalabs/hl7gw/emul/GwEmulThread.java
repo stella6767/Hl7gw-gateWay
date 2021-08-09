@@ -57,7 +57,7 @@ public class GwEmulThread {
 				//ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
 				ByteBuffer readBuf = ByteBuffer.allocate(10240); 
 				ByteBuffer writeBuf = ByteBuffer.allocate(10240);
-
+				
 				
 				logger.debug("첫번째  while문");
 				
@@ -361,7 +361,7 @@ public class GwEmulThread {
 		logger.debug("strMessage:" + strMessage);
 		
 		
-		serverReqThread.socketSend(strMessage);
+		serverReqThread.socketSends(strMessage);
 		
 		
 		Gson gson = new Gson();
