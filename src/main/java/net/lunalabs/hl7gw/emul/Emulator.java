@@ -46,8 +46,17 @@ public class Emulator {
 			
 			serverSocketChannel = ServerSocketChannel.open();
 			serverSocketChannel.socket().bind(new InetSocketAddress (5050));
-						
+			
+			
+			SocketChannel socketChannel2 = null;  //HL7 Test Panel에 보낼 프로토콜
+			socketChannel2 = SocketChannel.open();
+			socketChannel2.connect(new InetSocketAddress("localhost", 5051));
+			System.out.println("SocketChannel open-2");
+			socketChannel2.configureBlocking(true);// Non-Blocking I/O
+		
+			
 			boolean bLoop = true;
+				
 			
 			while (bLoop) {
 				try {
@@ -56,7 +65,7 @@ public class Emulator {
 
 					//System.out.println("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread Start");
 					logger.info("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread Start");					
-					gwEmulThread.socketWork(socketChannel);					
+					gwEmulThread.socketWork(socketChannel, socketChannel2);					
 					
 				} catch (Exception e) {
 					e.printStackTrace();

@@ -29,20 +29,15 @@ public class TestServerReqThread {
 	
 	
 	
-	public static void socketSends(String jsonData) {
+	public static void socketSends(String jsonData, SocketChannel socketChannel) {
 		ByteBuffer writeBuf = ByteBuffer.allocate(1024);
-		SocketChannel socketChannel = null; //이거는 나중에 생성 따로 분리
 
 		boolean bConnect = true;
 		while (bConnect) {
 
 			try {
 				// SocketChannel open
-				System.out.println("SocketChannel open-1");
-				socketChannel = SocketChannel.open();
-				socketChannel.connect(new InetSocketAddress("localhost", 5051));
-				System.out.println("SocketChannel open-2");
-				socketChannel.configureBlocking(true);// Non-Blocking I/O
+				System.out.println("HL7 protocol 전송");
 
 				writeBuf.clear();
 				writeBuf.put(jsonData.getBytes("UTF-8"));
