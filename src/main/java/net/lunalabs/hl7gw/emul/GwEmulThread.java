@@ -42,10 +42,10 @@ public class GwEmulThread {
 	public void socketWork(SocketChannel schn, SocketChannel schn2) {
 		
 		//String result = "";
-		//boolean isRunning=false; //일단 추가, socketWork 중지할지 안 중지할지 
+		boolean isRunning=true; //일단 추가, socketWork 중지할지 안 중지할지 
 
 		
-		while (true) {
+		while (isRunning) {
 						
 			try {
 				
@@ -98,7 +98,7 @@ public class GwEmulThread {
 				while (byteCount >= 0 ) {   
 					long time = System.currentTimeMillis();
 					String strDT;
-					
+
 					
 					try {
 						
@@ -107,8 +107,13 @@ public class GwEmulThread {
 						logger.debug("[gwEmulThread #100] TID[" + "] byteCount :  " + byteCount);
 						//logger.debug("isRunning why: " + isRunning);
 					} catch (Exception e) {
-						e.printStackTrace();
+						//e.printStackTrace();
+						logger.debug("갑자기 클라이언트 소켓이 닫혔을 시");
+					
+						schn.close();
+						isRunning = false;
 						break;
+						//continue;
 					}
 	
 					int i=0;
