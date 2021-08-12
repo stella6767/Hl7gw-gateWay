@@ -360,9 +360,8 @@ public class GwEmulThread {
 			ByteBuffer writeBuf, long lThId, SocketChannel schn2) {
 		
 		logger.debug("strMessage:" + strMessage);
-		
-		
-		serverReqThread.socketSends(strMessage, schn2);
+				
+		//serverReqThread.socketSends(strMessage, schn2);
 		
 		
 		Gson gson = new Gson();
@@ -379,6 +378,9 @@ public class GwEmulThread {
 								
 				JSONParser parser = new JSONParser();
 				JSONObject obj;
+				
+				
+				
 				
 				obj = (JSONObject)parser.parse(strMessage);
 	

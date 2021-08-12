@@ -49,10 +49,10 @@ public class Emulator {
 			
 			
 			SocketChannel socketChannel2 = null;  //HL7 Test Panel에 보낼 프로토콜
-			socketChannel2 = SocketChannel.open();
-			socketChannel2.connect(new InetSocketAddress("localhost", 5051));
-			System.out.println("SocketChannel open-2");
-			socketChannel2.configureBlocking(true);// Non-Blocking I/O
+			//socketChannel2 = SocketChannel.open();
+			//socketChannel2.connect(new InetSocketAddress("localhost", 5051));
+			//System.out.println("SocketChannel open-2");
+			//socketChannel2.configureBlocking(true);// Non-Blocking I/O
 		
 			
 			boolean bLoop = true;
