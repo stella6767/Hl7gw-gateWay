@@ -439,6 +439,14 @@ public class GwEmulThread {
 					cmRespDto.setTrId(trId);
 					
 					break;
+					
+					
+				case "FT100" :
+					
+					cmRespDto.setResultCode("100");
+					cmRespDto.setResultMsg("Success");
+					cmRespDto.setTrId(trId);
+					
 				
 				case "MS100" :
 					
@@ -447,6 +455,7 @@ public class GwEmulThread {
 					cmRespDto.setTrId(trId);
 					
 					break;	
+						
 
 				}
 	

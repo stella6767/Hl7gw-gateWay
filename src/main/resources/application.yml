@@ -1,11 +1,17 @@
+#
+#server:
+#  port: 8080
+#  servlet:
+#    context-path: /
+#    encoding:
+#      charset: utf-8
+#      enabled: true
+#    session:
+#      timeout: 60m
+#    
 
-server:
-  port: 8080
-  servlet:
-    context-path: /
-    encoding:
-      charset: utf-8
-      enabled: true
-    session:
-      timeout: 60m
-    
+
+#내장톰캣 구동안하고
+spring:
+  main:
+    web-application-type: none
