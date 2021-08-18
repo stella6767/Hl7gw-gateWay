@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @Data
 public class PR100RespDto {
 
-	private String patientId;
-	private String firstName;
-	private String lastName;
+	private int patientId;
+	private String name;
 	private String gender;
-	private int age;
+	private int height;
+	private int weight;
 		
 	
 }

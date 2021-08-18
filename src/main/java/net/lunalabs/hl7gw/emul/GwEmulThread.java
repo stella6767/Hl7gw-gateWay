@@ -6,6 +6,7 @@ import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.StringUtils;
 import org.json.simple.JSONObject;
@@ -38,7 +39,7 @@ public class GwEmulThread {
 	private final TestServerReqThread serverReqThread;
 	
 	
-	@Async
+	@Async // 비동기로 돌아가서 메서드, 같은 클래스 내에서 호출할 경우 비동기로 작동하지 않는다.
 	public void socketWork(SocketChannel schn, SocketChannel schn2) {
 		
 		//String result = "";
@@ -356,6 +357,9 @@ public class GwEmulThread {
 	
 	
 	
+	
+	
+	
 
 	
 	
@@ -392,20 +396,55 @@ public class GwEmulThread {
 				String strOpCode = (String)obj.get("opCode");
 				String trId = (String)obj.get("trId");
 								
-				List<PR100RespDto> pr100RespDtos = new ArrayList<>();				
-				PR100RespDto pr100RespDto = new PR100RespDto();
+				List<PR100RespDto> fakeList = new ArrayList<>();
+				
+				//가짜 응답데이터 생성
+				List<PR100RespDto> pr100RespDtos = common.createDummyPatients();
+
+				//PR100RespDto pr100RespDto = new PR100RespDto();
 		
 				if(strOpCode.equals("PR100")) {
 					
 					logger.debug("환자 정보 응답");	
 					
-					pr100RespDto = gson.fromJson(strMessage, PR100RespDto.class);					
+					//pr100RespDto = gson.fromJson(strMessage, PR100RespDto.class);
+					
+					
+					String searchType = (String)obj.get("searchType");
+					String searchWord = (String)obj.get("searchWord");
+
+					
+					logger.info("searchType: " + searchType + "   searchWord: " + searchWord);
+					
+
+					
 					//아마도 DB에서 검증 후 돌려주겠지.
-					logger.debug(pr100RespDto.toString());
-					//가짜 응답데이터 생성
-					pr100RespDtos.add(pr100RespDto);				
-					pr100RespDto.setAge(100);
-					pr100RespDtos.add(pr100RespDto);
+					//logger.debug(pr100RespDto.toString());
+					
+					for (PR100RespDto pr100RespDto : pr100RespDtos) {
+						
+						
+				
+						boolean a = ((Integer)pr100RespDto.getPatientId()).toString().contains("searchWord");
+						
+						
+						String b = ((Integer)pr100RespDto.getPatientId()).toString();
+						
+						logger.debug("문자열 변환: " + b);				
+						
+						logger.debug("pr100RespDto: " + pr100RespDto);
+						
+						logger.debug("진실은: "  + a);
+						
+						
+						if(((Integer)pr100RespDto.getPatientId()).toString().contains(searchWord)) {
+							fakeList.add(pr100RespDto);
+						}						
+
+						
+					}
+					
+					
 										
 				}else if(strOpCode.equals("MS100")) {
 								
@@ -433,7 +472,7 @@ public class GwEmulThread {
 				
 				case "PR100" :
 									
-					cmRespDto.setPatientInfos(pr100RespDtos);
+					cmRespDto.setPatientInfos(fakeList);
 					cmRespDto.setResultCode("100");
 					cmRespDto.setResultMsg("Success");
 					cmRespDto.setTrId(trId);
@@ -453,6 +492,11 @@ public class GwEmulThread {
 					cmRespDto.setResultCode("100");
 					cmRespDto.setResultMsg("Success");
 					cmRespDto.setTrId(trId);
+					
+					
+					
+				
+					
 					
 					break;	
 						

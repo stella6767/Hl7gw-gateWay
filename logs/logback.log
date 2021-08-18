@@ -1,82 +1,640 @@
-[2021-08-17 10:47:56:3553][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - connected refused!!!
-[2021-08-17 10:49:10:77959][restartedMain] INFO  net.lunalabs.hl7gw.emul.Emulator - [ESMLC Listen[] Socket Accept EsmlcIfWorkThread Start
-[2021-08-17 10:49:10:77968][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 첫번째  while문
-[2021-08-17 10:49:55:122891][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 갑자기 클라이언트 소켓이 닫혔을 시
-[2021-08-17 10:50:43:3365][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - connected refused!!!
-[2021-08-17 10:50:47:7646][restartedMain] INFO  net.lunalabs.hl7gw.emul.Emulator - [ESMLC Listen[] Socket Accept EsmlcIfWorkThread Start
-[2021-08-17 10:50:47:7655][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 첫번째  while문
-[2021-08-17 10:53:13:153558][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #100] TID[] byteCount :  201
-[2021-08-17 10:53:13:153558][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #200] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#], byteCount[201], i[0]
-[2021-08-17 10:53:13:153558][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #210] TID[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#] byteCount :  0
-[2021-08-17 10:53:13:153559][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX#단위로 루프 돌기 전 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:53:13:153559][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - indEtx: 172 result.length:  172
-[2021-08-17 10:53:13:153559][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 1차 가공: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:53:13:153563][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 2차 가공 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:53:13:153563][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX# 개수: 1
-[2021-08-17 10:53:13:153563][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - case4
-[2021-08-17 10:53:13:153563][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - strMessage:#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:53:13:153563][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #300] TID[ 29] socketRead Start[{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}]
-[2021-08-17 10:53:13:153568][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #220] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#], byteCount[0], i[1]
-[2021-08-17 10:56:39:359444][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #100] TID[] byteCount :  393
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #200] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"MS100","params":[{"paramName":"PP","paramType":"number","value":1234,"unit":"mL","timestampStart":"21.07.16-03:51:06.625","timestampEnd":"21.07.16-03:51:06.727",},],"sessionId":"Test_20210716_035105","trId":"1"}#ETX#], byteCount[393], i[0]
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #210] TID[#STX#{"deviceId":"CPM000","opCode":"MS100","params":[{"paramName":"PP","paramType":"number","value":1234,"unit":"mL","timestampStart":"21.07.16-03:51:06.625","timestampEnd":"21.07.16-03:51:06.727",},],"sessionId":"Test_20210716_035105","trId":"1"}#ETX#] byteCount :  0
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX#단위로 루프 돌기 전 result: #STX#{"deviceId":"CPM000","opCode":"MS100","params":[{"paramName":"PP","paramType":"number","value":1234,"unit":"mL","timestampStart":"21.07.16-03:51:06.625","timestampEnd":"21.07.16-03:51:06.727",},],"sessionId":"Test_20210716_035105","trId":"1"}#ETX#
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - indEtx: 252 result.length:  252
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 1차 가공: #STX#{"deviceId":"CPM000","opCode":"MS100","params":[{"paramName":"PP","paramType":"number","value":1234,"unit":"mL","timestampStart":"21.07.16-03:51:06.625","timestampEnd":"21.07.16-03:51:06.727",},],"sessionId":"Test_20210716_035105","trId":"1"}#ETX#
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 2차 가공 result: #STX#{"deviceId":"CPM000","opCode":"MS100","params":[{"paramName":"PP","paramType":"number","value":1234,"unit":"mL","timestampStart":"21.07.16-03:51:06.625","timestampEnd":"21.07.16-03:51:06.727",},],"sessionId":"Test_20210716_035105","trId":"1"}#ETX#
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX# 개수: 1
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - case4
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - strMessage:#STX#{"deviceId":"CPM000","opCode":"MS100","params":[{"paramName":"PP","paramType":"number","value":1234,"unit":"mL","timestampStart":"21.07.16-03:51:06.625","timestampEnd":"21.07.16-03:51:06.727",},],"sessionId":"Test_20210716_035105","trId":"1"}#ETX#
-[2021-08-17 10:56:39:359445][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #300] TID[ 29] socketRead Start[{"deviceId":"CPM000","opCode":"MS100","params":[{"paramName":"PP","paramType":"number","value":1234,"unit":"mL","timestampStart":"21.07.16-03:51:06.625","timestampEnd":"21.07.16-03:51:06.727",},],"sessionId":"Test_20210716_035105","trId":"1"}]
-[2021-08-17 10:56:39:359447][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - params 배열 [{"paramType":"number","timestampEnd":"21.07.16-03:51:06.727","unit":"mL","timestampStart":"21.07.16-03:51:06.625","paramName":"PP","value":1234}]
-[2021-08-17 10:56:39:359448][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #310] TID[ 29] opCode[MS100]
-[2021-08-17 10:56:39:359453][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - jsonData: {"resultCode":"100","resultMsg":"Success","trId":"1"}
-[2021-08-17 10:56:39:359453][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #220] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"MS100","params":[{"paramName":"PP","paramType":"number","value":1234,"unit":"mL","timestampStart":"21.07.16-03:51:06.625","timestampEnd":"21.07.16-03:51:06.727",},],"sessionId":"Test_20210716_035105","trId":"1"}#ETX#], byteCount[0], i[1]
-[2021-08-17 10:57:14:393767][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #100] TID[] byteCount :  201
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #200] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#], byteCount[201], i[0]
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #210] TID[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#] byteCount :  0
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX#단위로 루프 돌기 전 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - indEtx: 172 result.length:  172
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 1차 가공: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 2차 가공 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX# 개수: 1
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - case4
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - strMessage:#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:57:14:393768][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #300] TID[ 29] socketRead Start[{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}]
-[2021-08-17 10:57:14:393769][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #220] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#], byteCount[0], i[1]
-[2021-08-17 10:57:33:412940][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #100] TID[] byteCount :  201
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #200] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#], byteCount[201], i[0]
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #210] TID[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#] byteCount :  0
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX#단위로 루프 돌기 전 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - indEtx: 172 result.length:  172
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 1차 가공: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 2차 가공 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX# 개수: 1
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - case4
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - strMessage:#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 10:57:33:412941][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #300] TID[ 29] socketRead Start[{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}]
-[2021-08-17 10:57:33:412942][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #220] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#], byteCount[0], i[1]
-[2021-08-17 11:00:02:561966][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 갑자기 클라이언트 소켓이 닫혔을 시
-[2021-08-17 11:00:16:3348][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - connected refused!!!
-[2021-08-17 11:00:16:3639][restartedMain] INFO  net.lunalabs.hl7gw.emul.Emulator - [ESMLC Listen[] Socket Accept EsmlcIfWorkThread Start
-[2021-08-17 11:00:16:3647][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 첫번째  while문
-[2021-08-17 11:00:31:18671][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #100] TID[] byteCount :  201
-[2021-08-17 11:00:31:18671][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #200] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#], byteCount[201], i[0]
-[2021-08-17 11:00:31:18671][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #210] TID[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#] byteCount :  0
-[2021-08-17 11:00:31:18671][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX#단위로 루프 돌기 전 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 11:00:31:18671][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - indEtx: 172 result.length:  172
-[2021-08-17 11:00:31:18671][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 1차 가공: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 11:00:31:18674][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 2차 가공 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 11:00:31:18675][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX# 개수: 1
-[2021-08-17 11:00:31:18675][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - case4
-[2021-08-17 11:00:31:18675][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - strMessage:#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#
-[2021-08-17 11:00:31:18675][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #300] TID[ 29] socketRead Start[{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}]
-[2021-08-17 11:00:31:18679][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #220] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf}#ETX#], byteCount[0], i[1]
-[2021-08-17 11:04:25:253000][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #100] TID[] byteCount :  202
-[2021-08-17 11:04:25:253000][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #200] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf"}#ETX#], byteCount[202], i[0]
-[2021-08-17 11:04:25:253000][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #210] TID[#STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf"}#ETX#] byteCount :  0
-[2021-08-17 11:04:25:253000][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX#단위로 루프 돌기 전 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf"}#ETX#
-[2021-08-17 11:04:25:253000][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - indEtx: 173 result.length:  173
-[2021-08-17 11:04:25:253000][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 1차 가공: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf"}#ETX#
-[2021-08-17 11:04:25:253000][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 2차 가공 result: #STX#{"deviceId":"CPM000","opCode":"FT100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba""filename":"/home/pi/HemoVista100/PatientData/patient1_202108121736/report.pdf"}#ETX#
-[2021-08-17 11:04:25:253001][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX# 개수: 1
+[2021-08-19 08:39:23:3614][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - connected refused!!!
+[2021-08-19 08:39:23:3836][restartedMain] INFO  net.lunalabs.hl7gw.emul.Emulator - [ESMLC Listen[] 5050 Socket Accept EsmlcIfWorkThread Start
+[2021-08-19 08:39:23:3845][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 첫번째  while문
+[2021-08-19 08:39:29:10148][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #100] TID[] byteCount :  167
+[2021-08-19 08:39:29:10148][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #200] TID[ 31] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#], byteCount[167], i[0]
+[2021-08-19 08:39:29:10149][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #210] TID[#STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#] byteCount :  0
+[2021-08-19 08:39:29:10149][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX#단위로 루프 돌기 전 result: #STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#
+[2021-08-19 08:39:29:10149][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - indEtx: 131 result.length:  131
+[2021-08-19 08:39:29:10149][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 1차 가공: #STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#
+[2021-08-19 08:39:30:10153][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 2차 가공 result: #STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#
+[2021-08-19 08:39:30:10153][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX# 개수: 1
+[2021-08-19 08:39:30:10153][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - case4
+[2021-08-19 08:39:30:10153][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - strMessage:#STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#
+[2021-08-19 08:39:30:10153][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #300] TID[ 31] socketRead Start[{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}]
+[2021-08-19 08:39:30:10158][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 환자 정보 응답
+[2021-08-19 08:39:30:10159][taskExecutor-1] INFO  net.lunalabs.hl7gw.emul.Emulator - searchType: ID   searchWord: 1
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 0
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=0, name=name0, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 1
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=1, name=name1, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 2
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=2, name=name2, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10159][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 3
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=3, name=name3, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 4
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=4, name=name4, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 5
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=5, name=name5, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 6
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=6, name=name6, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 7
+[2021-08-19 08:39:30:10160][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=7, name=name7, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 8
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=8, name=name8, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 9
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=9, name=name9, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 10
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=10, name=name10, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 11
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=11, name=name11, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 12
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=12, name=name12, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 13
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=13, name=name13, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10161][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 14
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=14, name=name14, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 15
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=15, name=name15, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 16
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=16, name=name16, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 17
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=17, name=name17, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 18
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=18, name=name18, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 19
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=19, name=name19, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 20
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=20, name=name20, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 21
+[2021-08-19 08:39:30:10162][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=21, name=name21, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 22
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=22, name=name22, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 23
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=23, name=name23, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 24
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=24, name=name24, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 25
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=25, name=name25, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 26
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=26, name=name26, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 27
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=27, name=name27, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 28
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=28, name=name28, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 29
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=29, name=name29, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 30
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=30, name=name30, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 31
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=31, name=name31, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 32
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=32, name=name32, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10163][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10164][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 33
+[2021-08-19 08:39:30:10164][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=33, name=name33, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10164][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10164][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 34
+[2021-08-19 08:39:30:10164][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=34, name=name34, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10164][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10164][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 35
+[2021-08-19 08:39:30:10164][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=35, name=name35, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 36
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=36, name=name36, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 37
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=37, name=name37, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 38
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=38, name=name38, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 39
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=39, name=name39, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 40
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=40, name=name40, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 41
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=41, name=name41, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 42
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=42, name=name42, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 43
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=43, name=name43, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 44
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=44, name=name44, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 45
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=45, name=name45, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 46
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=46, name=name46, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10165][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 47
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=47, name=name47, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 48
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=48, name=name48, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 49
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=49, name=name49, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 50
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=50, name=name50, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 51
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=51, name=name51, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 52
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=52, name=name52, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 53
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=53, name=name53, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 54
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=54, name=name54, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 55
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=55, name=name55, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 56
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=56, name=name56, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 57
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=57, name=name57, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 58
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=58, name=name58, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 59
+[2021-08-19 08:39:30:10166][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=59, name=name59, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 60
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=60, name=name60, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 61
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=61, name=name61, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 62
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=62, name=name62, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 63
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=63, name=name63, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 64
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=64, name=name64, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 65
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=65, name=name65, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 66
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=66, name=name66, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 67
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=67, name=name67, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 68
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=68, name=name68, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 69
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=69, name=name69, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 70
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=70, name=name70, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 71
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=71, name=name71, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 72
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=72, name=name72, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 73
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=73, name=name73, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 74
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=74, name=name74, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 75
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=75, name=name75, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 76
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=76, name=name76, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10167][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 77
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=77, name=name77, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 78
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=78, name=name78, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 79
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=79, name=name79, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 80
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=80, name=name80, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 81
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=81, name=name81, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 82
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=82, name=name82, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 83
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=83, name=name83, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 84
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=84, name=name84, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 85
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=85, name=name85, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 86
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=86, name=name86, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 87
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=87, name=name87, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 88
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=88, name=name88, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 89
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=89, name=name89, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 90
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=90, name=name90, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 91
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=91, name=name91, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10168][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 92
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=92, name=name92, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 93
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=93, name=name93, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 94
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=94, name=name94, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 95
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=95, name=name95, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 96
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=96, name=name96, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 97
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=97, name=name97, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 98
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=98, name=name98, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 99
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=99, name=name99, gender=남, height=160, weight=70)
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:39:30:10169][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #310] TID[ 31] opCode[PR100]
+[2021-08-19 08:39:30:10174][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - jsonData: {"resultCode":"100","resultMsg":"Success","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","patientInfos":[]}
+[2021-08-19 08:39:30:10174][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #220] TID[ 31] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#], byteCount[0], i[1]
+[2021-08-19 08:39:59:40074][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 갑자기 클라이언트 소켓이 닫혔을 시
+[2021-08-19 08:40:10:3516][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - connected refused!!!
+[2021-08-19 08:40:10:3983][restartedMain] INFO  net.lunalabs.hl7gw.emul.Emulator - [ESMLC Listen[] 5050 Socket Accept EsmlcIfWorkThread Start
+[2021-08-19 08:40:11:3992][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 첫번째  while문
+[2021-08-19 08:40:21:14702][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #100] TID[] byteCount :  167
+[2021-08-19 08:40:21:14703][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #200] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#], byteCount[167], i[0]
+[2021-08-19 08:40:21:14703][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #210] TID[#STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#] byteCount :  0
+[2021-08-19 08:40:21:14703][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX#단위로 루프 돌기 전 result: #STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#
+[2021-08-19 08:40:21:14703][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - indEtx: 131 result.length:  131
+[2021-08-19 08:40:21:14703][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 1차 가공: #STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#
+[2021-08-19 08:40:21:14707][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 2차 가공 result: #STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#
+[2021-08-19 08:40:21:14707][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - #ETX# 개수: 1
+[2021-08-19 08:40:21:14707][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - case4
+[2021-08-19 08:40:21:14707][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - strMessage:#STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#
+[2021-08-19 08:40:21:14707][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #300] TID[ 29] socketRead Start[{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}]
+[2021-08-19 08:40:21:14712][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 환자 정보 응답
+[2021-08-19 08:40:21:14712][taskExecutor-1] INFO  net.lunalabs.hl7gw.emul.Emulator - searchType: ID   searchWord: 1
+[2021-08-19 08:40:21:14712][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 0
+[2021-08-19 08:40:21:14712][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=0, name=name0, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14712][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14712][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 1
+[2021-08-19 08:40:21:14712][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=1, name=name1, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 2
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=2, name=name2, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 3
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=3, name=name3, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 4
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=4, name=name4, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 5
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=5, name=name5, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 6
+[2021-08-19 08:40:21:14713][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=6, name=name6, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 7
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=7, name=name7, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 8
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=8, name=name8, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 9
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=9, name=name9, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 10
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=10, name=name10, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 11
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=11, name=name11, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 12
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=12, name=name12, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14714][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 13
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=13, name=name13, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 14
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=14, name=name14, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 15
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=15, name=name15, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 16
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=16, name=name16, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 17
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=17, name=name17, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 18
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=18, name=name18, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 19
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=19, name=name19, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14715][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 20
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=20, name=name20, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 21
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=21, name=name21, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 22
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=22, name=name22, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 23
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=23, name=name23, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 24
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=24, name=name24, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 25
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=25, name=name25, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 26
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=26, name=name26, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 27
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=27, name=name27, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 28
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=28, name=name28, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 29
+[2021-08-19 08:40:21:14716][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=29, name=name29, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 30
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=30, name=name30, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 31
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=31, name=name31, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 32
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=32, name=name32, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 33
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=33, name=name33, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 34
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=34, name=name34, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 35
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=35, name=name35, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 36
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=36, name=name36, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 37
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=37, name=name37, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 38
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=38, name=name38, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 39
+[2021-08-19 08:40:21:14717][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=39, name=name39, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 40
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=40, name=name40, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 41
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=41, name=name41, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 42
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=42, name=name42, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 43
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=43, name=name43, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 44
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=44, name=name44, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 45
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=45, name=name45, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 46
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=46, name=name46, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 47
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=47, name=name47, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 48
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=48, name=name48, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 49
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=49, name=name49, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 50
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=50, name=name50, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14718][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 51
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=51, name=name51, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 52
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=52, name=name52, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 53
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=53, name=name53, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 54
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=54, name=name54, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 55
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=55, name=name55, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 56
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=56, name=name56, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 57
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=57, name=name57, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 58
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=58, name=name58, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 59
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=59, name=name59, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 60
+[2021-08-19 08:40:21:14719][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=60, name=name60, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 61
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=61, name=name61, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 62
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=62, name=name62, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 63
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=63, name=name63, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 64
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=64, name=name64, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 65
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=65, name=name65, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 66
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=66, name=name66, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 67
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=67, name=name67, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 68
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=68, name=name68, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 69
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=69, name=name69, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 70
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=70, name=name70, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 71
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=71, name=name71, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 72
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=72, name=name72, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 73
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=73, name=name73, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 74
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=74, name=name74, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14720][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 75
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=75, name=name75, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 76
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=76, name=name76, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 77
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=77, name=name77, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 78
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=78, name=name78, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 79
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=79, name=name79, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 80
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=80, name=name80, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 81
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=81, name=name81, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 82
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=82, name=name82, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 83
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=83, name=name83, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 84
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=84, name=name84, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 85
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=85, name=name85, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 86
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=86, name=name86, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 87
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=87, name=name87, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 88
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=88, name=name88, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 89
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=89, name=name89, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 90
+[2021-08-19 08:40:21:14721][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=90, name=name90, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 91
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=91, name=name91, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 92
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=92, name=name92, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 93
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=93, name=name93, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 94
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=94, name=name94, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 95
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=95, name=name95, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 96
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=96, name=name96, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 97
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=97, name=name97, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 98
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=98, name=name98, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 문자열 변환: 99
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - pr100RespDto: PR100RespDto(patientId=99, name=name99, gender=남, height=160, weight=70)
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 진실은: false
+[2021-08-19 08:40:21:14722][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #310] TID[ 29] opCode[PR100]
+[2021-08-19 08:40:21:14727][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - jsonData: {"resultCode":"100","resultMsg":"Success","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","patientInfos":[{"patientId":1,"name":"name1","gender":"남","height":160,"weight":70},{"patientId":10,"name":"name10","gender":"남","height":160,"weight":70},{"patientId":11,"name":"name11","gender":"남","height":160,"weight":70},{"patientId":12,"name":"name12","gender":"남","height":160,"weight":70},{"patientId":13,"name":"name13","gender":"남","height":160,"weight":70},{"patientId":14,"name":"name14","gender":"남","height":160,"weight":70},{"patientId":15,"name":"name15","gender":"남","height":160,"weight":70},{"patientId":16,"name":"name16","gender":"남","height":160,"weight":70},{"patientId":17,"name":"name17","gender":"남","height":160,"weight":70},{"patientId":18,"name":"name18","gender":"남","height":160,"weight":70},{"patientId":19,"name":"name19","gender":"남","height":160,"weight":70},{"patientId":21,"name":"name21","gender":"남","height":160,"weight":70},{"patientId":31,"name":"name31","gender":"남","height":160,"weight":70},{"patientId":41,"name":"name41","gender":"남","height":160,"weight":70},{"patientId":51,"name":"name51","gender":"남","height":160,"weight":70},{"patientId":61,"name":"name61","gender":"남","height":160,"weight":70},{"patientId":71,"name":"name71","gender":"남","height":160,"weight":70},{"patientId":81,"name":"name81","gender":"남","height":160,"weight":70},{"patientId":91,"name":"name91","gender":"남","height":160,"weight":70}]}
+[2021-08-19 08:40:21:14728][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - [gwEmulThread #220] TID[ 29] socketRead Start[#STX#{"deviceId":"CPM000","opCode":"PR100","trId":"47c65ee7-4d08-462e-bce0-2efeae4d96ba","searchType":"ID",		"searchWord":"1"}#ETX#], byteCount[0], i[1]
+[2021-08-19 08:40:35:28660][taskExecutor-1] DEBUG net.lunalabs.hl7gw.emul.Emulator - 갑자기 클라이언트 소켓이 닫혔을 시

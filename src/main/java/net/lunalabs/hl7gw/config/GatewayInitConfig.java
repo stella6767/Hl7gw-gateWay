@@ -11,7 +11,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
 @Configuration
-@EnableAsync
+@EnableAsync //@EnableAsync를 명시함으로서 비동기로 작동할 @Async가 명시된 빈을 인식
 public class GatewayInitConfig {
 
 	

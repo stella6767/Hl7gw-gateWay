@@ -11,11 +11,15 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
 
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Service;
+
+import net.lunalabs.hl7gw.dto.PR100RespDto;
 
 /**
  * 
@@ -40,6 +44,18 @@ public class Common {
 		  }catch(Exception e){e.printStackTrace();}
 		  return null;
 		}
+	
+	
+	public static List<PR100RespDto> createDummyPatients() {
+		List<PR100RespDto> patients = IntStream.range(0, 100)
+				.mapToObj(i -> new PR100RespDto(i, "name" + i, "남", 160, 70))
+				.collect(Collectors.toList());
+		
+		return patients;
+		
+	}
+	
+	
 	
 	/**
 	 * UNIQ한 IMSI값 생성
