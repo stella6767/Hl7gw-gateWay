@@ -73,8 +73,10 @@ public class Common {
 	
 	public static String parseLocalDateTime() {
 		
-		String dummydate = (LocalDateTime.parse("2016-10-31 23:59:59", 
-				DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
+//		String dummydate = (LocalDateTime.parse(LocalDateTime.now(), 
+//				DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
+		
+		String dummydate = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
 		
 		return dummydate;
 	}
