@@ -17,7 +17,7 @@ public class PR100RespDto {
 	private int patientId;
 	private String firstName;
 	private String lastName;
-	private String gender;
+	private int gender;
 	private int age;
 	private int height;
 	private int weight;

@@ -9,6 +9,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -52,14 +53,14 @@ public class Common {
 		List<PR100RespDto> patients = IntStream.range(0, 50)
 				.mapToObj(i -> PR100RespDto.builder()
 								.patientId(i)
-								.firstName("첫번째 이름")
-								.lastName("마지막 이름")
-								.gender("남")
+								.firstName("firstname")
+								.lastName("lastname")
+								.gender(0)
 								.age(20)
 								.height(180)
 								.weight(80)
-								.commnet("더미데이터")
-								.lastSession(LocalDateTime.now().toString())
+								.commnet("dummy data")
+								.lastSession(parseLocalDateTime())
 								.build()
 						
 						)
@@ -67,6 +68,15 @@ public class Common {
 		
 		return patients;
 		
+	}
+	
+	
+	public static String parseLocalDateTime() {
+		
+		String dummydate = (LocalDateTime.parse("2016-10-31 23:59:59", 
+				DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")).toString());
+		
+		return dummydate;
 	}
 	
 	
