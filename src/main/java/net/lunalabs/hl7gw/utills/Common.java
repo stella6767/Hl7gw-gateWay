@@ -7,6 +7,8 @@ import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -47,8 +49,20 @@ public class Common {
 	
 	
 	public static List<PR100RespDto> createDummyPatients() {
-		List<PR100RespDto> patients = IntStream.range(0, 100)
-				.mapToObj(i -> new PR100RespDto(i, "name" + i, "남", 160, 70))
+		List<PR100RespDto> patients = IntStream.range(0, 50)
+				.mapToObj(i -> PR100RespDto.builder()
+								.patientId(i)
+								.firstName("첫번째 이름")
+								.lastName("마지막 이름")
+								.gender("남")
+								.age(20)
+								.height(180)
+								.weight(80)
+								.commnet("더미데이터")
+								.lastSession(LocalDateTime.now())
+								.build()
+						
+						)
 				.collect(Collectors.toList());
 		
 		return patients;

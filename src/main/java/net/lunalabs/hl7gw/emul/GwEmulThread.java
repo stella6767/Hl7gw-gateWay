@@ -430,17 +430,16 @@ public class GwEmulThread {
 						
 						String b = ((Integer)pr100RespDto.getPatientId()).toString();
 						
-						logger.debug("문자열 변환: " + b);				
+						//logger.debug("문자열 변환: " + b);					
+						//logger.debug("pr100RespDto: " + pr100RespDto);
+						//logger.debug("진실은: "  + a);
 						
-						logger.debug("pr100RespDto: " + pr100RespDto);
-						
-						logger.debug("진실은: "  + a);
-						
-						
-						if(((Integer)pr100RespDto.getPatientId()).toString().contains(searchWord)) {
-							fakeList.add(pr100RespDto);
-						}						
+//						if(((Integer)pr100RespDto.getPatientId()).toString().contains(searchWord)) {
+//							fakeList.add(pr100RespDto);
+//						}						
 
+						
+						fakeList.add(pr100RespDto);
 						
 					}
 					
