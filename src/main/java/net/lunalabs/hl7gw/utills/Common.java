@@ -59,7 +59,7 @@ public class Common {
 								.height(180)
 								.weight(80)
 								.commnet("더미데이터")
-								.lastSession(LocalDateTime.now())
+								.lastSession(LocalDateTime.now().toString())
 								.build()
 						
 						)

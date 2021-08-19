@@ -21,6 +21,6 @@ public class PR100RespDto {
 	private int age;
 	private int height;
 	private int weight;
-	private LocalDateTime lastSession;		
+	private String lastSession;		
 	private String commnet;
 }
