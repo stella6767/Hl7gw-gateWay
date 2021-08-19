@@ -8,7 +8,6 @@ import java.nio.charset.CharsetEncoder;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -17,12 +16,13 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-import org.springframework.context.annotation.Configuration;
+import org.apache.commons.lang3.RandomStringUtils;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
-import org.springframework.stereotype.Service;
 
 import net.lunalabs.hl7gw.dto.PR100RespDto;
+import net.lunalabs.hl7gw.emul.GwEmulThread;
+
+
 
 /**
  * 
@@ -49,11 +49,93 @@ public class Common {
 		}
 	
 	
+	public static List<PR100RespDto> searchPatientID(List<PR100RespDto> pr100RespDtos, List<PR100RespDto> fakeList, String searchWord) {
+
+		
+		
+		for (PR100RespDto pr100RespDto : pr100RespDtos) {
+			
+			
+			
+			boolean a = ((Integer)pr100RespDto.getPatientId()).toString().contains("searchWord");
+			
+			String b = ((Integer)pr100RespDto.getPatientId()).toString();
+			
+			//logger.debug("문자열 변환: " + b);					
+			//logger.debug("pr100RespDto: " + pr100RespDto);
+			//logger.debug("진실은: "  + a);
+			
+			if(((Integer)pr100RespDto.getPatientId()).toString().contains(searchWord)) {
+				fakeList.add(pr100RespDto);
+			}						
+			
+		}
+		
+		
+		return fakeList;
+		
+	}
+	
+	public static List<String> generateRandomString() {
+		 
+	    int length = 10;
+	    boolean useLetters = true;
+	    boolean useNumbers = false;
+	    
+	    
+	    List<String> test = new ArrayList<>();
+	    
+	    
+	    for (int i = 0; i < 100; i++) {
+		    String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
+
+		    System.out.println("random last name: " + generatedString);
+		    
+		    test.add(generatedString);
+		}
+	    
+
+	    return test;
+	}
+	
+	
+	public static List<PR100RespDto> searchName(List<PR100RespDto> pr100RespDtos, List<PR100RespDto> fakeList, String searchWord) {
+
+		
+		
+		
+		for (PR100RespDto pr100RespDto : pr100RespDtos) {
+			
+			
+			
+			boolean a = ((Integer)pr100RespDto.getPatientId()).toString().contains("searchWord");
+			
+			String name = (pr100RespDto.getFirstName()) + pr100RespDto.getLastName();
+			
+			//logger.debug("문자열 변환: " + b);					
+			//logger.debug("pr100RespDto: " + pr100RespDto);
+			//logger.debug("진실은: "  + a);
+			
+			if(name.contains(searchWord)) {
+				fakeList.add(pr100RespDto);
+			}						
+			
+		}
+		
+		
+		return fakeList;
+		
+	}
+	
+	
+	
+	
 	public static List<PR100RespDto> createDummyPatients() {
-		List<PR100RespDto> patients = IntStream.range(0, 50)
+		List<PR100RespDto> patients = IntStream.range(0, 100)
 				.mapToObj(i -> PR100RespDto.builder()
 								.patientId(i)
-								.firstName("firstname")
+//								.firstName(generateRandomString())
+								.firstName(GwEmulThread.fakeName.get(i))
 								.lastName("lastname")
 								.gender(0)
 								.age(20)
@@ -80,6 +162,9 @@ public class Common {
 		
 		return dummydate;
 	}
+	
+	
+
 	
 	
 	

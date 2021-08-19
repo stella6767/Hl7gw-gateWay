@@ -39,6 +39,10 @@ public class GwEmulThread {
 	private final TestServerReqThread serverReqThread;
 	
 	
+	public static List<String> fakeName = Common.generateRandomString();
+
+	
+	
 	@Async // 비동기로 돌아가서 메서드, 같은 클래스 내에서 호출할 경우 비동기로 작동하지 않는다.
 	public void socketWork(SocketChannel schn, SocketChannel schn2) {
 		
@@ -421,27 +425,26 @@ public class GwEmulThread {
 					//아마도 DB에서 검증 후 돌려주겠지.
 					//logger.debug(pr100RespDto.toString());
 					
-					for (PR100RespDto pr100RespDto : pr100RespDtos) {
+					
+
+					switch (searchType) {
+					
+					case "patientId" :
 						
+						fakeList = Common.searchPatientID(pr100RespDtos, fakeList, searchWord);
+					
+					case "name" :
 						
-				
-						boolean a = ((Integer)pr100RespDto.getPatientId()).toString().contains("searchWord");
-						
-						
-						String b = ((Integer)pr100RespDto.getPatientId()).toString();
-						
-						//logger.debug("문자열 변환: " + b);					
-						//logger.debug("pr100RespDto: " + pr100RespDto);
-						//logger.debug("진실은: "  + a);
-						
-//						if(((Integer)pr100RespDto.getPatientId()).toString().contains(searchWord)) {
-//							fakeList.add(pr100RespDto);
-//						}						
+						fakeList = Common.searchName(pr100RespDtos, fakeList, searchWord);
 
 						
-						fakeList.add(pr100RespDto);
+						break;
 						
+
 					}
+					
+					
+	
 					
 					
 										
@@ -491,10 +494,6 @@ public class GwEmulThread {
 					cmRespDto.setResultCode("100");
 					cmRespDto.setResultMsg("Success");
 					cmRespDto.setTrId(trId);
-					
-					
-					
-				
 					
 					
 					break;	
