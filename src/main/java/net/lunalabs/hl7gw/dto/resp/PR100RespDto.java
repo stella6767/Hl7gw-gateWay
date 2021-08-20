@@ -1,4 +1,4 @@
-package net.lunalabs.hl7gw.dto;
+package net.lunalabs.hl7gw.dto.resp;
 
 import java.time.LocalDateTime;
 

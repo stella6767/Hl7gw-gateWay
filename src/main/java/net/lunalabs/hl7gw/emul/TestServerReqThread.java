@@ -16,17 +16,6 @@ import org.springframework.stereotype.Service;
 public class TestServerReqThread {
 	
 	private static final Logger logger = LoggerFactory.getLogger(TestServerReqThread.class);
-
-
-	public void reqThreadStart(String jsonData) {
-				
-		logger.debug("받은 jsonData: "  + jsonData);
-		
-		
-		
-		
-	}
-	
 	
 	
 	public static void socketSends(String jsonData, SocketChannel socketChannel) {

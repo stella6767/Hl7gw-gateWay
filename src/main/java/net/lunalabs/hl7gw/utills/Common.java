@@ -21,7 +21,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import net.lunalabs.hl7gw.dto.PR100RespDto;
+import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
 import net.lunalabs.hl7gw.service.SocketService;
 
 

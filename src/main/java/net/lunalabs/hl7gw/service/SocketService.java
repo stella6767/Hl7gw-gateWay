@@ -16,7 +16,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
-import net.lunalabs.hl7gw.dto.PR100RespDto;
+import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
 import net.lunalabs.hl7gw.emul.TestServerReqThread;
 import net.lunalabs.hl7gw.utills.Common;
 
@@ -45,7 +45,7 @@ public class SocketService {
 	private static final Logger logger = LoggerFactory.getLogger(SocketService.class);
 
 	private final TestServerReqThread serverReqThread;
-	private final HL7Service hl7Service;
+	private final JsonParseService jsonParseService;
 
 	
 	//Test data
@@ -292,7 +292,7 @@ public class SocketService {
 								if (result.length() == indEtx && countETX == 1) { // case4
 
 									logger.debug("case4");
-									hl7Service.opCodeAction(result, schn, writeBuf, lThId, schn2);
+									jsonParseService.opCodeAction(result, schn, writeBuf, lThId, schn2);
 
 									logger.debug("[gwEmulThread #220] TID[ " + lThId + "] socketRead Start[" + result
 											+ "], byteCount[" + byteCount + "], i[" + i + "]");
@@ -307,7 +307,7 @@ public class SocketService {
 									logger.debug("case6 길이: " + resultArray.length);
 									for (int a = 0; a < resultArray.length; a++) {
 										logger.debug(resultArray[a]); // 마지막은 짤리는구만,
-										hl7Service.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
+										jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
 									}
 									result = "";
 									readBuf.clear();
@@ -325,7 +325,7 @@ public class SocketService {
 
 									if (!(resultArray[resultArray.length - 1].contains("#ETX#"))) {
 										for (int a = 0; a < resultArray.length - 1; a++) {
-											hl7Service.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
+											jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
 										}
 
 										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장
@@ -347,7 +347,7 @@ public class SocketService {
 									if (!(resultArray[resultArray.length - 1].contains("#ETX#"))) {
 										logger.debug("case7");
 										for (int a = 0; a < resultArray.length - 1; a++) {
-											hl7Service.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
+											jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
 										}
 
 										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장
