@@ -17,10 +17,12 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import net.lunalabs.hl7gw.dto.PR100RespDto;
-import net.lunalabs.hl7gw.emul.GwEmulThread;
+import net.lunalabs.hl7gw.service.SocketService;
 
 
 
@@ -38,7 +40,11 @@ import net.lunalabs.hl7gw.emul.GwEmulThread;
 public class Common {
 	
 	
-	public ByteBuffer str_to_bb(String msg){
+	
+	private static final Logger log = LoggerFactory.getLogger(Common.class);
+
+	
+	public static ByteBuffer str_to_bb(String msg){
 		Charset charset = Charset.forName("UTF-8");
 		CharsetEncoder encoder = charset.newEncoder();
 		CharsetDecoder decoder = charset.newDecoder();
@@ -52,13 +58,13 @@ public class Common {
 	public static List<PR100RespDto> searchPatientID(List<PR100RespDto> pr100RespDtos, List<PR100RespDto> fakeList, String searchWord) {
 
 		
+		log.debug("ID 검색");
 		
 		for (PR100RespDto pr100RespDto : pr100RespDtos) {
 			
 			
 			
-			boolean a = ((Integer)pr100RespDto.getPatientId()).toString().contains("searchWord");
-			
+			boolean a = ((Integer)pr100RespDto.getPatientId()).toString().contains(searchWord);
 			String b = ((Integer)pr100RespDto.getPatientId()).toString();
 			
 			//logger.debug("문자열 변환: " + b);					
@@ -87,10 +93,7 @@ public class Common {
 	    
 	    
 	    for (int i = 0; i < 100; i++) {
-		    String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);
-
-		    System.out.println("random last name: " + generatedString);
-		    
+		    String generatedString = RandomStringUtils.random(length, useLetters, useNumbers);		    
 		    test.add(generatedString);
 		}
 	    
@@ -101,15 +104,12 @@ public class Common {
 	
 	public static List<PR100RespDto> searchName(List<PR100RespDto> pr100RespDtos, List<PR100RespDto> fakeList, String searchWord) {
 
-		
+		log.debug("이름 검색");
 		
 		
 		for (PR100RespDto pr100RespDto : pr100RespDtos) {
-			
-			
-			
-			boolean a = ((Integer)pr100RespDto.getPatientId()).toString().contains("searchWord");
-			
+						
+			boolean a = ((Integer)pr100RespDto.getPatientId()).toString().contains(searchWord);
 			String name = (pr100RespDto.getFirstName()) + pr100RespDto.getLastName();
 			
 			//logger.debug("문자열 변환: " + b);					
@@ -128,14 +128,15 @@ public class Common {
 	}
 	
 	
-	
-	
 	public static List<PR100RespDto> createDummyPatients() {
+		
+		log.debug("Dummy Patient Data create");
+	
+		
 		List<PR100RespDto> patients = IntStream.range(0, 100)
 				.mapToObj(i -> PR100RespDto.builder()
-								.patientId(i)
-//								.firstName(generateRandomString())
-								.firstName(GwEmulThread.fakeName.get(i))
+								.patientId(i+1)
+								.firstName(SocketService.fakeName.get(i))
 								.lastName("lastname")
 								.gender(0)
 								.age(20)
@@ -143,15 +144,20 @@ public class Common {
 								.weight(80)
 								.commnet("dummy data")
 								.lastSession(parseLocalDateTime())
-								.build()
-						
+								.build()				    
 						)
 				.collect(Collectors.toList());
+		
+		
+		log.debug("fake patinents List: " + patients);
+		
 		
 		return patients;
 		
 	}
 	
+	
+
 	
 	public static String parseLocalDateTime() {
 		
