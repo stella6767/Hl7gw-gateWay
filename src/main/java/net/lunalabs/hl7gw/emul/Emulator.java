@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
+import net.lunalabs.hl7gw.service.FTPService;
 import net.lunalabs.hl7gw.service.SocketService;
 
 /**
@@ -27,14 +28,18 @@ public class Emulator {
 	private static final Logger logger = LoggerFactory.getLogger(Emulator.class);
 	
 	private final SocketService socketService;
+	private final FTPService ftpService;
 	
 	
-	public void start(){
+	public void start() throws Exception{
 		
 		logger.debug("Emulator Start!");
 		
 		socketService.socketThread();
+		ftpService.FTPTest();
 		
 	}
+	
+
 	
 }
