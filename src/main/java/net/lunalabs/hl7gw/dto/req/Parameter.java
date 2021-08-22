@@ -8,10 +8,10 @@ import lombok.Data;
 @Data //jackson 호출하기 위해서는 getter 필요
 public class Parameter<T> {
 
-	private T mv;
-	private T rr;
-	private RVS rvs;
-	private T spo2;
-	private T tv;	
+//	private T mv;  //이러면 안의 변수를 못 어떻게 보지.
+//	private T rr;
+//	private RVS rvs;
+//	private T spo2;
+//	private T tv;	
 	
 }
