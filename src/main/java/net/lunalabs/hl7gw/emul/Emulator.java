@@ -5,8 +5,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
+import net.lunalabs.hl7gw.service.CSSocketService;
 import net.lunalabs.hl7gw.service.FTPService;
-import net.lunalabs.hl7gw.service.SocketService;
+import net.lunalabs.hl7gw.service.QTSocketService;
 
 /**
  * 
@@ -27,8 +28,9 @@ public class Emulator {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Emulator.class);
 	
-	private final SocketService socketService;
+	private final QTSocketService socketService;
 	private final FTPService ftpService;
+	private final CSSocketService csSocketService;
 	
 	
 	public void start() throws Exception{
@@ -37,6 +39,7 @@ public class Emulator {
 		
 		socketService.socketThread();
 		ftpService.FTPTest();
+		csSocketService.csSocketStart();
 		
 	}
 	

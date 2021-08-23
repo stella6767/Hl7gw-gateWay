@@ -17,7 +17,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
-import net.lunalabs.hl7gw.emul.TestServerReqThread;
 import net.lunalabs.hl7gw.utills.Common;
 
 
@@ -40,11 +39,10 @@ import net.lunalabs.hl7gw.utills.Common;
 @EnableAsync
 @RequiredArgsConstructor
 @Service
-public class SocketService {
+public class QTSocketService {
 
-	private static final Logger logger = LoggerFactory.getLogger(SocketService.class);
+	private static final Logger logger = LoggerFactory.getLogger(QTSocketService.class);
 
-	private final TestServerReqThread serverReqThread;
 	private final JsonParseService jsonParseService;
 
 	
@@ -61,23 +59,11 @@ public class SocketService {
 			ServerSocketChannel serverSocketChannel = null;
 			SocketChannel socketChannel = null;
 
-			SocketChannel socketChannel2 = null; // HL7 Test Panel에 보낼 프로토콜
-			socketChannel2 = SocketChannel.open();
-
 			serverSocketChannel = ServerSocketChannel.open();
 
 			serverSocketChannel.socket().bind(new InetSocketAddress(5050));
 
-			try {
-				socketChannel2.connect(new InetSocketAddress("localhost", 5051));
-				logger.debug("socketChannel connected to port 5051");
-				socketChannel2.configureBlocking(true);// Non-Blocking I/O
 
-			} catch (Exception e2) {
-				logger.debug("connected refused!!!");
-				// e2.printStackTrace();
-				socketChannel2.close();
-			}
 
 			boolean bLoop = true;
 
@@ -90,7 +76,7 @@ public class SocketService {
 					// Start");
 					logger.info("[ESMLC Listen[" + "] 5050 port Socket Accept EsmlcIfWorkThread Start");
 
-					socketWork(socketChannel, socketChannel2);
+					socketWork(socketChannel);
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -118,7 +104,7 @@ public class SocketService {
 	}
 
 	
-	private void socketWork(SocketChannel schn, SocketChannel schn2) {
+	private void socketWork(SocketChannel schn) {
 
 		// String result = "";
 		boolean isRunning = true; // 일단 추가, socketWork 중지할지 안 중지할지
@@ -292,7 +278,7 @@ public class SocketService {
 								if (result.length() == indEtx && countETX == 1) { // case4
 
 									logger.debug("case4");
-									jsonParseService.opCodeAction(result, schn, writeBuf, lThId, schn2);
+									jsonParseService.opCodeAction(result, schn, writeBuf, lThId);
 
 									logger.debug("[gwEmulThread #220] TID[ " + lThId + "] socketRead Start[" + result
 											+ "], byteCount[" + byteCount + "], i[" + i + "]");
@@ -307,7 +293,7 @@ public class SocketService {
 									logger.debug("case6 길이: " + resultArray.length);
 									for (int a = 0; a < resultArray.length; a++) {
 										logger.debug(resultArray[a]); // 마지막은 짤리는구만,
-										jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
+										jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId);
 									}
 									result = "";
 									readBuf.clear();
@@ -325,7 +311,7 @@ public class SocketService {
 
 									if (!(resultArray[resultArray.length - 1].contains("#ETX#"))) {
 										for (int a = 0; a < resultArray.length - 1; a++) {
-											jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
+											jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId);
 										}
 
 										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장
@@ -347,7 +333,7 @@ public class SocketService {
 									if (!(resultArray[resultArray.length - 1].contains("#ETX#"))) {
 										logger.debug("case7");
 										for (int a = 0; a < resultArray.length - 1; a++) {
-											jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId, schn2);
+											jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId);
 										}
 
 										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장

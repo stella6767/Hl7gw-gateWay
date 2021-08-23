@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
 import net.lunalabs.hl7gw.dto.req.CMParam;
 import net.lunalabs.hl7gw.dto.req.Parameter;
 import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
-import net.lunalabs.hl7gw.service.SocketService;
+import net.lunalabs.hl7gw.service.QTSocketService;
 
 /**
  * 
@@ -160,7 +160,7 @@ public class Common {
 		log.debug("Dummy Patient Data create");
 
 		List<PR100RespDto> patients = IntStream.range(0, 100)
-				.mapToObj(i -> PR100RespDto.builder().patientId(i + 1).firstName(SocketService.fakeName.get(i))
+				.mapToObj(i -> PR100RespDto.builder().patientId(i + 1).firstName(QTSocketService.fakeName.get(i))
 						.lastName("lastname").gender(0).age(20).height(180).weight(80).commnet("dummy data")
 						.lastSession(parseLocalDateTime()).build())
 				.collect(Collectors.toList());

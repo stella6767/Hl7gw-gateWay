@@ -1,9 +1,12 @@
 package net.lunalabs.hl7gw.service;
 
+import java.io.IOException;
 import java.math.BigDecimal;
+import java.nio.channels.SocketChannel;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -17,17 +20,23 @@ import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+import lombok.RequiredArgsConstructor;
 import net.lunalabs.hl7gw.dto.req.CMParam;
 import net.lunalabs.hl7gw.dto.req.MS100ReqDto;
 import net.lunalabs.hl7gw.dto.req.PR100ReqDto;
 import net.lunalabs.hl7gw.dto.req.Parameter;
 import net.lunalabs.hl7gw.utills.Common;
 
+
+@RequiredArgsConstructor
 @EnableAsync
 @Service
 public class HL7Service {
 
 	private static final Logger logger = LoggerFactory.getLogger(HL7Service.class);
+	
+	private final CSSocketService csSocketService;
+	
 
 	ObjectMapper mapper = new ObjectMapper();
 	StringBuffer sb = new StringBuffer(); //여기다 선언하는 게 맞나싶다.. 계속 append 되어지는 거 아닌가..
@@ -69,7 +78,12 @@ public class HL7Service {
 		
 		logger.debug("PR100 파싱결과: " + sb.toString());
 		
+		
+		//csSocketService.hl7ProtocolSendThread(sb.toString(), csSocketService.socketChannel2);
+		
 	}
+	
+	
 	
 	public <T> void parseToMS100Req(String jsonReqData) throws JsonMappingException, JsonProcessingException {
 
@@ -84,37 +98,8 @@ public class HL7Service {
 		sb.append("MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |" + Common.parseLocalDateTime() + "||ORU^R01|" + reqDto.getTrId() +"|P|2.8\r\n"
 				+ "");
 		
-		sb.append("PID||" + reqDto.getPatientId() + "|Patient_NHS_ID|NULL|PatientName|NULL|NULL|M|||||||||||\r\n");  //M은 gender?
+		sb.append("PID||" + reqDto.getPatientId() + "|Patient_NHS_ID|NULL||NULL|NULL||||||||||||\r\n");  //M은 gender?
 		sb.append("OBR||NULL|NULL|NULL|||"+ Common.parseLocalDateTime() + "||||||||||||||||||\r\n");
-		
-		//reqDto.getParameter().getMv().getType 이 숫자면 NM
-		
-		
-		//if(reqDto.getParameter().get)
-		//Common.getValueType(reqDto.getParameter());
-		
-		
-//		List<String> valueTypes = reqDto.getParameter().getCMParamType();
-//		
-//		String hl7Type = null;
-//		
-//		for (String type : valueTypes) { //일단 param이 무조건 5개 다 온다고 가정
-//			System.out.println("value Type: " + type);
-//			
-//			if(type.equals("number")) {
-//				hl7Type = "NM";
-//				sb.append("OBX|1|NM|CUBESCAN^SERIALNUMBER||" + reqDto.getParameter() + "|ml||||||||"+ Common.parseLocalDateTime() + "|");
-//				
-//				
-//			}else if(type.equals("array")) {
-//				
-//				
-//			}else if(type.equals("String")) {
-//				
-//				
-//			}
-//			
-//		}
 		
 
 		List<?> cmParams = reqDto.getParameter().getCMParams();
@@ -122,111 +107,66 @@ public class HL7Service {
 		int i = 1;
 		
 		for (Object object : cmParams) {
-			
-			
-			String valueType = ((CMParam<T>)object).getType(); 
-			
-			T value = ((CMParam<T>)object).getValue();
-			
-			String unit = ((CMParam<T>)object).getUnit();
-			
-			
-//			if ( ((CMParam<T>)object).getType().equals("number")) {		
-//				
-//			}
-			
-			
-		
-			switch (valueType) {
-			
-			case "NM":
 				
-				sb.append("OBX|"+ i +"|NM|CUBESCAN^SERIALNUMBER||" + value + "|"+unit+"||||||||"+ Common.parseLocalDateTime() + "|\r\n");
+			
+			if(object != null) {
 				
-				break;
+				String valueType = ((CMParam<T>)object).getType(); 	
+				T value = ((CMParam<T>)object).getValue();		
+				String unit = ((CMParam<T>)object).getUnit();
+			
+				switch (valueType) {
 				
-			case "NA":
+				case "NM":
+					
+					sb.append("OBX|"+ i +"|NM|CUBESCAN^SERIALNUMBER||" + value + "|"+unit+"||||||||"+ Common.parseLocalDateTime() + "|\r\n");
+					
+					break;
+					
+				case "NA":
 
-				List<String> values = (List<String>) value;
+					List<String> values = (List<String>) value;
+					String parseValues = Common.parseToBigDecimalList(values);		
+					sb.append("OBX|"+i+"|NA|CUBESCAN^SERIALNUMBER||" + parseValues + "|" + unit + "||||||||"+ Common.parseLocalDateTime() + "|\r\n");
+					//logger.debug("values!!!!: " + values);
+					
+					break;
+					
+				default:
+					break;
+					
+				}			
 
-				String parseValues = Common.parseToBigDecimalList(values);
+				i++;
 				
-				sb.append("OBX|"+i+"|NA|CUBESCAN^SERIALNUMBER||" + parseValues + "|" + unit + "||||||||"+ Common.parseLocalDateTime() + "|\r\n");
-				
-				
-				logger.debug("values!!!!: " + values);
-				
-				break;
-				
-			default:
-				break;
-			}
-			
-			
-			i++;
-			
+			}								
 		}
 		
-		
-		
-		
-		//sb.append("OBX|1|NM|CUBESCAN^SERIALNUMBER||576|ml||||||||"+ Common.parseLocalDateTime() + "|");
 
 		logger.debug("MS100 파싱결과: " + sb.toString());
+		
+		
+		//csSocketService.hl7ProtocolSendThread(sb.toString(), csSocketService.socketChannel2);
+		
+		
+		try {
+			CompletableFuture<SocketChannel> completableFuture = csSocketService.csSocketStart();
+			SocketChannel channel = completableFuture.get(); //일단은 그냥 blocking 시켜서 보내자. 후에 thencombine으로 교체
+			System.out.println(channel);
+			
+			csSocketService.hl7ProtocolSendThread(sb.toString(), channel);
+			
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	
 
-	public void classfyOpcode(String jsonReqData) throws ParseException {
 
-		logger.debug("HL7 parsing ready");
 
-		StringBuffer sb = new StringBuffer();
-		// sb.append(jsonData);
-
-		JSONParser parser = new JSONParser();
-		JSONObject obj;
-
-		obj = (JSONObject) parser.parse(jsonReqData);
-
-		String strOpCode = (String) obj.get("opCode");
-		String trId = (String) obj.get("trId");
-		String searchType = (String) obj.get("searchType");
-		String searchWord = (String) obj.get("searchWord");
-
-		// Map<String, Object> resHmap = new HashMap<>();
-
-	}
-
-	public void convertToHL7(String jsonData) {
-
-//		switch (strOpCode) {
-//
-//		case "HC100":
-//			//convertToHL7(jsonReqData);
-//
-//			break;
-//
-//		case "PR100":
-//			convertToHL7(jsonReqData);
-//
-//			break;
-//
-//		case "FT100":
-//			convertToHL7(jsonReqData);
-//
-//			break;
-//
-//		case "MS100":
-//			convertToHL7(jsonReqData);
-//
-//
-//			break;
-//			
-//		default: break;
-//
-//		}
-
-	}
 
 }

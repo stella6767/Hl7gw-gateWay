@@ -31,7 +31,7 @@ public class JsonParseService {
 
 	
 	public <T> void opCodeAction(String strMessage, SocketChannel schn, 
-			ByteBuffer writeBuf, long lThId, SocketChannel schn2) {
+			ByteBuffer writeBuf, long lThId) {
 		
 		logger.debug("strMessage:" + strMessage);
 				
@@ -51,7 +51,6 @@ public class JsonParseService {
 				
 				
 				//serverReqThread.socketSends(strMessage, schn2);
-				//hl7Service.classfyOpcode(strMessage);
 		
 								
 				JSONParser parser = new JSONParser();
@@ -93,11 +92,11 @@ public class JsonParseService {
 					
 					case "patientId" :
 						
-						fakeList = Common.searchPatientID(SocketService.fakePatientsList, fakeList, searchWord);
+						fakeList = Common.searchPatientID(QTSocketService.fakePatientsList, fakeList, searchWord);
 					
 					case "name" :
 						
-						fakeList = Common.searchName(SocketService.fakePatientsList, fakeList, searchWord);
+						fakeList = Common.searchName(QTSocketService.fakePatientsList, fakeList, searchWord);
 
 						
 						break;
