@@ -6,7 +6,7 @@ import java.util.List;
 import lombok.Data;
 
 @Data
-public class RVS<T> {
+public class RVS<T> { //일단은 쓰지 말자.
 	
 	private String type;
 	private String unit;
