@@ -1,6 +1,7 @@
 package net.lunalabs.hl7gw.service;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
 import java.math.BigDecimal;
 import java.nio.channels.SocketChannel;
 import java.util.HashMap;
@@ -102,7 +103,15 @@ public class HL7Service {
 		sb.append("OBR||NULL|NULL|NULL|||"+ Common.parseLocalDateTime() + "||||||||||||||||||\r\n");
 		
 
+		//reqDto.getParameter().getClass().getDeclaredField(jsonReqData)
+		
+		
+		
+		
+		List<String> filedNames = Common.getValueType(reqDto.getParameter());		
 		List<?> cmParams = reqDto.getParameter().getCMParams();
+				
+		
 		
 		int i = 1;
 		
@@ -111,15 +120,21 @@ public class HL7Service {
 			
 			if(object != null) {
 				
+				//object.getClass().getDeclaredFields()
+				
+				
+				//String filedName = (String) reqDto.getParameter().getCMParams().getFieldName().get(cmParams.indexOf(object));
+				
 				String valueType = ((CMParam<T>)object).getType(); 	
 				T value = ((CMParam<T>)object).getValue();		
 				String unit = ((CMParam<T>)object).getUnit();
 			
+				
 				switch (valueType) {
 				
 				case "NM":
 					
-					sb.append("OBX|"+ i +"|NM|CUBESCAN^SERIALNUMBER||" + value + "|"+unit+"||||||||"+ Common.parseLocalDateTime() + "|\r\n");
+					sb.append("OBX|"+ i +"|NM|"+    filedNames.get(i-1)   +"||" + value + "|"+unit+"||||||||"+ Common.parseLocalDateTime() + "|\r\n");
 					
 					break;
 					
@@ -127,7 +142,7 @@ public class HL7Service {
 
 					List<String> values = (List<String>) value;
 					String parseValues = Common.parseToBigDecimalList(values);		
-					sb.append("OBX|"+i+"|NA|CUBESCAN^SERIALNUMBER||" + parseValues + "|" + unit + "||||||||"+ Common.parseLocalDateTime() + "|\r\n");
+					sb.append("OBX|"+i+"|NA|"+filedNames.get(i-1) +"||" + parseValues + "|" + unit + "||||||||"+ Common.parseLocalDateTime() + "|\r\n");
 					//logger.debug("values!!!!: " + values);
 					
 					break;

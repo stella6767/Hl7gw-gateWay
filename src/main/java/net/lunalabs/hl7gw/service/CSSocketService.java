@@ -46,10 +46,6 @@ public class CSSocketService {
 			socketChannel2.close();
 		}
 		
-		
-		
-		
-		
 		return CompletableFuture.completedFuture(socketChannel2);
 		
 	}

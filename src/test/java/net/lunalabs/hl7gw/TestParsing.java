@@ -48,4 +48,16 @@ public class TestParsing {
 		
 	}
 	
+	
+	@Test
+	public void getFiledName() {
+		
+		//String propertyName = PropertyUtils.getPropertyName(A.class, A::getSalary);
+
+		
+		
+	}
+	
+	
+	
 }

@@ -1,6 +1,11 @@
 package net.lunalabs.hl7gw.utills;
 
+import java.beans.BeanInfo;
+import java.beans.IntrospectionException;
+import java.beans.Introspector;
+import java.beans.PropertyDescriptor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
@@ -56,6 +61,37 @@ public class Common {
 	}
 	
 	
+	public static String getFieldName(Method method)
+	{
+	    try
+	    {
+	        Class<?> clazz=method.getDeclaringClass();
+	        BeanInfo info = Introspector.getBeanInfo(clazz);  
+	        PropertyDescriptor[] props = info.getPropertyDescriptors();  
+	        for (PropertyDescriptor pd : props) 
+	        {  
+	            if(method.equals(pd.getWriteMethod()) || method.equals(pd.getReadMethod()))
+	            {
+	                System.out.println(pd.getDisplayName());
+	                return pd.getName();
+	            }
+	        }
+	    }
+	    catch (IntrospectionException e) 
+	    {
+	        e.printStackTrace();
+	    }
+	    catch (Exception e) 
+	    {
+	        e.printStackTrace();
+	    }
+
+
+	    return null;
+	}
+	
+	
+	
 	public static String parseToBigDecimalList(List<String> values) {
 		
 	
@@ -74,8 +110,10 @@ public class Common {
 	}
 	
 
-	public static <T> void getValueType(Parameter<T> parameter) { //리플렉션 활용
+	public static <T> List<String> getValueType(Parameter<T> parameter) { //리플렉션 활용
 
+		List<String> filedNames = new ArrayList<>();
+		
 		try {
 			Object obj = parameter;
 			for (Field field : obj.getClass().getDeclaredFields()) {
@@ -83,12 +121,15 @@ public class Common {
 				Object value = field.get(obj);
 				System.out.println(field.getName() + ",   value: " + value);
 				
-				//String param = (String)value;		
+				filedNames.add(field.getName());
+						
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+		
+		return filedNames;
 	}
 
 	public static List<PR100RespDto> searchPatientID(List<PR100RespDto> pr100RespDtos, List<PR100RespDto> fakeList,
