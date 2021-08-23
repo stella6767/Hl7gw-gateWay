@@ -100,14 +100,11 @@ public class HL7Service {
 				+ "");
 		
 		sb.append("PID||" + reqDto.getPatientId() + "|Patient_NHS_ID|NULL||NULL|NULL||||||||||||\r\n");  //M은 gender?
-		sb.append("OBR||NULL|NULL|NULL|||"+ Common.parseLocalDateTime() + "||||||||||||||||||\r\n");
+		sb.append("OBR||"+ reqDto.getSessionId()+"|NULL|NULL|||"+ reqDto.getTimestampStart() + "|"+ reqDto.getTimestampEnd() +"|||||||||||||||||\r\n");
 		
 
 		//reqDto.getParameter().getClass().getDeclaredField(jsonReqData)
-		
-		
-		
-		
+				
 		List<String> filedNames = Common.getValueType(reqDto.getParameter());		
 		List<?> cmParams = reqDto.getParameter().getCMParams();
 				
@@ -119,11 +116,6 @@ public class HL7Service {
 				
 			
 			if(object != null) {
-				
-				//object.getClass().getDeclaredFields()
-				
-				
-				//String filedName = (String) reqDto.getParameter().getCMParams().getFieldName().get(cmParams.indexOf(object));
 				
 				String valueType = ((CMParam<T>)object).getType(); 	
 				T value = ((CMParam<T>)object).getValue();		
