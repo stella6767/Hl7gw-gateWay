@@ -121,6 +121,7 @@ public class HL7Service {
 				T value = ((CMParam<T>)object).getValue();		
 				String unit = ((CMParam<T>)object).getUnit();
 			
+				logger.debug("sp.더하기");
 				
 				switch (valueType) {
 				
@@ -151,17 +152,20 @@ public class HL7Service {
 		
 
 		logger.debug("MS100 파싱결과: " + sb.toString());
-		
-		
-		//csSocketService.hl7ProtocolSendThread(sb.toString(), csSocketService.socketChannel2);
-		
+				
 		
 		try {
 			CompletableFuture<SocketChannel> completableFuture = csSocketService.csSocketStart();
 			SocketChannel channel = completableFuture.get(); //일단은 그냥 blocking 시켜서 보내자. 후에 thencombine으로 교체
 			System.out.println(channel);
 			
-			csSocketService.hl7ProtocolSendThread(sb.toString(), channel);
+			if(channel.isConnected()) {
+				logger.debug("cssocket channel이 정상적으로 연결되었습니다.");
+				csSocketService.hl7ProtocolSendThread(sb.toString(), channel);
+			}else if(!channel.isConnected()) {
+				logger.debug("cssocket channel이 연결이 끊어졌습니다.");
+			}
+			
 			
 			
 		} catch (Exception e) {

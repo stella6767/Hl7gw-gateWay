@@ -23,14 +23,14 @@ public class CSSocketService {
 	private static final Logger logger = LoggerFactory.getLogger(CSSocketService.class);
 
 	
-	public SocketChannel socketChannel2; //일단은 public으로
+	public SocketChannel socketChannel2 = null; //일단은 public으로
 	private boolean bLoop = true;
 
 	
 	@Async
 	public CompletableFuture<SocketChannel> csSocketStart() throws IOException {
 				
-		socketChannel2 = null; // HL7 Test Panel에 보낼 프로토콜
+		// HL7 Test Panel에 보낼 프로토콜
 		socketChannel2 = SocketChannel.open();
 		
 		logger.debug("central로 보내는 socket channel");
@@ -43,7 +43,7 @@ public class CSSocketService {
 		} catch (Exception e2) {
 			logger.debug("connected refused!!!");
 			// e2.printStackTrace();
-			socketChannel2.close();
+			//socketChannel2.close(); //이걸 닫으면 안되는데..
 		}
 		
 		return CompletableFuture.completedFuture(socketChannel2);
