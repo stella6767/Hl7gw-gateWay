@@ -8,6 +8,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.ExecutionException;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -44,9 +45,12 @@ public class HL7Service {
 
 	public void parseToPR100Req(String jsonReqData) throws JsonMappingException, JsonProcessingException {
 
-		sb.delete(0, sb.length());
+		sb.delete(0, sb.length()); //초기화
 		
 		logger.debug("PR100Req HL7 parsing start");
+		
+		logger.debug(jsonReqData);
+		
 		PR100ReqDto reqDto = mapper.readValue(jsonReqData, PR100ReqDto.class);
 		logger.debug("convert to java object: " + reqDto);
 
@@ -63,7 +67,7 @@ public class HL7Service {
 		switch (searchType) {
 		case "patientId":
 
-			sb.append("PID||" + reqDto.getSearchWord() + "|Patient_NHS_ID|NULL||NULL|NULL|M|||||||||||\r\n" + "");
+			sb.append("PID||" + reqDto.getSearchWord() + "|Patient_NHS_ID|NULL||NULL|NULL||||||||||||\r\n" + "");
 
 			break;
 
@@ -80,7 +84,13 @@ public class HL7Service {
 		logger.debug("PR100 파싱결과: " + sb.toString());
 		
 		
-		//csSocketService.hl7ProtocolSendThread(sb.toString(), csSocketService.socketChannel2);
+		
+		try {
+			sendToCSsocket(sb.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 	}
 	
@@ -155,28 +165,32 @@ public class HL7Service {
 				
 		
 		try {
+			sendToCSsocket(sb.toString());
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
+		
+		
+	}
+	
+
+	
+	public void sendToCSsocket(String Hl7parsingData) throws IOException, InterruptedException, ExecutionException {
+		
+		
 			CompletableFuture<SocketChannel> completableFuture = csSocketService.csSocketStart();
 			SocketChannel channel = completableFuture.get(); //일단은 그냥 blocking 시켜서 보내자. 후에 thencombine으로 교체
 			System.out.println(channel);
 			
 			if(channel.isConnected()) {
 				logger.debug("cssocket channel이 정상적으로 연결되었습니다.");
-				csSocketService.hl7ProtocolSendThread(sb.toString(), channel);
+				csSocketService.hl7ProtocolSendThread(Hl7parsingData, channel);
 			}else if(!channel.isConnected()) {
 				logger.debug("cssocket channel이 연결이 끊어졌습니다.");
 			}
-			
-			
-			
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
 		
 	}
-	
-
 
 
 

@@ -158,7 +158,7 @@ public class JsonParseService {
 					
 					break;
 					
-	
+					//Session code 추가될 예정.
 						
 
 				}

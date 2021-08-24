@@ -17,5 +17,6 @@ public class CMRespDto {
 	private String resultMsg;
 	private String trId;
 	private List<PR100RespDto>  patientInfos;
+	private String commnet;
 
 }
