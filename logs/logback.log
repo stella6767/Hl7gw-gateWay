@@ -125,3 +125,14 @@
 [2021-08-25 18:45:05:1045795][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
 [2021-08-25 18:45:05:1045795][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - abc 가 di 되었는지  net.lunalabs.hl7gw.config.Abc$$EnhancerBySpringCGLIB$$a71598ab@6fa55fb8
 [2021-08-25 18:45:05:1045795][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - concurrentConfig 가 di 되었는지  net.lunalabs.hl7gw.config.ConcurrentConfig$$EnhancerBySpringCGLIB$$3fae5bce@7e7ca97f
+[2021-08-25 18:48:31:1353][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 18:59:56:1462][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:01:24:1410][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:02:18:1406][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:04:40:1403][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:08:35:1479][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:10:06:92332][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:10:20:1365][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:12:41:1352][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:13:13:1426][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!
+[2021-08-25 19:50:28:1475][restartedMain] DEBUG net.lunalabs.hl7gw.emul.Emulator - Emulator Start!

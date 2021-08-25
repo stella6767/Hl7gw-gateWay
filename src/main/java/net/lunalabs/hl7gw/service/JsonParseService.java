@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.nio.channels.SocketChannel;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -28,7 +29,8 @@ public class JsonParseService {
 	private static final Logger logger = LoggerFactory.getLogger(JsonParseService.class);
 	private final ConcurrentConfig concurrentConfig;
 
-	
+	Gson gson = new Gson();
+
 	
 	private final HL7Service hl7Service;
 
@@ -37,7 +39,6 @@ public class JsonParseService {
 		
 		logger.debug("strMessage:" + strMessage);
 						
-		Gson gson = new Gson();
 		
 		try {
 			if (!strMessage.equals("")) {
@@ -84,8 +85,6 @@ public class JsonParseService {
 					case "name" :
 						
 						fakeList = Common.searchName(QTSocketService.fakePatientsList, fakeList, searchWord);
-
-						
 						break;
 					}
 					
@@ -113,7 +112,9 @@ public class JsonParseService {
 				case "HC100" :				
 					cmRespDto.setResultCode("100");
 					cmRespDto.setResultMsg("Success");
-					cmRespDto.setTrId(trId);				
+					cmRespDto.setTrId(trId);	
+					
+					qtSendCheck(cmRespDto, schn);
 					break;
 				
 				case "PR100" :
@@ -134,6 +135,7 @@ public class JsonParseService {
 					cmRespDto.setResultCode("100");
 					cmRespDto.setResultMsg("Success");
 					cmRespDto.setTrId(trId);
+					qtSendCheck(cmRespDto, schn);
 					break;
 					
 					//Session code 추가될 예정.
@@ -141,41 +143,6 @@ public class JsonParseService {
 
 				}
 	
-				
-				String jsonData = gson.toJson(cmRespDto);  //알아서 null값은 걸러냄	
-				
-				
-				logger.debug("3차 스레드 put test:  " + concurrentConfig);			
-//				logger.debug(" ?????!" + concurrentConfig.globalQtsocketMap.toString());			
-//				logger.debug(" !!!!1!" + (concurrentConfig.globalQtsocketMap.get("")).toString());
-								
-				
-//			     Attribute attribute = new Attribute();
-//			        attribute.setLoggingCode(loggingCode);     Attribute attribute = new Attribute();
-//			        attribute.setLoggingCode(loggingCode);
-				
-				//concurrentConfig.globalQtsocketMap.put("mySchn", schn);			
-				//returnQtsocket(schn);
-
-//				globalQtsocketMap.put("mySchn", schn);
-				
-				concurrentConfig.globalQtsocketMap.put("mySchn", schn);
-				
-				
-				
-				
-				
-				
-				
-//				try {
-//					Common.sendJsonToQT(jsonData);
-//				} catch (InterruptedException | ExecutionException e) {
-//					// TODO Auto-generated catch block
-//					e.printStackTrace();
-//				}
-
-//				   Attribute attribute = new Attribute();
-//			        attribute.setLoggingCode(loggingCode);
 
 				
 	
@@ -185,7 +152,40 @@ public class JsonParseService {
 			e.printStackTrace();
 		}
 		
-		//return CompletableFuture.completedFuture(schn); //다른 대안 탐색중..
+		
+		concurrentConfig.globalQtsocketMap.put("mySchn", schn);
+		
+		logger.debug("여기서 분명 socketChannel을 집어넣었을텐데?? " + concurrentConfig.globalQtsocketMap.get("mySchn"));
+		
+	}
+	
+	
+	
+	public void qtSendCheck(CMRespDto cmRespDto, SocketChannel schn) throws IOException {
+		
+		
+		String jsonData = gson.toJson(cmRespDto);  //알아서 null값은 걸러냄	
+		
+		
+		logger.debug("3차 스레드 put test:  " + concurrentConfig);			
+//		logger.debug(" ?????!" + concurrentConfig.globalQtsocketMap.toString());			
+//		logger.debug(" !!!!1!" + (concurrentConfig.globalQtsocketMap.get("")).toString());
+		
+//	     Attribute attribute = new Attribute();
+//	        attribute.setLoggingCode(loggingCode);     Attribute attribute = new Attribute();
+//	        attribute.setLoggingCode(loggingCode);
+		
+
+
+		
+		
+		try {
+			Common.sendJsonToQT(jsonData, schn);
+		} catch (InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		
 	}
 	

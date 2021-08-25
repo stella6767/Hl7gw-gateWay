@@ -9,15 +9,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class ConcurrentConfig {
 
-	public ConcurrentHashMap<String, SocketChannel> globalQtsocketMap = new ConcurrentHashMap<>();
-	
-	
-//	@Bean 
-//	public ConcurrentHashMap<String, SocketChannel> justReturnMap() {
-//	
-//		return globalQtsocketMap; 
-//	
-//	}
-
+	public ConcurrentHashMap<String, SocketChannel> globalQtsocketMap = new ConcurrentHashMap<>(); //이 필드도 객체이므로 new로 인스턴스를 띄워줘야 된다.
 	
 }

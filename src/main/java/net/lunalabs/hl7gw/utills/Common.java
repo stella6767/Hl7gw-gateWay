@@ -10,6 +10,7 @@ import java.lang.reflect.Method;
 import java.math.BigDecimal;
 import java.nio.ByteBuffer;
 import java.nio.CharBuffer;
+import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.nio.charset.CharsetDecoder;
 import java.nio.charset.CharsetEncoder;
@@ -64,46 +65,27 @@ public class Common {
 	
 	
 	
-	public static void sendJsonToQT(String jsonData) throws IOException, InterruptedException, ExecutionException {
+	public static void sendJsonToQT(String jsonData, SocketChannel schn) throws IOException, InterruptedException, ExecutionException {
 		ByteBuffer writeBuf = ByteBuffer.allocate(10240);
 
 		//SocketChannel이 QT여야 된다.
 		
 		log.debug("jsonData: " + jsonData);
+			
+	
+		if(schn.isConnected()) {
+			log.debug("qtSocket channel이 정상적으로 연결되었습니다.");
+	        writeBuf.flip();
+	        writeBuf = str_to_bb(jsonData);
+	        schn.write(writeBuf);
+	        writeBuf.clear();
+
+		
+		}else if(!schn.isConnected()) {
+			log.debug("qtSocket channel이 연결이 끊어졌습니다.");
+		}
 		
 		
-		//SocketChannel channel	= 
-		
-		
-		
-		
-//		CompletableFuture<SocketChannel> completableFuture = jsonParseService.returnQtsocket(null)
-//		SocketChannel channel = completableFuture.get(); //일단은 그냥 blocking 시켜서 보내자. 후에 thencombine으로 교체
-//		System.out.println(channel);
-//		
-//		if(channel.isConnected()) {
-//			log.debug("qtSocket channel이 정상적으로 연결되었습니다.");
-//	        writeBuf.flip();
-//	        writeBuf = str_to_bb(jsonData);
-//	        channel.write(writeBuf);
-//	        writeBuf.clear();
-//
-//		
-//		}else if(!channel.isConnected()) {
-//			log.debug("qtSocket channel이 연결이 끊어졌습니다.");
-//		}
-		
-		
-//        writeBuf.flip();
-//        writeBuf = str_to_bb(jsonData);
-//        (qtSocketService.socketChannel).write(writeBuf);
-//        writeBuf.clear();
-        
-        
-        
-        
-//        writeBuffer = charset.encode(sb.toString());
-//	    schn.write(writeBuffer);
 		
 	}
 	

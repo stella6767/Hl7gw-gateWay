@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +24,7 @@ import lombok.RequiredArgsConstructor;
 import net.lunalabs.hl7gw.config.ConcurrentConfig;
 import net.lunalabs.hl7gw.dto.CMRespDto;
 import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
+import net.lunalabs.hl7gw.utills.Common;
 
 @EnableAsync
 @RequiredArgsConstructor
@@ -33,19 +35,15 @@ public class CSSocketService {
 
 	public SocketChannel socketChannel2 = null; // 일단은 public으로
 	private boolean bLoop = true;
-	
+
 	private final ConcurrentConfig concurrentConfig;
-	
-//	@Autowired
-//	private ConcurrentConfig concurrentConfig;
+
 
 	@Async
 	public CompletableFuture<SocketChannel> csSocketStart() throws IOException {
 
-		
 		logger.debug("다른 스레드에서 di check: " + concurrentConfig.toString());
-		
-		
+
 		// HL7 Test Panel에 보낼 프로토콜
 		socketChannel2 = SocketChannel.open();
 
@@ -160,7 +158,7 @@ public class CSSocketService {
 			String[] splitSecondArray = splitEnterArray[i].split("[|]");
 
 			for (int j = 0; j < splitSecondArray.length; j++) {
-				logger.debug("| 기준으로 2차 파싱: " + splitSecondArray[j]);
+				//logger.debug("| 기준으로 2차 파싱: " + splitSecondArray[j]);
 
 				dto = PR100RespDto.builder().firstName(splitSecondArray[5]).lastName(splitSecondArray[6])
 						.patientId(Integer.parseInt(splitSecondArray[2])).age(Integer.parseInt(splitSecondArray[3]))
@@ -183,41 +181,22 @@ public class CSSocketService {
 		cmRespDto.setTrId(trId);
 		String jsonData = mapper.writeValueAsString(cmRespDto);
 
-		//SocketChannel channel = ConcurrentConfig.globalQtsocketMap.get("mySchn");
+		// SocketChannel channel = ConcurrentConfig.globalQtsocketMap.get("mySchn");
 
-		//서버가 가동될 때부터 서버가 종료되는 시점까지의 범위를 Application Scope라고 부릅니다.
+		// 서버가 가동될 때부터 서버가 종료되는 시점까지의 범위를 Application Scope라고 부릅니다.
+
 		
-		
-		
-		ConcurrentHashMap<String, SocketChannel> concurrentHashMap = concurrentConfig.globalQtsocketMap;
-		
-		
-		boolean a = concurrentHashMap ==null?true:false;
-		
+		boolean a = concurrentConfig.globalQtsocketMap == null ? true : false;
 		logger.debug("확인: " + a);
-		
-		
-		
+
 		SocketChannel channel = concurrentConfig.globalQtsocketMap.get("mySchn");
-		
-		
-		if (channel.isConnected()) {
-			logger.debug("qtSocket channel이 정상적으로 연결되었습니다.");
-//        writeBuf.flip();
-//        writeBuf = str_to_bb(jsonData);
-//        channel.write(writeBuf);
-//        writeBuf.clear();
 
-		} else if (!channel.isConnected()) {
-			logger.debug("qtSocket channel이 연결이 끊어졌습니다.");
+		try {
+			Common.sendJsonToQT(jsonData, channel);
+		} catch (IOException | InterruptedException | ExecutionException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
-
-//		try {
-//			Common.sendJsonToQT(jsonData);
-//		} catch (IOException | InterruptedException | ExecutionException e) {
-//			// TODO Auto-generated catch block
-//			e.printStackTrace();
-//		}
 
 	}
 
