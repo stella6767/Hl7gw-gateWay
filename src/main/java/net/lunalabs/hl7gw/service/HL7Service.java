@@ -23,6 +23,7 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
+import net.lunalabs.hl7gw.config.ConcurrentConfig;
 import net.lunalabs.hl7gw.dto.req.CMParam;
 import net.lunalabs.hl7gw.dto.req.MS100ReqDto;
 import net.lunalabs.hl7gw.dto.req.PR100ReqDto;
@@ -38,7 +39,8 @@ public class HL7Service {
 	private static final Logger logger = LoggerFactory.getLogger(HL7Service.class);
 	
 	private final CSSocketService csSocketService;
-	
+	private final ConcurrentConfig concurrentConfig;
+
 
 	ObjectMapper mapper = new ObjectMapper();
 	StringBuffer sb = new StringBuffer(); //여기다 선언하는 게 맞나싶다.. 계속 append 되어지는 거 아닌가..

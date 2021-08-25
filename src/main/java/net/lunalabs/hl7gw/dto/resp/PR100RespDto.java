@@ -14,13 +14,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class PR100RespDto {
 
-	private int patientId;
+	private Integer patientId;
 	private String firstName;
 	private String lastName;
-	private int gender;
-	private int age;
-	private int height;
-	private int weight;
-	private String lastSession;		
+	private Integer gender;
+	private Integer age;
+	private Double height;
+	private Double weight;
 	private String commnet;
 }

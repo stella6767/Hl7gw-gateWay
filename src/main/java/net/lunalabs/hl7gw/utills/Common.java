@@ -4,6 +4,7 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.math.BigDecimal;
@@ -20,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
@@ -29,10 +31,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
-import net.lunalabs.hl7gw.dto.req.CMParam;
+import lombok.RequiredArgsConstructor;
 import net.lunalabs.hl7gw.dto.req.Parameter;
 import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
-import net.lunalabs.hl7gw.service.QTSocketService;
 
 /**
  * 
@@ -43,6 +44,7 @@ import net.lunalabs.hl7gw.service.QTSocketService;
  * @설명 : 공통 사용 메소드
  */
 
+@RequiredArgsConstructor
 @Component
 public class Common {
 
@@ -58,6 +60,51 @@ public class Common {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+	
+	
+	public static void sendJsonToQT(String jsonData) throws IOException, InterruptedException, ExecutionException {
+		ByteBuffer writeBuf = ByteBuffer.allocate(10240);
+
+		//SocketChannel이 QT여야 된다.
+		
+		log.debug("jsonData: " + jsonData);
+		
+		
+		//SocketChannel channel	= 
+		
+		
+		
+		
+//		CompletableFuture<SocketChannel> completableFuture = jsonParseService.returnQtsocket(null)
+//		SocketChannel channel = completableFuture.get(); //일단은 그냥 blocking 시켜서 보내자. 후에 thencombine으로 교체
+//		System.out.println(channel);
+//		
+//		if(channel.isConnected()) {
+//			log.debug("qtSocket channel이 정상적으로 연결되었습니다.");
+//	        writeBuf.flip();
+//	        writeBuf = str_to_bb(jsonData);
+//	        channel.write(writeBuf);
+//	        writeBuf.clear();
+//
+//		
+//		}else if(!channel.isConnected()) {
+//			log.debug("qtSocket channel이 연결이 끊어졌습니다.");
+//		}
+		
+		
+//        writeBuf.flip();
+//        writeBuf = str_to_bb(jsonData);
+//        (qtSocketService.socketChannel).write(writeBuf);
+//        writeBuf.clear();
+        
+        
+        
+        
+//        writeBuffer = charset.encode(sb.toString());
+//	    schn.write(writeBuffer);
+		
 	}
 	
 	
@@ -201,14 +248,27 @@ public class Common {
 		log.debug("Dummy Patient Data create");
 
 		List<PR100RespDto> patients = IntStream.range(0, 100)
-				.mapToObj(i -> PR100RespDto.builder().patientId(i + 1).firstName(QTSocketService.fakeName.get(i))
-						.lastName("lastname").gender(0).age(20).height(180).weight(80).commnet("dummy data")
-						.lastSession(parseLocalDateTime()).build())
+				.mapToObj(i -> 
+				PR100RespDto.builder()
+						.patientId(i + 1)
+						.age(1)
+						.commnet("dummy")
+						.firstName("guildong")
+						.lastName("hong")
+						.commnet("dummydate")
+						.gender(1)
+						.height(155.1)
+						.weight(177.3)
+						.build()
+
+						
+						)
 				.collect(Collectors.toList());
 
 		log.debug("fake patinents List: " + patients);
 
 		return patients;
+
 
 	}
 

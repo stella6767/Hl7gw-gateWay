@@ -16,6 +16,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import net.lunalabs.hl7gw.config.ConcurrentConfig;
 import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
 import net.lunalabs.hl7gw.utills.Common;
 
@@ -44,26 +45,31 @@ public class QTSocketService {
 	private static final Logger logger = LoggerFactory.getLogger(QTSocketService.class);
 
 	private final JsonParseService jsonParseService;
+	private final ConcurrentConfig concurrentConfig; 
 
+	
 	
 	//Test data
 	public static List<String> fakeName = Common.generateRandomString();
 	public static List<PR100RespDto> fakePatientsList = Common.createDummyPatients();
 	
+	
+	
+	
+	ServerSocketChannel serverSocketChannel = null;
+	public SocketChannel socketChannel = null;
+	
 
 	@Async
 	public void socketThread() {
+		
+		
+		logger.debug( "3차 스레드 di test: "   + concurrentConfig.toString());
 
 		try {
 
-			ServerSocketChannel serverSocketChannel = null;
-			SocketChannel socketChannel = null;
-
 			serverSocketChannel = ServerSocketChannel.open();
-
 			serverSocketChannel.socket().bind(new InetSocketAddress(5050));
-
-
 
 			boolean bLoop = true;
 
@@ -100,6 +106,9 @@ public class QTSocketService {
 		} catch (Exception e1) {
 			e1.printStackTrace();
 		}
+		
+		//return CompletableFuture.completedFuture(socketChannel);
+
 
 	}
 
@@ -120,7 +129,6 @@ public class QTSocketService {
 
 				// ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
 				ByteBuffer readBuf = ByteBuffer.allocate(10240);
-				ByteBuffer writeBuf = ByteBuffer.allocate(10240);
 
 				logger.debug("첫번째  while문");
 
@@ -278,7 +286,7 @@ public class QTSocketService {
 								if (result.length() == indEtx && countETX == 1) { // case4
 
 									logger.debug("case4");
-									jsonParseService.opCodeAction(result, schn, writeBuf, lThId);
+									jsonParseService.opCodeAction(result, schn, lThId);
 
 									logger.debug("[gwEmulThread #220] TID[ " + lThId + "] socketRead Start[" + result
 											+ "], byteCount[" + byteCount + "], i[" + i + "]");
@@ -293,7 +301,7 @@ public class QTSocketService {
 									logger.debug("case6 길이: " + resultArray.length);
 									for (int a = 0; a < resultArray.length; a++) {
 										logger.debug(resultArray[a]); // 마지막은 짤리는구만,
-										jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId);
+										jsonParseService.opCodeAction(resultArray[a], schn, lThId);
 									}
 									result = "";
 									readBuf.clear();
@@ -311,7 +319,7 @@ public class QTSocketService {
 
 									if (!(resultArray[resultArray.length - 1].contains("#ETX#"))) {
 										for (int a = 0; a < resultArray.length - 1; a++) {
-											jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId);
+											jsonParseService.opCodeAction(resultArray[a], schn, lThId);
 										}
 
 										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장
@@ -333,7 +341,7 @@ public class QTSocketService {
 									if (!(resultArray[resultArray.length - 1].contains("#ETX#"))) {
 										logger.debug("case7");
 										for (int a = 0; a < resultArray.length - 1; a++) {
-											jsonParseService.opCodeAction(resultArray[a], schn, writeBuf, lThId);
+											jsonParseService.opCodeAction(resultArray[a], schn, lThId);
 										}
 
 										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장

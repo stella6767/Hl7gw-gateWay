@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
+import net.lunalabs.hl7gw.config.ConcurrentConfig;
 import net.lunalabs.hl7gw.service.CSSocketService;
 import net.lunalabs.hl7gw.service.FTPService;
 import net.lunalabs.hl7gw.service.QTSocketService;
@@ -28,17 +29,21 @@ public class Emulator {
 	
 	private static final Logger logger = LoggerFactory.getLogger(Emulator.class);
 	
-	private final QTSocketService socketService;
+	private final QTSocketService qtSocketService;
 	private final FTPService ftpService;
 	private final CSSocketService csSocketService;
+	
+	private final ConcurrentConfig concurrentConfig; 
 	
 	
 	public void start() throws Exception{
 		
 		logger.debug("Emulator Start!");
 		
-		socketService.socketThread();
-		ftpService.FTPTest();
+		logger.debug("concurrentConfig 가 di 되었는지  " + concurrentConfig.toString());
+		
+		qtSocketService.socketThread();
+		//ftpService.FTPTest();
 		csSocketService.csSocketStart();
 		
 	}
