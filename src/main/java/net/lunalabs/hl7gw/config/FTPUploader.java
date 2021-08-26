@@ -1,4 +1,4 @@
-package net.lunalabs.hl7gw.emul;
+package net.lunalabs.hl7gw.config;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -6,17 +6,44 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintWriter;
 
+import javax.annotation.PostConstruct;
+
 import org.apache.commons.net.PrintCommandListener;
 import org.apache.commons.net.ftp.FTP;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
 
-public class FTPUploader {
+
+
+//@Configuration
+public class FTPUploader { //매번 new 하는 것보다는,
 
 	FTPClient ftpClient = null;
 
+	
+	private static final Logger log = LoggerFactory.getLogger(FTPUploader.class);
+
+	
+	
+//	@PostConstruct
+//	public void getFtpBean() throws Exception {	
+//		  FTPUploader ftpUploader = new FTPUploader("kist.lunalabs.net", "luna", "new12#$!");
+//		  //return ftpUploader;
+//	}
+//	
+	
+	
+	
+	
 	// param( host server ip, username, password ) 생성자
 	public FTPUploader(String host, String user, String pwd) throws Exception {
+		
+		log.debug("싱글톤으로 박을 수 없나.");
+		
 		ftpClient = new FTPClient();
 		ftpClient.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
 		int reply;

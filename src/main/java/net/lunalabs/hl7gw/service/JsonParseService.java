@@ -28,6 +28,7 @@ public class JsonParseService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(JsonParseService.class);
 	private final ConcurrentConfig concurrentConfig;
+	private final FTPService ftpService;
 
 	Gson gson = new Gson();
 	
@@ -64,6 +65,9 @@ public class JsonParseService {
 				
 				CMRespDto cmRespDto = new CMRespDto();
 				
+				concurrentConfig.globalQtsocketMap.put("mySchn", schn);
+				logger.debug("여기서 분명 socketChannel을 집어넣었을텐데?? " + concurrentConfig.globalQtsocketMap.get("mySchn"));
+				
 
 				switch (strOpCode) {
 				
@@ -86,11 +90,21 @@ public class JsonParseService {
 					break;	
 					
 				case "FT100" :
+					String filename = (String)obj.get("filename");	
+					
 					
 					cmRespDto.setResultCode("100");
 					cmRespDto.setResultMsg("Success");
 					cmRespDto.setTrId(trId);
 					qtSendCheck(cmRespDto, schn);
+					
+//					try {
+//						ftpService.ftpSendToCs(filename);
+//					} catch (Exception e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+					
 					break;
 					
 					//Session code 추가될 예정.
@@ -108,9 +122,7 @@ public class JsonParseService {
 		}
 		
 		
-		concurrentConfig.globalQtsocketMap.put("mySchn", schn);
-		
-		logger.debug("여기서 분명 socketChannel을 집어넣었을텐데?? " + concurrentConfig.globalQtsocketMap.get("mySchn"));
+
 		
 	}
 	
