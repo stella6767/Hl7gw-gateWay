@@ -225,34 +225,34 @@ public class Common {
 
 	}
 
-	public static List<PR100RespDto> createDummyPatients() {
-
-		log.debug("Dummy Patient Data create");
-
-		List<PR100RespDto> patients = IntStream.range(0, 100)
-				.mapToObj(i -> 
-				PR100RespDto.builder()
-						.patientId(i + 1)
-						.age(1)
-						.commnet("dummy")
-						.firstName("guildong")
-						.lastName("hong")
-						.commnet("dummydate")
-						.gender(1)
-						.height(155.1)
-						.weight(177.3)
-						.build()
-
-						
-						)
-				.collect(Collectors.toList());
-
-		log.debug("fake patinents List: " + patients);
-
-		return patients;
-
-
-	}
+//	public static List<PR100RespDto> createDummyPatients() {
+//
+//		log.debug("Dummy Patient Data create");
+//
+//		List<PR100RespDto> patients = IntStream.range(0, 100)
+//				.mapToObj(i -> 
+//				PR100RespDto.builder()
+//						.patientId(i + 1)
+//						.age(1)
+//						.comment("dummy")
+//						.firstName("guildong")
+//						.lastName("hong")
+//						.commnet("dummydate")
+//						.gender(1)
+//						.height(155.1)
+//						.weight(177.3)
+//						.build()
+//
+//						
+//						)
+//				.collect(Collectors.toList());
+//
+//		log.debug("fake patinents List: " + patients);
+//
+//		return patients;
+//
+//
+//	}
 
 	public static String parseLocalDateTime() {
 

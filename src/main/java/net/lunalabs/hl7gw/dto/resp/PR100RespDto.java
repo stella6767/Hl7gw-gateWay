@@ -21,5 +21,5 @@ public class PR100RespDto {
 	private Integer age;
 	private Double height;
 	private Double weight;
-	private String commnet;
+	private String comment;
 }

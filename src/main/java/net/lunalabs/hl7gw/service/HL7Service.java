@@ -1,23 +1,17 @@
 package net.lunalabs.hl7gw.service;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.math.BigDecimal;
 import java.nio.channels.SocketChannel;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,7 +21,6 @@ import net.lunalabs.hl7gw.config.ConcurrentConfig;
 import net.lunalabs.hl7gw.dto.req.CMParam;
 import net.lunalabs.hl7gw.dto.req.MS100ReqDto;
 import net.lunalabs.hl7gw.dto.req.PR100ReqDto;
-import net.lunalabs.hl7gw.dto.req.Parameter;
 import net.lunalabs.hl7gw.utills.Common;
 
 
@@ -43,11 +36,15 @@ public class HL7Service {
 
 
 	ObjectMapper mapper = new ObjectMapper();
+
+	
 	StringBuffer sb = new StringBuffer(); //여기다 선언하는 게 맞나싶다.. 계속 append 되어지는 거 아닌가..
 
 	public void parseToPR100Req(String jsonReqData) throws JsonMappingException, JsonProcessingException {
 
 		sb.delete(0, sb.length()); //초기화
+		
+
 		
 		logger.debug("PR100Req HL7 parsing start");
 		

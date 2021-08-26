@@ -6,7 +6,6 @@ import java.nio.ByteBuffer;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
-import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -17,8 +16,6 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import net.lunalabs.hl7gw.config.ConcurrentConfig;
-import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
-import net.lunalabs.hl7gw.utills.Common;
 
 
 /**
@@ -50,11 +47,8 @@ public class QTSocketService {
 	
 	
 	//Test data
-	public static List<String> fakeName = Common.generateRandomString();
-	public static List<PR100RespDto> fakePatientsList = Common.createDummyPatients();
-	
-	
-	
+	//public static List<String> fakeName = Common.generateRandomString();
+	//public static List<PR100RespDto> fakePatientsList = Common.createDummyPatients();
 	
 	ServerSocketChannel serverSocketChannel = null;
 	public SocketChannel socketChannel = null;

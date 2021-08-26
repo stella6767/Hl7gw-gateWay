@@ -30,7 +30,7 @@ public class JsonParseService {
 	private final ConcurrentConfig concurrentConfig;
 
 	Gson gson = new Gson();
-
+	
 	
 	private final HL7Service hl7Service;
 
@@ -57,49 +57,7 @@ public class JsonParseService {
 				obj = (JSONObject)parser.parse(strMessage);
 	
 				String strOpCode = (String)obj.get("opCode");
-				String trId = (String)obj.get("trId");
-								
-				List<PR100RespDto> fakeList = new ArrayList<>();
-				
-				if(strOpCode.equals("PR100")) {
-					
-					logger.debug("환자 정보 응답");	
-					
-					//pr100RespDto = gson.fromJson(strMessage, PR100RespDto.class);		
-					String searchType = (String)obj.get("searchType");
-					String searchWord = (String)obj.get("searchWord");
-					logger.info("searchType: " + searchType + "   searchWord: " + searchWord);
-				
-					
-					//아마도 DB에서 검증 후 돌려주겠지.
-					//logger.debug(pr100RespDto.toString());
-					
-					
-
-					switch (searchType) {
-					
-					case "patientId" :
-						
-						fakeList = Common.searchPatientID(QTSocketService.fakePatientsList, fakeList, searchWord);
-					
-					case "name" :
-						
-						fakeList = Common.searchName(QTSocketService.fakePatientsList, fakeList, searchWord);
-						break;
-					}
-					
-					
-	
-					
-					
-										
-				}else if(strOpCode.equals("MS100")) {
-								
-					List<T> params = (ArrayList)obj.get("params");					
-					logger.debug("params 배열 " + params);	
-				}
-				
-				
+				String trId = (String)obj.get("trId");											
 
 				logger.debug("[gwEmulThread #310] TID[ "
 						+ lThId + "] opCode[" + strOpCode + "]");
@@ -124,9 +82,6 @@ public class JsonParseService {
 					
 				case "MS100" :
 					
-//					cmRespDto.setResultCode("100");
-//					cmRespDto.setResultMsg("Success");
-//					cmRespDto.setTrId(trId);
 					hl7Service.parseToMS100Req(strMessage);				
 					break;	
 					
