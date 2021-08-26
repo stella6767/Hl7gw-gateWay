@@ -110,6 +110,11 @@ public class JsonParseService {
 					//Session code 추가될 예정.
 						
 
+					case "SS100" :
+					
+					hl7Service.parseToSS100Req(strMessage);				
+					break;	
+					
 				}
 	
 
