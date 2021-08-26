@@ -96,6 +96,12 @@ public class HL7Service {
 	public <T> void parseToSS100Req(String jsonReqData) throws JsonMappingException, JsonProcessingException {
 
 		
+		try {
+			sendToCSsocket(jsonReqData);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} 
 		
 		
 		

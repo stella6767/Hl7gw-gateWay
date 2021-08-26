@@ -39,7 +39,6 @@ public class CSSocketService {
 
 	private final ConcurrentConfig concurrentConfig;
 
-
 	@Async
 	public CompletableFuture<SocketChannel> csSocketStart() throws IOException {
 
@@ -51,8 +50,8 @@ public class CSSocketService {
 		logger.debug("central로 보내는 socket channel");
 
 		try {
-			socketChannel2.connect(new InetSocketAddress("172.16.81.180", 5051));
-			//socketChannel2.connect(new InetSocketAddress("localhost", 5051));
+			// socketChannel2.connect(new InetSocketAddress("172.16.81.180", 5051));
+			socketChannel2.connect(new InetSocketAddress("localhost", 5051));
 			logger.debug("socketChannel connected to port 5051");
 			socketChannel2.configureBlocking(true);// Non-Blocking I/O
 
@@ -65,6 +64,8 @@ public class CSSocketService {
 		return CompletableFuture.completedFuture(socketChannel2); // 다른 대안 탐색중..
 
 	}
+
+
 
 	@Async
 	public void hl7ProtocolSendThread(String HL7Data, SocketChannel socketChannel) {
@@ -98,35 +99,42 @@ public class CSSocketService {
 					socketChannel.write(writeBuf);
 				}
 
-				int bytesRead = socketChannel.read(readBuf); // read into buffer. 일단은 버퍼 초과 신경쓰지 않고
-				while (bytesRead != -1) {// 만약 소켓채널을 통해 buffer에 데이터를 받아왔으면
+				
+				if(!HL7Data.contains("SS100")) {
+					
+					int bytesRead = socketChannel.read(readBuf); // read into buffer. 일단은 버퍼 초과 신경쓰지 않고
+					while (bytesRead != -1) {// 만약 소켓채널을 통해 buffer에 데이터를 받아왔으면
 
-					readBuf.flip(); // make buffer ready for read
-					// 10240로 정의한 buffer의 크기를 실제 데이터의 크기로 flip() 함
+						readBuf.flip(); // make buffer ready for read
+						// 10240로 정의한 buffer의 크기를 실제 데이터의 크기로 flip() 함
 
-					while (readBuf.hasRemaining()) {
-						// System.out.print((char) readBuf.get()); // read 1 byte at a time
+						while (readBuf.hasRemaining()) {
+							// System.out.print((char) readBuf.get()); // read 1 byte at a time
 
-						hl7Response = hl7Response + String.valueOf(((char) readBuf.get()));
+							hl7Response = hl7Response + String.valueOf(((char) readBuf.get()));
+						}
+
+						// logger.debug("읽기 끝 " + bytesRead);
+						// logger.debug("hl7Response data1: "+hl7Response);
+						// readBuf.clear(); //make buffer ready for writing
+						bytesRead = socketChannel.read(readBuf);
+
+						if (!readBuf.hasRemaining()) {
+
+							logger.debug("응답 안 함??");
+							break;
+						}
+
 					}
 
-					// logger.debug("읽기 끝 " + bytesRead);
-					// logger.debug("hl7Response data1: "+hl7Response);
-					// readBuf.clear(); //make buffer ready for writing
-					bytesRead = socketChannel.read(readBuf);
+					logger.debug("-------------- 응답 hl7Response ----------------");
+					logger.debug(hl7Response);
 
-					if (!readBuf.hasRemaining()) {
-
-						logger.debug("응답 안 함??");
-						break;
-					}
-
+					parsingHl7toJson(hl7Response, writeBuf);
+														
 				}
-
-				logger.debug("-------------- 응답 hl7Response ----------------");
-				logger.debug(hl7Response);
-
-				parsingHl7toJson(hl7Response, writeBuf);
+				
+				
 
 				bConnect = false;
 				// socketChannel.close(); //AsynchronousCloseException 이 발생하지 않기 위해서
@@ -144,8 +152,7 @@ public class CSSocketService {
 	public void parsingHl7toJson(String HL7Data, ByteBuffer wriBuf) throws IOException {
 
 		logger.debug("patient 측정 response => json 파싱준비");
-		
-		
+
 		boolean a = concurrentConfig.globalQtsocketMap == null ? true : false;
 		logger.debug("확인: " + a);
 
@@ -155,15 +162,15 @@ public class CSSocketService {
 		String[] mshArray = splitEnterArray[0].split("[|]");
 		String trId = mshArray[9];
 		logger.debug("trid: " + trId);
-		
-		if(splitEnterArray.length == 1) {
+
+		if (splitEnterArray.length == 1) {
 			CMRespDto cmRespDto = new CMRespDto();
 
 			cmRespDto.setResultCode("100");
 			cmRespDto.setResultMsg("Success");
 			cmRespDto.setTrId(trId);
 			String jsonData = mapper.writeValueAsString(cmRespDto);
-			
+
 			try {
 				Common.sendJsonToQT(jsonData, channel);
 			} catch (IOException | InterruptedException | ExecutionException e) {
@@ -171,11 +178,7 @@ public class CSSocketService {
 				e.printStackTrace();
 			}
 
-			
-			
-		}else {
-			
-			
+		} else {
 
 			List<PR100RespDto> dtos = new ArrayList<>();
 
@@ -186,11 +189,12 @@ public class CSSocketService {
 				String[] splitSecondArray = splitEnterArray[i].split("[|]");
 
 				for (int j = 0; j < splitSecondArray.length; j++) {
-					//logger.debug("| 기준으로 2차 파싱: " + splitSecondArray[j]);
+					// logger.debug("| 기준으로 2차 파싱: " + splitSecondArray[j]);
 
 					dto = PR100RespDto.builder().firstName(splitSecondArray[5]).lastName(splitSecondArray[6])
 							.patientId(Integer.parseInt(splitSecondArray[2])).age(Integer.parseInt(splitSecondArray[3]))
-							.height(Double.parseDouble(splitSecondArray[4])).weight(Double.parseDouble(splitSecondArray[7]))
+							.height(Double.parseDouble(splitSecondArray[4]))
+							.weight(Double.parseDouble(splitSecondArray[7]))
 							.gender(Integer.parseInt(splitSecondArray[8])).comment(splitSecondArray[9]).build();
 				}
 
@@ -212,9 +216,6 @@ public class CSSocketService {
 
 			// 서버가 가동될 때부터 서버가 종료되는 시점까지의 범위를 Application Scope라고 부릅니다.
 
-			
-
-
 			try {
 				Common.sendJsonToQT(jsonData, channel);
 			} catch (IOException | InterruptedException | ExecutionException e) {
@@ -222,12 +223,7 @@ public class CSSocketService {
 				e.printStackTrace();
 			}
 
-			
-			
 		}
-		
-		
-		
 
 	}
 
