@@ -152,7 +152,7 @@ public class CSSocketService {
 	public void parsingHl7toJson(String HL7Data, ByteBuffer wriBuf) throws IOException {
 
 		logger.debug("patient 측정 response => json 파싱준비");
-
+		
 		boolean a = concurrentConfig.globalQtsocketMap == null ? true : false;
 		logger.debug("확인: " + a);
 
