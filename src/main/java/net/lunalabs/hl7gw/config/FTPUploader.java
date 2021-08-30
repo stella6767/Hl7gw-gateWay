@@ -37,8 +37,6 @@ public class FTPUploader { //매번 new 하는 것보다는,
 //	
 	
 	
-	
-	
 	// param( host server ip, username, password ) 생성자
 	public FTPUploader(String host, String user, String pwd) throws Exception {
 		

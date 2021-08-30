@@ -98,12 +98,13 @@ public class JsonParseService {
 					cmRespDto.setTrId(trId);
 					qtSendCheck(cmRespDto, schn);
 					
-//					try {
-//						ftpService.ftpSendToCs(filename);
-//					} catch (Exception e) {
-//						// TODO Auto-generated catch block
-//						e.printStackTrace();
-//					}
+					try {
+						//ftpService.ftpSendToCs(filename); //비동기로 파일전송
+						ftpService.ftpSendToCs2(filename);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
 					
 					break;
 					
@@ -143,11 +144,7 @@ public class JsonParseService {
 		
 //	     Attribute attribute = new Attribute();
 //	        attribute.setLoggingCode(loggingCode);     Attribute attribute = new Attribute();
-//	        attribute.setLoggingCode(loggingCode);
-		
-
-
-		
+//	        attribute.setLoggingCode(loggingCode);	
 		
 		try {
 			Common.sendJsonToQT(jsonData, schn);

@@ -17,6 +17,7 @@ import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
+import net.lunalabs.hl7gw.config.CustomFtpClient;
 import net.lunalabs.hl7gw.config.FTPUploader;
 
 @RequiredArgsConstructor
@@ -26,7 +27,7 @@ public class FTPService {
 
 	private static final Logger logger = LoggerFactory.getLogger(FTPService.class);
 
-	//private final FTPUploader ftpUploader;
+	private final CustomFtpClient customFtpClient;
 
 	
 	@Async
@@ -47,11 +48,23 @@ public class FTPService {
 	public void ftpSendToCs(String filename) throws Exception { // Central Statino sever로 파일 전송
 		logger.debug("file send to Cs");
 
-		FTPUploader ftpUploader = new FTPUploader("kist.lunalabs.net", "luna", "new12#$!"); // 일단은 다른 서버에,
-
-		ftpUploader.uploadFile(filename, "FTPTEST.txt", "/");
-		ftpUploader.disconnect();
+		customFtpClient.uploadFile(filename, "CsFTPSendText.txt", "C:\\kangminkyu\\aaaaaaa");
+		customFtpClient.customDisconnect();
 		logger.debug("FTP SEND DONE");
+	}
+	
+	
+	@Async
+	public void ftpSendToCs2(String filename) throws Exception { // Central Statino sever로 파일 전송
+		 FTPUploader ftpUploader = new FTPUploader("localhost", "kyu",
+		 "1234");
+
+		//ftpUploader.getFtpBean();"C:\\kangminkyu\\CsFTPSendText.txt"
+
+		logger.debug("FTP TEST START");
+		ftpUploader.uploadFile(filename, "CsFTPSendText.txt", "C:" + File.separator + "kangminkyu" +  File.separator  + "aaaaaaa" + File.separator);
+		ftpUploader.disconnect();
+		logger.debug("FTP TEST DONE");
 
 	}
 

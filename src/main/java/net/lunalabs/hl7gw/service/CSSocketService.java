@@ -195,7 +195,8 @@ public class CSSocketService {
 							.patientId(Integer.parseInt(splitSecondArray[2])).age(Integer.parseInt(splitSecondArray[3]))
 							.height(Double.parseDouble(splitSecondArray[4]))
 							.weight(Double.parseDouble(splitSecondArray[7]))
-							.gender(Integer.parseInt(splitSecondArray[8])).comment(splitSecondArray[9]).build();
+							.gender(Integer.parseInt(splitSecondArray[8])).comment(splitSecondArray[9])
+							.lastSession(splitSecondArray[10]).build();
 				}
 
 				dtos.add(dto);
