@@ -6,7 +6,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.integration.ftp.session.DefaultFtpSessionFactory;
 
 @Configuration
-public class FtpConfig {	 
+public class FtpConfig extends DefaultFtpSessionFactory {	 
 	
 //	@Bean
 //	public DefaultFtpSessionFactory ftpSessionFactory() { //일단은 사용안함.
@@ -19,7 +19,7 @@ public class FtpConfig {
 //		ftpSessionFactory.setClientMode(FTPClient.PASSIVE_LOCAL_DATA_CONNECTION_MODE);
 //		return ftpSessionFactory;
 //	}
-//	
+	
 	
 
 	
