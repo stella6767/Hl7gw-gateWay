@@ -55,14 +55,22 @@ public class FTPService {
 	
 	
 	@Async
-	public void ftpSendToCs2(String filename) throws Exception { // Central Statino sever로 파일 전송
+	public void ftpSendToCs2(String file) throws Exception { // Central Statino sever로 파일 전송
 		 FTPUploader ftpUploader = new FTPUploader("localhost", "kyu",
 		 "1234");
 
 		//ftpUploader.getFtpBean();"C:\\kangminkyu\\CsFTPSendText.txt"
-
+		 		
+		logger.debug("fileName: " + file);
+		
+		//String[] fileNameArray = file.split(File.separator); //리눅스에서는 다르게 되나?
+		String[] fileNameArray = file.split("\\\\"); 
+		String fileName = fileNameArray[fileNameArray.length - 1];
+		logger.debug("file: " + fileName);
+		
 		logger.debug("FTP TEST START");
-		ftpUploader.uploadFile(filename, "CsFTPSendText.txt", "C:" + File.separator + "kangminkyu" +  File.separator  + "aaaaaaa" + File.separator);
+		//ftpUploader.uploadFile(filename, "CsFTPSendText.txt", "C:" + File.separator + "kangminkyu" +  File.separator  + "aaaaaaa" + File.separator);
+		ftpUploader.uploadFile(file, fileName, "/");
 		ftpUploader.disconnect();
 		logger.debug("FTP TEST DONE");
 
