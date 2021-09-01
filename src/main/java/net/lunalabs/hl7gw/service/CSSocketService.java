@@ -51,7 +51,8 @@ public class CSSocketService {
 
 		try {
 			//socketChannel2.connect(new InetSocketAddress("172.16.81.180", 5051));
-			socketChannel2.connect(new InetSocketAddress("localhost", 5051));
+			//socketChannel2.connect(new InetSocketAddress("localhost", 5051));
+			socketChannel2.connect(new InetSocketAddress("10.0.1.115", 5051));
 			logger.debug("socketChannel connected to port 5051");
 			socketChannel2.configureBlocking(true);// Non-Blocking I/O
 
@@ -154,8 +155,11 @@ public class CSSocketService {
 		logger.debug("patient 측정 response => json 파싱준비");
 		
 		boolean a = concurrentConfig.globalQtsocketMap == null ? true : false;
+				
 		logger.debug("확인: " + a);
 
+		logger.debug("csServer로부터 응답받은 데이터: " + HL7Data);
+		
 		SocketChannel channel = concurrentConfig.globalQtsocketMap.get("mySchn");
 
 		String[] splitEnterArray = HL7Data.split("[\\r\\n]+"); // 개행문자 기준으로 1차 파싱
@@ -189,14 +193,19 @@ public class CSSocketService {
 				String[] splitSecondArray = splitEnterArray[i].split("[|]");
 
 				for (int j = 0; j < splitSecondArray.length; j++) {
-					// logger.debug("| 기준으로 2차 파싱: " + splitSecondArray[j]);
+					logger.debug("| 기준으로 2차 파싱: " + splitSecondArray[j]);
 
-					dto = PR100RespDto.builder().firstName(splitSecondArray[5]).lastName(splitSecondArray[6])
-							.patientId(Integer.parseInt(splitSecondArray[2])).age(Integer.parseInt(splitSecondArray[3]))
-							.height(Double.parseDouble(splitSecondArray[4]))
-							.weight(Double.parseDouble(splitSecondArray[7]))
-							.gender(Integer.parseInt(splitSecondArray[8])).comment(splitSecondArray[9])
-							.lastSession(splitSecondArray[10]).build();
+					//일단 여기까지 빌드해서 올릴테니 라즈베리파이에서 다시 pull 받아서 빌드하시고 로그를 같이 볼 수 있을까요. -> 넵
+					
+//					dto = PR100RespDto.builder().firstName(splitSecondArray[5]).lastName(splitSecondArray[6])
+//							.patientId(Integer.parseInt(splitSecondArray[2])).age(Integer.parseInt(splitSecondArray[3]))
+//							.height(Double.parseDouble(splitSecondArray[4]))
+//							.weight(Double.parseDouble(splitSecondArray[7]))
+//							.gender(Integer.parseInt(splitSecondArray[8])).comment(splitSecondArray[9])
+//							.lastSession(splitSecondArray[10]).build();
+					
+					
+					//여기서 에러가 
 				}
 
 				dtos.add(dto);

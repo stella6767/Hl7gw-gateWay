@@ -62,7 +62,7 @@ public class FTPService {
 		 		
 		logger.debug("file: " + file);
 		
-		//String[] fileNameArray = file.split(File.separator); //리눅스에서는 다르게 되나?
+		//String[] fileNameArray = file.split(File.separator); //리눅스에서는 다르게 되나? 리눅스 파일 경로에 맞게끔 수정필요. 현재 윈도우 기준
 		String[] fileNameArray = file.split("\\\\"); 
 		String fileName = fileNameArray[fileNameArray.length - 1];
 		logger.debug("fileName: " + fileName);
