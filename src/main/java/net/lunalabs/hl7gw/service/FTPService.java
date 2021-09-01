@@ -55,21 +55,21 @@ public class FTPService {
 	
 	@Async
 	public void ftpSendToCs2(String file) throws Exception { // Central Statino sever로 파일 전송
-		 FTPUploader ftpUploader = new FTPUploader("172.16.81.180", "kyu",
-		 "1234"); //localhost
+		 FTPUploader ftpUploader = new FTPUploader("localhost", "kyu",
+		 "1234"); //localhost, 172.16.81.180
 
 		//ftpUploader.getFtpBean();"C:\\kangminkyu\\CsFTPSendText.txt"
 		 		
-		logger.debug("fileName: " + file);
+		logger.debug("file: " + file);
 		
 		//String[] fileNameArray = file.split(File.separator); //리눅스에서는 다르게 되나?
 		String[] fileNameArray = file.split("\\\\"); 
 		String fileName = fileNameArray[fileNameArray.length - 1];
-		logger.debug("file: " + fileName);
+		logger.debug("fileName: " + fileName);
 		
 		logger.debug("FTP TEST START");
 		//ftpUploader.uploadFile(filename, "CsFTPSendText.txt", "C:" + File.separator + "kangminkyu" +  File.separator  + "aaaaaaa" + File.separator);
-		ftpUploader.uploadFile(file, fileName, "/");
+		ftpUploader.uploadFile(file, fileName, "/"); //파일 전송시 공백있는 이름의 파일을 전송하면 안 됨, 위에서 이미 공백을 다 제거했기 때문.
 		ftpUploader.disconnect();
 		logger.debug("FTP TEST DONE");
 

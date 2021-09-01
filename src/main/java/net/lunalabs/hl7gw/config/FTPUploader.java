@@ -53,7 +53,7 @@ public class FTPUploader { //매번 new 하는 것보다는,
 			throw new Exception("Exception in connecting to FTP Server");
 		}
 		ftpClient.login(user, pwd);// 로그인
-		ftpClient.setFileType(FTP.ASCII_FILE_TYPE);
+		ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
 		ftpClient.enterLocalPassiveMode();
 	}
 
