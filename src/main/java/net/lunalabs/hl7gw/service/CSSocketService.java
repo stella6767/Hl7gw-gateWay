@@ -1,3 +1,4 @@
+
 package net.lunalabs.hl7gw.service;
 
 import java.io.IOException;
@@ -74,7 +75,7 @@ public class CSSocketService {
 		// 소켓을 계속 열었다 닫았다 할까/
 
 		ByteBuffer writeBuf = ByteBuffer.allocate(1024);
-		ByteBuffer readBuf = ByteBuffer.allocate(10240);
+		ByteBuffer readBuf = ByteBuffer.allocate(100);
 
 		logger.debug("다른 스레드라서 동기화가 안 되나? : " + HL7Data);
 		Charset charset = Charset.forName("UTF-8");
@@ -117,14 +118,14 @@ public class CSSocketService {
 
 						// logger.debug("읽기 끝 " + bytesRead);
 						// logger.debug("hl7Response data1: "+hl7Response);
-						// readBuf.clear(); //make buffer ready for writing
+						readBuf.clear(); //make buffer ready for writing
 						bytesRead = socketChannel.read(readBuf);
 
-						if (!readBuf.hasRemaining()) {
-
-							logger.debug("응답 안 함??");
-							break;
-						}
+//						if (!readBuf.hasRemaining()) {
+//
+//							logger.debug("응답 안 함??");
+//							break;
+//						}
 
 					}
 
