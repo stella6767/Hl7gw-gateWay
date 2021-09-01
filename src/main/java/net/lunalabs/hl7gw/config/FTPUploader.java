@@ -43,7 +43,7 @@ public class FTPUploader { //매번 new 하는 것보다는,
 		log.debug("싱글톤으로 박을 수 없나.");
 		
 		ftpClient = new FTPClient();
-		ftpClient.setDefaultPort(2020);
+		ftpClient.setDefaultPort(2121);
 		ftpClient.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
 		int reply;
 		ftpClient.connect(host);// 호스트 연결

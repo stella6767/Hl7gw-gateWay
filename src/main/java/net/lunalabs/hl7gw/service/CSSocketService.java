@@ -50,7 +50,7 @@ public class CSSocketService {
 		logger.debug("central로 보내는 socket channel");
 
 		try {
-			 socketChannel2.connect(new InetSocketAddress("172.16.81.180", 5051));
+			socketChannel2.connect(new InetSocketAddress("172.16.81.180", 5051));
 			//socketChannel2.connect(new InetSocketAddress("localhost", 5051));
 			logger.debug("socketChannel connected to port 5051");
 			socketChannel2.configureBlocking(true);// Non-Blocking I/O

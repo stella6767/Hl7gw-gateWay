@@ -47,8 +47,7 @@ public class FTPService {
 	@Async
 	public void ftpSendToCs(String filename) throws Exception { // Central Statino sever로 파일 전송
 		logger.debug("file send to Cs");
-
-		customFtpClient.uploadFile(filename, "CsFTPSendText.txt", "C:\\kangminkyu\\aaaaaaa");
+		customFtpClient.uploadFile(filename, "CsFTPSendText.txt", "/"); 
 		customFtpClient.customDisconnect();
 		logger.debug("FTP SEND DONE");
 	}
@@ -57,7 +56,7 @@ public class FTPService {
 	@Async
 	public void ftpSendToCs2(String file) throws Exception { // Central Statino sever로 파일 전송
 		 FTPUploader ftpUploader = new FTPUploader("172.16.81.180", "kyu",
-		 "1234");
+		 "1234"); //localhost
 
 		//ftpUploader.getFtpBean();"C:\\kangminkyu\\CsFTPSendText.txt"
 		 		
