@@ -15,8 +15,9 @@ public class MS100ReqDto<T>{
 	private String deviceId;
 	private String opCode;
 	//private List<T> parameter; 인자 안의 인자 속의 배열은 못 바꿈.
+	private Integer pid;
 	private Parameter<T> parameter;
-	private String patientId;
+	private String patientUserId;
 	private String sessionId;
 	private String timestampStart; //일단 문자열로 받자.
 	private String timestampEnd;

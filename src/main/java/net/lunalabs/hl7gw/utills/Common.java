@@ -168,14 +168,14 @@ public class Common {
 
 		for (PR100RespDto pr100RespDto : pr100RespDtos) {
 
-			boolean a = ((Integer) pr100RespDto.getPatientId()).toString().contains(searchWord);
-			String b = ((Integer) pr100RespDto.getPatientId()).toString();
+			boolean a = (pr100RespDto.getPatientUserId()).toString().contains(searchWord);
+			String b = pr100RespDto.getPatientUserId();
 
 			// logger.debug("문자열 변환: " + b);
 			// logger.debug("pr100RespDto: " + pr100RespDto);
 			// logger.debug("진실은: " + a);
 
-			if (((Integer) pr100RespDto.getPatientId()).toString().contains(searchWord)) {
+			if (pr100RespDto.getPatientUserId().contains(searchWord)) {
 				fakeList.add(pr100RespDto);
 			}
 
@@ -208,7 +208,7 @@ public class Common {
 
 		for (PR100RespDto pr100RespDto : pr100RespDtos) {
 
-			boolean a = ((Integer) pr100RespDto.getPatientId()).toString().contains(searchWord);
+			boolean a =  pr100RespDto.getPatientUserId().contains(searchWord);
 			String name = (pr100RespDto.getFirstName()) + pr100RespDto.getLastName();
 
 			// logger.debug("문자열 변환: " + b);

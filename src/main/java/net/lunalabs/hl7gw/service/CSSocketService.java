@@ -52,8 +52,8 @@ public class CSSocketService {
 
 		try {
 			//socketChannel2.connect(new InetSocketAddress("172.16.81.180", 5051));
-			//socketChannel2.connect(new InetSocketAddress("localhost", 5051));
-			socketChannel2.connect(new InetSocketAddress("10.0.1.115", 5051));
+			socketChannel2.connect(new InetSocketAddress("localhost", 5051));
+			//socketChannel2.connect(new InetSocketAddress("10.0.1.115", 5051));
 			logger.debug("socketChannel connected to port 5051");
 			socketChannel2.configureBlocking(true);// Non-Blocking I/O
 
@@ -75,7 +75,7 @@ public class CSSocketService {
 		// 소켓을 계속 열었다 닫았다 할까/
 
 		ByteBuffer writeBuf = ByteBuffer.allocate(1024);
-		ByteBuffer readBuf = ByteBuffer.allocate(100);
+		ByteBuffer readBuf = ByteBuffer.allocate(10);
 
 		logger.debug("다른 스레드라서 동기화가 안 되나? : " + HL7Data);
 		Charset charset = Charset.forName("UTF-8");
@@ -112,7 +112,6 @@ public class CSSocketService {
 
 						while (readBuf.hasRemaining()) {
 							// System.out.print((char) readBuf.get()); // read 1 byte at a time
-
 							hl7Response = hl7Response + String.valueOf(((char) readBuf.get()));
 						}
 
@@ -198,15 +197,13 @@ public class CSSocketService {
 
 					//일단 여기까지 빌드해서 올릴테니 라즈베리파이에서 다시 pull 받아서 빌드하시고 로그를 같이 볼 수 있을까요. -> 넵
 					
-//					dto = PR100RespDto.builder().firstName(splitSecondArray[5]).lastName(splitSecondArray[6])
-//							.patientId(Integer.parseInt(splitSecondArray[2])).age(Integer.parseInt(splitSecondArray[3]))
-//							.height(Double.parseDouble(splitSecondArray[4]))
-//							.weight(Double.parseDouble(splitSecondArray[7]))
-//							.gender(Integer.parseInt(splitSecondArray[8])).comment(splitSecondArray[9])
-//							.lastSession(splitSecondArray[10]).build();
-					
-					
-					//여기서 에러가 
+					dto = PR100RespDto.builder().firstName(splitSecondArray[5]).lastName(splitSecondArray[6])
+							.patientUserId(splitSecondArray[2]).age(Integer.parseInt(splitSecondArray[3]))
+							.height(Double.parseDouble(splitSecondArray[4]))
+							.weight(Double.parseDouble(splitSecondArray[7]))
+							.gender(Integer.parseInt(splitSecondArray[8])).comment(splitSecondArray[9])
+							.lastSession(splitSecondArray[10]).build();
+										
 				}
 
 				dtos.add(dto);

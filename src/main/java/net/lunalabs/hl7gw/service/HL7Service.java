@@ -43,13 +43,9 @@ public class HL7Service {
 	public void parseToPR100Req(String jsonReqData) throws JsonMappingException, JsonProcessingException {
 
 		sb.delete(0, sb.length()); //초기화
-		
-
-		
-		logger.debug("PR100Req HL7 parsing start");
-		
+				
+		logger.debug("PR100Req HL7 parsing start");		
 		logger.debug(jsonReqData);
-		
 		PR100ReqDto reqDto = mapper.readValue(jsonReqData, PR100ReqDto.class);
 		logger.debug("convert to java object: " + reqDto);
 
@@ -64,7 +60,7 @@ public class HL7Service {
 
 		// 나중에 스위치문으로 searchtype 분기
 		switch (searchType) {
-		case "patientId":
+		case "patientUserId":
 
 			sb.append("PID||" + reqDto.getSearchWord() + "|Patient_NHS_ID|NULL||NULL|NULL||||||||||||\r\n" + "");
 
@@ -122,10 +118,8 @@ public class HL7Service {
 		sb.append("MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |" + Common.parseLocalDateTime() + "||ORU^R01|" + reqDto.getTrId() +"|P|2.8\r\n"
 				+ "");
 		
-		sb.append("PID||" + reqDto.getPatientId() + "|Patient_NHS_ID|NULL||NULL|NULL||||||||||||\r\n");  //M은 gender?
-		sb.append("OBR||"+ reqDto.getSessionId()+"|NULL|NULL|||"+ reqDto.getTimestampStart() + "|"+ reqDto.getTimestampEnd() +"|||||||||||||||||\r\n");
-		
-
+		sb.append("PID||" + reqDto.getPid() + "|Patient_NHS_ID|NULL|"+ reqDto.getPatientUserId() +"|NULL|NULL||||||||||||\r\n");  //M은 gender?
+		sb.append("OBR||"+ reqDto.getSessionId()+"|NULL|NULL|||"+ reqDto.getTimestampStart() + "|"+ reqDto.getTimestampEnd() +"|||||||||||||||||\r\n");		
 		//reqDto.getParameter().getClass().getDeclaredField(jsonReqData)
 				
 		List<String> filedNames = Common.getValueType(reqDto.getParameter());		
@@ -174,7 +168,8 @@ public class HL7Service {
 		}
 		
 
-		logger.debug("MS100 파싱결과: " + sb.toString());
+		logger.debug("=============================MS100 파싱결과=============================");
+		logger.debug(sb.toString());
 				
 		
 		try {
