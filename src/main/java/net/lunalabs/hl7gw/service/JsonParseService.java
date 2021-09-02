@@ -92,15 +92,15 @@ public class JsonParseService {
 				case "FT100" :
 					String filename = (String)obj.get("filename");	
 					
-					
-					cmRespDto.setResultCode("100");
-					cmRespDto.setResultMsg("Success");
-					cmRespDto.setTrId(trId);
-					qtSendCheck(cmRespDto, schn);
+
 					
 					try {
 						//ftpService.ftpSendToCs(filename); //비동기로 파일전송
-						ftpService.ftpSendToCs2(filename);
+						ftpService.ftpSendToCs2(filename);						
+						cmRespDto.setResultCode("100");
+						cmRespDto.setResultMsg("Success");
+						cmRespDto.setTrId(trId);
+						qtSendCheck(cmRespDto, schn);
 					} catch (Exception e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
