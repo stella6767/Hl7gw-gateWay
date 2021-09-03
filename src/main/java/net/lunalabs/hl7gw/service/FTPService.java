@@ -44,34 +44,32 @@ public class FTPService {
 
 	}
 
-	@Async
-	public void ftpSendToCs(String filename) throws Exception { // Central Statino sever로 파일 전송
-		logger.debug("file send to Cs");
-		customFtpClient.uploadFile(filename, "CsFTPSendText.txt", "/"); 
-		customFtpClient.customDisconnect();
-		logger.debug("FTP SEND DONE");
-	}
+//	@Async
+//	public void ftpSendToCs(String filename) throws Exception { // Central Statino sever로 파일 전송
+//		logger.debug("file send to Cs");
+//		customFtpClient.uploadFile(filename, "CsFTPSendText.txt", "/"); 
+//		customFtpClient.customDisconnect();
+//		logger.debug("FTP SEND DONE");
+//	}
+//	
 	
-	
 	@Async
-	public void ftpSendToCs2(String file) throws Exception { // Central Statino sever로 파일 전송
+	public void ftpSendToCs2(String filePath) throws Exception { // Central Statino sever로 파일 전송
 		 FTPUploader ftpUploader = new FTPUploader("localhost", "kyu",
 		 "1234"); //localhost, 172.16.81.180
 
 		//ftpUploader.getFtpBean();"C:\\kangminkyu\\CsFTPSendText.txt"
 		 		
-		logger.debug("file: " + file);
+		logger.debug("filePath: " + filePath);
+		File fileTest = new File(filePath);
+		String fileName = fileTest.getName();
+		logger.debug("simpleFileName: " + fileName);
 		
-		//String[] fileNameArray = file.split(File.separator); //리눅스에서는 다르게 되나? 리눅스 파일 경로에 맞게끔 수정필요. 현재 윈도우 기준
-		String[] fileNameArray = file.split("\\\\"); 
-		String fileName = fileNameArray[fileNameArray.length - 1];
-		logger.debug("fileName: " + fileName);
-		
-		logger.debug("FTP TEST START");
+		logger.debug("FTP SEND START");
 		//ftpUploader.uploadFile(filename, "CsFTPSendText.txt", "C:" + File.separator + "kangminkyu" +  File.separator  + "aaaaaaa" + File.separator);
-		ftpUploader.uploadFile(file, fileName, "/"); //파일 전송시 공백있는 이름의 파일을 전송하면 안 됨, 위에서 이미 공백을 다 제거했기 때문.
+		ftpUploader.uploadFile(filePath, fileName, File.separator); //파일 전송시 공백있는 이름의 파일을 전송하면 안 됨, 위에서 이미 공백을 다 제거했기 때문.
 		ftpUploader.disconnect();
-		logger.debug("FTP TEST DONE");
+		logger.debug("FTP SEND DONE");
 		
 		//여기서 비동기 결과값을 받아서 리턴시켜서 응답해주면, 결과값을 받는과정에서 블락킹이 발생하므로 시간이 걸림. 그래서 그냥 응답은 바로.. 이러면 문제가 생기겠지만..
 	}

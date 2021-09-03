@@ -40,8 +40,7 @@ public class FTPUploader { //매번 new 하는 것보다는,
 	// param( host server ip, username, password ) 생성자
 	public FTPUploader(String host, String user, String pwd) throws Exception {
 		
-		log.debug("싱글톤으로 박을 수 없나.");
-		
+		//log.debug("싱글톤으로 박을 수 없나.");
 		ftpClient = new FTPClient();
 		ftpClient.setDefaultPort(2121);
 		ftpClient.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
