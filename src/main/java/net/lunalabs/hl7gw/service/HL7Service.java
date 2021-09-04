@@ -115,7 +115,7 @@ public class HL7Service {
 		
 		
 		// protocol enter(개행) 문자는 필요한가.
-		sb.append("MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |" + Common.parseLocalDateTime() + "||ORU^R01|" + reqDto.getTrId() +"|P|2.8\r\n"
+		sb.append("MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |" + Common.parseLocalDateTime() + "|" + reqDto.getDeviceId() +"|ORU^R01|" + reqDto.getTrId() +"|P|2.8\r\n"
 				+ "");
 		
 		sb.append("PID||" + reqDto.getPid() + "|Patient_NHS_ID|NULL|"+ reqDto.getPatientUserId() +"|NULL|NULL||||||||||||\r\n");  //M은 gender?

@@ -65,13 +65,18 @@ public class FTPService {
 		String fileName = fileTest.getName();
 		logger.debug("simpleFileName: " + fileName);
 		
+		ftpUploader.CheckAndMakeDirectory("/test");
+		
 		logger.debug("FTP SEND START");
 		//ftpUploader.uploadFile(filename, "CsFTPSendText.txt", "C:" + File.separator + "kangminkyu" +  File.separator  + "aaaaaaa" + File.separator);
-		ftpUploader.uploadFile(filePath, fileName, File.separator); //파일 전송시 공백있는 이름의 파일을 전송하면 안 됨, 위에서 이미 공백을 다 제거했기 때문.
+		ftpUploader.uploadFile(filePath, fileName, File.separator+"test" + File.separator); //파일 전송시 공백있는 이름의 파일을 전송하면 안 됨, 위에서 이미 공백을 다 제거했기 때문.
 		ftpUploader.disconnect();
 		logger.debug("FTP SEND DONE");
 		
 		//여기서 비동기 결과값을 받아서 리턴시켜서 응답해주면, 결과값을 받는과정에서 블락킹이 발생하므로 시간이 걸림. 그래서 그냥 응답은 바로.. 이러면 문제가 생기겠지만..
 	}
+	
+	
+
 
 }

@@ -75,5 +75,14 @@ public class FTPUploader { //매번 new 하는 것보다는,
 		}
 	}
 
+	public void CheckAndMakeDirectory(String path) throws IOException{
+		boolean isExist;
+		isExist = this.ftpClient.changeWorkingDirectory(path);
+		// 없으면 폴더 생성
+		if(!isExist){
+			this.ftpClient.makeDirectory(path);
+		}
+	}
+	
 
 }

@@ -59,6 +59,7 @@ public class JsonParseService {
 	
 				String strOpCode = (String)obj.get("opCode");
 				String trId = (String)obj.get("trId");											
+//				String sessionId = (String)obj.get("sessionId");											
 
 				logger.debug("[gwEmulThread #310] TID[ "
 						+ lThId + "] opCode[" + strOpCode + "]");
