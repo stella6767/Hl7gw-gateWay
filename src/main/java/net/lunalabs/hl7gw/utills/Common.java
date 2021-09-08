@@ -50,6 +50,10 @@ import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
 public class Common {
 
 	private static final Logger log = LoggerFactory.getLogger(Common.class);
+	
+	public static final String bilabCsIp = "172.16.81.180"; //나중에는 yml 파일로 관리
+	public static final String localIp = "localhost"; 
+	
 
 	public static ByteBuffer str_to_bb(String msg) {
 		Charset charset = Charset.forName("UTF-8");

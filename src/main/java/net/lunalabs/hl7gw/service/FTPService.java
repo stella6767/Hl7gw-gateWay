@@ -20,6 +20,7 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import net.lunalabs.hl7gw.config.CustomFtpClient;
 import net.lunalabs.hl7gw.config.FTPUploader;
+import net.lunalabs.hl7gw.utills.Common;
 
 @RequiredArgsConstructor
 @EnableAsync
@@ -56,7 +57,7 @@ public class FTPService {
 	
 	@Async
 	public void ftpSendToCs2(String filePath) throws Exception { // Central Statino sever로 파일 전송
-		 FTPUploader ftpUploader = new FTPUploader("localhost", "kyu",
+		 FTPUploader ftpUploader = new FTPUploader(Common.localIp, "kyu",
 		 "1234"); //localhost, 172.16.81.180
 
 		//ftpUploader.getFtpBean();"C:\\kangminkyu\\CsFTPSendText.txt"
