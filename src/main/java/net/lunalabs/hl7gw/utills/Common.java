@@ -30,6 +30,7 @@ import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
@@ -51,10 +52,14 @@ public class Common {
 
 	private static final Logger log = LoggerFactory.getLogger(Common.class);
 	
-	public static final String bilabCsIp = "172.16.81.180"; //나중에는 yml 파일로 관리
-	public static final String localIp = "localhost"; 
 	
-
+//	public static final String bilabCsIp = "172.16.81.180"; //나중에는 yml 파일로 관리	
+//	public static final String localIp = "localhost"; 
+	
+	@Value("${ip}") 
+	public String ip; 
+	
+	
 	public static ByteBuffer str_to_bb(String msg) {
 		Charset charset = Charset.forName("UTF-8");
 		CharsetEncoder encoder = charset.newEncoder();

@@ -30,7 +30,9 @@ public class FTPService {
 	private static final Logger logger = LoggerFactory.getLogger(FTPService.class);
 
 	private final CustomFtpClient customFtpClient;
-
+	
+	private final Common common;
+	
 	
 	@Async
 	public void FTPTest() throws Exception {
@@ -57,7 +59,7 @@ public class FTPService {
 	
 	@Async
 	public void ftpSendToCs2(String filePath) throws Exception { // Central Statino sever로 파일 전송
-		 FTPUploader ftpUploader = new FTPUploader(Common.localIp, "kyu",
+		 FTPUploader ftpUploader = new FTPUploader(common.ip, "kyu",
 		 "1234"); //localhost, 172.16.81.180
 
 		//ftpUploader.getFtpBean();"C:\\kangminkyu\\CsFTPSendText.txt"

@@ -16,4 +16,6 @@ spring:
   main:
     web-application-type: none
     
-    
+
+# CentralStation    
+ip: localhost   

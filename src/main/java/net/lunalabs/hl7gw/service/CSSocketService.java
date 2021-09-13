@@ -33,6 +33,8 @@ import net.lunalabs.hl7gw.utills.Common;
 public class CSSocketService {
 
 	private static final Logger logger = LoggerFactory.getLogger(CSSocketService.class);
+	private final Common common;
+
 
 	public SocketChannel socketChannel2 = null; // 일단은 public으로
 	private boolean bLoop = true;
@@ -51,7 +53,7 @@ public class CSSocketService {
 		logger.debug("central로 보내는 socket channel");
 
 		try {
-			socketChannel2.connect(new InetSocketAddress(Common.localIp, 5051));
+			socketChannel2.connect(new InetSocketAddress(common.ip, 5051));
 			//socketChannel2.connect(new InetSocketAddress(Common.localIp, 5051));
 			//socketChannel2.connect(new InetSocketAddress("10.0.1.115", 5051));
 			logger.debug("socketChannel connected to port 5051");

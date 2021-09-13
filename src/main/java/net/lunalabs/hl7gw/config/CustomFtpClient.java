@@ -107,22 +107,6 @@ public class CustomFtpClient extends FTPClient { //싱글톤으로 쓰고 싶어
 	}
 	
 	
-//	public FTPUploader(String host, String user, String pwd) throws Exception {
-//		
-//		log.debug("싱글톤으로 박을 수 없나.");
-//		
-//		ftpClient = new FTPClient();
-//		ftpClient.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
-//		int reply;
-//		ftpClient.connect(host);// 호스트 연결
-//		reply = ftpClient.getReplyCode();
-//		if (!FTPReply.isPositiveCompletion(reply)) {
-//			ftpClient.disconnect();
-//			throw new Exception("Exception in connecting to FTP Server");
-//		}
-//		ftpClient.login(user, pwd);// 로그인
-//		ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
-//		ftpClient.enterLocalPassiveMode();
-//	}
+
 	
 }

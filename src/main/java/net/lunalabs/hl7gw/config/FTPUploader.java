@@ -14,6 +14,7 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -28,6 +29,7 @@ public class FTPUploader { //매번 new 하는 것보다는,
 	private static final Logger log = LoggerFactory.getLogger(FTPUploader.class);
 
 	
+
 	
 //	@PostConstruct
 //	public void getFtpBean() throws Exception {	
