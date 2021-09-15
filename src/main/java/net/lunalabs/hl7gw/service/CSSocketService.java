@@ -44,25 +44,21 @@ public class CSSocketService {
 
 	@Async
 	public CompletableFuture<SocketChannel> csSocketStart() throws IOException {
-
-		logger.debug("다른 스레드에서 di check: " + concurrentConfig.toString());
-
 		// HL7 Test Panel에 보낼 프로토콜
 		socketChannel2 = SocketChannel.open();
 
-		logger.debug("central로 보내는 socket channel");
+		logger.debug("central로 보내는 socket channel: " + common.ip+ " , " + common.csPort);
 
 		try {
-			socketChannel2.connect(new InetSocketAddress(common.ip, 5051));
+			socketChannel2.connect(new InetSocketAddress(common.ip, common.csPort));
 			//socketChannel2.connect(new InetSocketAddress(Common.localIp, 5051));
 			//socketChannel2.connect(new InetSocketAddress("10.0.1.115", 5051));
-			logger.debug("socketChannel connected to port 5051");
+			logger.debug("socketChannel connected to port " + common.csPort);
 			socketChannel2.configureBlocking(true);// Non-Blocking I/O
 
 		} catch (Exception e2) {
 			logger.debug("connected refused!!!");
 			// e2.printStackTrace();
-			// socketChannel2.close(); //이걸 닫으면 안되는데..
 		}
 
 		return CompletableFuture.completedFuture(socketChannel2); // 다른 대안 탐색중..

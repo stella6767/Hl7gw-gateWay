@@ -96,8 +96,8 @@ public class JsonParseService {
 
 					
 					try {
-						//ftpService.ftpSendToCs(filename); //비동기로 파일전송
-						ftpService.ftpSendToCs2(filename);						
+						//비동기로 파일전송
+						ftpService.ftpSendToCs(filename);						
 						cmRespDto.setResultCode("100");
 						cmRespDto.setResultMsg("Success");
 						cmRespDto.setTrId(trId);
