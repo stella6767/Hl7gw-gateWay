@@ -120,7 +120,14 @@ public class CSSocketService {
 						// logger.debug("읽기 끝 " + bytesRead);
 						// logger.debug("hl7Response data1: "+hl7Response);
 						readBuf.clear(); //make buffer ready for writing
+						
+
+						logger.debug("읽기 끝1 " + bytesRead);
+						
 						bytesRead = socketChannel.read(readBuf);
+						
+						logger.debug("읽기 끝2 " + bytesRead);
+
 
 //						if (!readBuf.hasRemaining()) {
 //

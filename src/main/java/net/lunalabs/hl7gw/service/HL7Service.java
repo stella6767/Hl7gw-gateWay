@@ -187,7 +187,7 @@ public class HL7Service {
 	public void sendToCSsocket(String Hl7parsingData) throws IOException, InterruptedException, ExecutionException {
 		
 		
-			CompletableFuture<SocketChannel> completableFuture = csSocketService.csSocketStart();
+			CompletableFuture<SocketChannel> completableFuture = csSocketService.csSocketStart(); //여기서 계속 socket을 시작..
 			SocketChannel channel = completableFuture.get(); //일단은 그냥 blocking 시켜서 보내자. 후에 thencombine으로 교체
 			System.out.println(channel);
 			
