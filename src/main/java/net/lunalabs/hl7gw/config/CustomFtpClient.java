@@ -15,96 +15,42 @@ import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.net.ftp.FTPReply;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import lombok.RequiredArgsConstructor;
+import net.lunalabs.hl7gw.utills.Common;
+
+@RequiredArgsConstructor
 @Configuration
-public class CustomFtpClient extends FTPClient { //싱글톤으로 쓰고 싶어서 만들었지만 안 먹힘
+public class CustomFtpClient { //싱글톤으로 쓰고 싶어서 만들었지만 안 먹힘
 
 	private static final Logger logger = LoggerFactory.getLogger(CustomFtpClient.class);
 	
+	private final Common common;
 	
-	//this.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
-	
-	@Override
-	public void addProtocolCommandListener(ProtocolCommandListener listener) {
-		// TODO Auto-generated method stub
-		this.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
-	}
-	
-	@Override
-	public void connect(InetAddress host) throws SocketException, IOException {
-		// TODO Auto-generated method stub
-		this.connect("localhost", 21);
-	}
-	
-	
-	@Override
-	public void disconnect() throws IOException {
-		// TODO Auto-generated method stub
-		
-		int reply = getReplyCode();
-		
-		if (!FTPReply.isPositiveCompletion(reply)) {
-			disconnect();
-			//throw new Exception("Exception in connecting to FTP Server");
-			logger.info("Exception in connecting to FTP Server");
-		}
-		
-	}
-	
-	
-//	@Override
-//	public void setDefaultPort(int port) {
-//		// TODO Auto-generated method stub
-//		setDefaultPort(21);
-//	}
-	
-	@Override
-	public boolean login(String username, String password) throws IOException {
-		// TODO Auto-generated method stub
-		return this.login("kyu","1234");
-	}
-	
-	@Override
-	public boolean setFileType(int fileType) throws IOException {
-		// TODO Auto-generated method stub
-		return this.setFileType(FTP.BINARY_FILE_TYPE);
-	}
-	
-	
-	@Override
-	public void enterLocalPassiveMode() {
-		// TODO Auto-generated method stub
-		this.enterLocalPassiveMode();
-	}
-	
-	
-	
-	// param( 보낼파일경로+파일명, 호스트에서 받을 파일 이름, 호스트 디렉토리 )
-	public void uploadFile(String localFileFullName, String fileName, String hostDir) throws Exception {
-		try (InputStream input = new FileInputStream(new File(localFileFullName))) {
-			boolean isSuccess = this.storeFile(hostDir + fileName, input);
-			if (isSuccess){ 
-				// 성공
-				logger.debug("#File Upload Success");
-				} else { 
-					logger.debug("#File Upload Fail");
-				} 
-			
-			// storeFile() 메소드가 전송하는 메소드
-		}
-	}
+	  @Bean("MFtpClient")
+	  public FTPClient ftpClient() throws Exception {
 
-	public void customDisconnect() {
-		if (this.isConnected()) {
-			try {
-				this.logout();
-				this.disconnect();
-			} catch (IOException f) {
-				f.printStackTrace();
+		  logger.debug("싱글톤");
+		  
+		  FTPClient ftpClient = new FTPClient();
+		  
+			ftpClient.setDefaultPort(common.ftpPort);
+			ftpClient.addProtocolCommandListener(new PrintCommandListener(new PrintWriter(System.out)));
+			int reply;
+			ftpClient.connect(common.ip);// 호스트 연결
+			reply = ftpClient.getReplyCode();
+			if (!FTPReply.isPositiveCompletion(reply)) {
+				ftpClient.disconnect();
+				throw new Exception("Exception in connecting to FTP Server");
 			}
-		}
-	}
+			ftpClient.login(common.ftpUser, common.ftpPwd);// 로그인
+			ftpClient.setFileType(FTP.BINARY_FILE_TYPE);
+			ftpClient.enterLocalPassiveMode();
+		  
+			return ftpClient;
+	  }
 	
 	
 

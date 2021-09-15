@@ -19,3 +19,12 @@ spring:
 
 # CentralStation    172.16.81.180   
 ip: localhost   
+
+#socket
+qtPort: 5050
+csPort: 5051
+
+ftp:
+  port: 2121
+  user: kyu
+  pwd: 1234

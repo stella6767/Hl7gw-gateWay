@@ -59,6 +59,20 @@ public class Common {
 	@Value("${ip}") 
 	public String ip; 
 	
+	@Value("${qtPort}") 
+	public Integer qtPort; 
+	
+	@Value("${csPort}") 
+	public Integer csPort; 
+	
+	@Value("${ftp.port}") 
+	public Integer ftpPort; 
+	
+	@Value("${ftp.user}") 
+	public String ftpUser;
+	
+	@Value("${ftp.pwd}") 
+	public String ftpPwd; 
 	
 	public static ByteBuffer str_to_bb(String msg) {
 		Charset charset = Charset.forName("UTF-8");
