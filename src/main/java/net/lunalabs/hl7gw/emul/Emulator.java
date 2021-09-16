@@ -36,7 +36,7 @@ public class Emulator {
 	
 	public void start() throws Exception{
 		
-		logger.debug("Emulator Start!");		
+		//logger.debug("Emulator Start!");		
 		
 		qtSocketService.socketThread();
 		//ftpService.FTPTest();
