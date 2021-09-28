@@ -18,7 +18,7 @@ spring:
     
 
 # CentralStation    172.16.81.180   
-ip: localhost   
+ip: 172.16.81.180 
 
 #socket
 qtPort: 5050
