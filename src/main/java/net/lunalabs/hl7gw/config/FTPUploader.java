@@ -56,6 +56,8 @@ public class FTPUploader {
 
 	// param( 보낼파일경로+파일명, 호스트에서 받을 파일 이름, 호스트 디렉토리 )
 	public void uploadFile(String localFileFullName, String fileName, String hostDir) throws Exception {
+		
+		log.debug("upload file: " + localFileFullName +"  "  + hostDir + "   "  + fileName);
 		try (InputStream input = new FileInputStream(new File(localFileFullName))) {
 			this.ftpClient.storeFile(hostDir + fileName, input);
 			// storeFile() 메소드가 전송하는 메소드

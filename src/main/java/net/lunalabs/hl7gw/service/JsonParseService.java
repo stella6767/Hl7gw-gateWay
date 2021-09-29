@@ -2,8 +2,6 @@ package net.lunalabs.hl7gw.service;
 
 import java.io.IOException;
 import java.nio.channels.SocketChannel;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import org.json.simple.JSONObject;
@@ -18,7 +16,6 @@ import com.google.gson.Gson;
 import lombok.RequiredArgsConstructor;
 import net.lunalabs.hl7gw.config.ConcurrentConfig;
 import net.lunalabs.hl7gw.dto.CMRespDto;
-import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
 import net.lunalabs.hl7gw.utills.Common;
 
 @RequiredArgsConstructor
@@ -91,9 +88,20 @@ public class JsonParseService {
 					break;	
 					
 				case "FT100" :
-					String filename = (String)obj.get("filename");	
+					//String filename = String.valueOf(obj.get("filename"));	//여기서 문제.
+//					JsonReader reader = new JsonReader(new StringReader(strMessage));
+//					reader.setLenient(true);
 					
+//					String escapeFile =StringEscapeUtils.escapeJson(strMessage);
+//					FileReqDto fileReqDto = gson.fromJson(특수문자파싱문자열, FileReqDto.class);
+//					//String filename = fileReqDto.getFilename();
+					String parseFilepath = Common.parsingFilepath(strMessage);
+				
+					logger.debug("escapeFile: " + parseFilepath);
 
+					obj = (JSONObject)parser.parse(parseFilepath);
+					String filename = String.valueOf(obj.get("filename"));	//여기서 문제.			
+					logger.debug("ftp uploder로 넘겨주는 filename: " + filename);
 					
 					try {
 						//비동기로 파일전송

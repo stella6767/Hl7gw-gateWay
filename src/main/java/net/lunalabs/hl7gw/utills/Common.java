@@ -4,6 +4,7 @@ import java.beans.BeanInfo;
 import java.beans.IntrospectionException;
 import java.beans.Introspector;
 import java.beans.PropertyDescriptor;
+import java.io.File;
 import java.io.IOException;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -85,6 +86,33 @@ public class Common {
 		}
 		return null;
 	}
+	
+	
+	 public static String parsingFilepath(String string) {
+         if (string == null || string.length() == 0) {
+             return "";
+         }
+
+         
+         StringBuffer sb = new StringBuffer();
+         char         c = 0;
+         int          i;
+         int          len = string.length();
+
+         for (i = 0; i < len; i += 1) {
+             c = string.charAt(i);
+             switch (c) {
+             case '\\':
+            	 log.debug("...." + c);
+                 sb.append("\\" +File.separatorChar);
+                 break;
+             default:
+            	 sb.append(c);
+             }
+         }
+
+         return sb.toString();
+     }
 	
 	
 	

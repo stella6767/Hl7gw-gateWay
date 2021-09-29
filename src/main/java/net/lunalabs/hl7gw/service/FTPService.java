@@ -49,12 +49,11 @@ public class FTPService {
 				
 				String folderName = parentStrings[parentStrings.length -2];
 				
-				
-				ftpUploader.CheckAndMakeDirectory(File.separator + folderName);
+				//ftpUploader.CheckAndMakeDirectory(File.separator + folderName);
 				
 				logger.debug("FTP SEND START");
 				//ftpUploader.uploadFile(filename, "CsFTPSendText.txt", "C:" + File.separator + "kangminkyu" +  File.separator  + "aaaaaaa" + File.separator);
-				ftpUploader.uploadFile(filePath, fileName, File.separator+ folderName + File.separator); //파일 전송시 공백있는 이름의 파일을 전송하면 안 됨, 위에서 이미 공백을 다 제거했기 때문.
+				ftpUploader.uploadFile(filePath, fileName, File.separator); //파일 전송시 공백있는 이름의 파일을 전송하면 안 됨, 위에서 이미 공백을 다 제거했기 때문.
 				ftpUploader.disconnect();
 				logger.debug("FTP SEND DONE");
 				
