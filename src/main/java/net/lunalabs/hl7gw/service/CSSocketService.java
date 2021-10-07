@@ -35,39 +35,48 @@ public class CSSocketService {
 	
 
 	public SocketChannel socketChannel2 = null; // 일단은 public으로
-	private boolean bLoop = true;
 	ObjectMapper mapper = new ObjectMapper();
 
 //globalVar.globalSocket.put("schn", schn);
-//	@Async
-	public SocketChannel csSocketStart() throws IOException {
+	@Async
+	public void csSocketStart() throws IOException {
 		// HL7 Test Panel에 보낼 프로토콜
-		socketChannel2 = SocketChannel.open();
+		
+		boolean bLoop = true;
+		
+		while(bLoop) {
+			
+			socketChannel2 = SocketChannel.open();
 
-		logger.debug("central로 보내는 socket channel: " + common.ip+ " , " + common.csPort);
+			logger.debug("central로 보내는 socket channel: " + common.ip+ " , " + common.csPort);
 
-		try {
-			socketChannel2.connect(new InetSocketAddress(common.ip, common.csPort));
+			try {
+				socketChannel2.connect(new InetSocketAddress(common.ip, common.csPort));
 
-			logger.debug("socketChannel connected to port " + common.csPort);
-			socketChannel2.configureBlocking(true);// Non-Blocking I/O
+				logger.debug("socketChannel connected to port " + common.csPort);
+				socketChannel2.configureBlocking(true);// Non-Blocking I/O
+				readSocketData(socketChannel2);
 
-		} catch (Exception e2) {
-			logger.debug("connected refused!!!");
-			// e2.printStackTrace();
+			} catch (Exception e2) {
+				logger.debug("connected refused!!!");
+				// e2.printStackTrace();
+			}
+
+			
 		}
+		
 
-		return socketChannel2; // 다른 대안 탐색중..
+		//return socketChannel2; // 다른 대안 탐색중..
 	}
 
 
 	
-	@Async
-    public void readSocketData() throws IOException {
+	//@Async
+    public void readSocketData(SocketChannel schn) throws IOException {
 
         //SocketChannel schn = globalVar.globalSocket.get("schn");
 
-        SocketChannel schn = csSocketStart();
+        //SocketChannel schn = csSocketStart();
         concurrentConfig.globalSocketMap.put("cs", schn);
 
         logger.debug("CS-socket 담김: " +  schn);

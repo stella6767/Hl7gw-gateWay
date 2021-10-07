@@ -39,7 +39,7 @@ public class Emulator {
 		//logger.debug("Emulator Start!");		
 		
 		qtSocketService.socketThread();
-		csSocketService.readSocketData(); 
+		csSocketService.csSocketStart(); 
 		
 	}
 	
