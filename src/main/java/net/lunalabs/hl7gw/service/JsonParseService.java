@@ -63,8 +63,8 @@ public class JsonParseService {
 				
 				CMRespDto cmRespDto = new CMRespDto();
 				
-				concurrentConfig.globalQtsocketMap.put("mySchn", schn);
-				logger.debug("여기서 분명 socketChannel을 집어넣었을텐데?? " + concurrentConfig.globalQtsocketMap.get("mySchn"));
+				concurrentConfig.globalSocketMap.put("qt", schn);
+				logger.debug("여기서 분명 socketChannel을 집어넣었을텐데?? " + concurrentConfig.globalSocketMap.get("qt"));
 				
 
 				switch (strOpCode) {
@@ -143,18 +143,10 @@ public class JsonParseService {
 	
 	public void qtSendCheck(CMRespDto cmRespDto, SocketChannel schn) throws IOException {
 		
-		
 		String jsonData = gson.toJson(cmRespDto);  //알아서 null값은 걸러냄	
 		
-		
 		logger.debug("3차 스레드 put test:  " + concurrentConfig);			
-//		logger.debug(" ?????!" + concurrentConfig.globalQtsocketMap.toString());			
-//		logger.debug(" !!!!1!" + (concurrentConfig.globalQtsocketMap.get("")).toString());
-		
-//	     Attribute attribute = new Attribute();
-//	        attribute.setLoggingCode(loggingCode);     Attribute attribute = new Attribute();
-//	        attribute.setLoggingCode(loggingCode);	
-		
+
 		try {
 			Common.sendJsonToQT(jsonData, schn);
 		} catch (InterruptedException | ExecutionException e) {

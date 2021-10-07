@@ -6,7 +6,6 @@ import java.util.regex.Pattern;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -14,7 +13,6 @@ import net.lunalabs.hl7gw.config.FTPUploader;
 import net.lunalabs.hl7gw.utills.Common;
 
 @RequiredArgsConstructor
-@EnableAsync
 @Service
 public class FTPService {
 

@@ -1,17 +1,11 @@
 package net.lunalabs.hl7gw.service;
 
-import java.io.IOException;
-import java.nio.channels.SocketChannel;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.core.JsonEncoding;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -25,7 +19,6 @@ import net.lunalabs.hl7gw.utills.Common;
 
 
 @RequiredArgsConstructor
-@EnableAsync
 @Service
 public class HL7Service {
 
@@ -81,7 +74,7 @@ public class HL7Service {
 		
 		
 		try {
-			sendToCSsocket(sb.toString());
+			csSocketService.writeSocket(sb.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -93,7 +86,7 @@ public class HL7Service {
 
 		
 		try {
-			sendToCSsocket(jsonReqData);
+			csSocketService.writeSocket(jsonReqData);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -173,7 +166,7 @@ public class HL7Service {
 				
 		
 		try {
-			sendToCSsocket(sb.toString());
+			csSocketService.writeSocket(sb.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -184,22 +177,25 @@ public class HL7Service {
 	
 
 	
-	public void sendToCSsocket(String Hl7parsingData) throws IOException, InterruptedException, ExecutionException {
-		
-		
-			CompletableFuture<SocketChannel> completableFuture = csSocketService.csSocketStart(); //여기서 계속 socket을 시작..
-			SocketChannel channel = completableFuture.get(); //일단은 그냥 blocking 시켜서 보내자. 후에 thencombine으로 교체
-			System.out.println(channel);
-			
-			if(channel.isConnected()) {
-				logger.debug("cssocket channel이 정상적으로 연결되었습니다.");
-				csSocketService.hl7ProtocolSendThread(Hl7parsingData, channel);
-			}else if(!channel.isConnected()) {
-				logger.debug("cssocket channel이 연결이 끊어졌습니다.");
-			}
-		
-	}
+//	public void sendToCSsocket(String Hl7parsingData) throws IOException, InterruptedException, ExecutionException {
+//		
+//		
+//			CompletableFuture<SocketChannel> completableFuture = csSocketService.csSocketStart(); //여기서 계속 socket을 시작..
+//			
+//			SocketChannel channel = completableFuture.get(); //일단은 그냥 blocking 시켜서 보내자. 후에 thencombine으로 교체
+//			System.out.println(channel);
+//			
+//			if(channel.isConnected()) {
+//				logger.debug("cssocket channel이 정상적으로 연결되었습니다.");
+//				csSocketService.hl7ProtocolSendThread(Hl7parsingData, channel);
+//			}else if(!channel.isConnected()) {
+//				logger.debug("cssocket channel이 연결이 끊어졌습니다.");
+//			}
+//		
+//	}
 
+
+	
 
 
 }

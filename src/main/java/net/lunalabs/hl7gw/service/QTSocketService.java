@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
@@ -34,7 +33,6 @@ import net.lunalabs.hl7gw.config.ConcurrentConfig;
 
 
 
-@EnableAsync
 @RequiredArgsConstructor
 @Service
 public class QTSocketService {

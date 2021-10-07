@@ -39,8 +39,7 @@ public class Emulator {
 		//logger.debug("Emulator Start!");		
 		
 		qtSocketService.socketThread();
-		//ftpService.FTPTest();
-		csSocketService.csSocketStart();
+		csSocketService.readSocketData(); 
 		
 	}
 	

@@ -8,17 +8,14 @@ import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
-import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import lombok.RequiredArgsConstructor;
@@ -27,23 +24,23 @@ import net.lunalabs.hl7gw.dto.CMRespDto;
 import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
 import net.lunalabs.hl7gw.utills.Common;
 
-@EnableAsync
 @RequiredArgsConstructor
 @Service
 public class CSSocketService {
 
 	private static final Logger logger = LoggerFactory.getLogger(CSSocketService.class);
 	private final Common common;
+	private final ConcurrentConfig concurrentConfig;
 
+	
 
 	public SocketChannel socketChannel2 = null; // 일단은 public으로
 	private boolean bLoop = true;
 	ObjectMapper mapper = new ObjectMapper();
 
-	private final ConcurrentConfig concurrentConfig;
-
-	@Async
-	public CompletableFuture<SocketChannel> csSocketStart() throws IOException {
+//globalVar.globalSocket.put("schn", schn);
+//	@Async
+	public SocketChannel csSocketStart() throws IOException {
 		// HL7 Test Panel에 보낼 프로토콜
 		socketChannel2 = SocketChannel.open();
 
@@ -51,8 +48,7 @@ public class CSSocketService {
 
 		try {
 			socketChannel2.connect(new InetSocketAddress(common.ip, common.csPort));
-			//socketChannel2.connect(new InetSocketAddress(Common.localIp, 5051));
-			//socketChannel2.connect(new InetSocketAddress("10.0.1.115", 5051));
+
 			logger.debug("socketChannel connected to port " + common.csPort);
 			socketChannel2.configureBlocking(true);// Non-Blocking I/O
 
@@ -61,118 +57,162 @@ public class CSSocketService {
 			// e2.printStackTrace();
 		}
 
-		return CompletableFuture.completedFuture(socketChannel2); // 다른 대안 탐색중..
-
+		return socketChannel2; // 다른 대안 탐색중..
 	}
 
 
-
+	
 	@Async
-	public void hl7ProtocolSendThread(String HL7Data, SocketChannel socketChannel) {
+    public void readSocketData() throws IOException {
 
-		// 소켓을 계속 열었다 닫았다 할까/
+        //SocketChannel schn = globalVar.globalSocket.get("schn");
 
-		ByteBuffer writeBuf = ByteBuffer.allocate(1024);
-		ByteBuffer readBuf = ByteBuffer.allocate(10);
+        SocketChannel schn = csSocketStart();
+        concurrentConfig.globalSocketMap.put("cs", schn);
 
-		logger.debug("다른 스레드라서 동기화가 안 되나? : " + HL7Data);
-		Charset charset = Charset.forName("UTF-8");
+        logger.debug("CS-socket 담김: " +  schn);
 
-		boolean bConnect = true;
-		while (bConnect) {
+//        CMRespDto initResp = new CMRespDto<>(Opcode.INIT, globalVar.chargerid);
+//        writeSocket(initResp); //최초 자기 chargeId 전송
 
-			int byteCount = 0;
-			byte[] readByteArr;
+        boolean isRunning = true; // 일단 추가, socketWork 중지할지 안 중지할지
 
-			String hl7Response = "";
+        while (isRunning && schn.isConnected()) {
 
-			try {
-				// SocketChannel open
-				logger.debug("HL7 protocol 전송");
+            try {
+                long lThId = Thread.currentThread().getId();
+                int byteCount = 0;
+                byte[] readByteArr;
 
-				// writeBuf.clear();
-				writeBuf.put(HL7Data.getBytes("UTF-8"));
-				writeBuf.flip();
-				while (writeBuf.hasRemaining()) {
+                // ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
+                ByteBuffer readBuf = ByteBuffer.allocate(10240);
 
-					logger.debug("SocketChannel open-3");
-					socketChannel.write(writeBuf);
-				}
+                logger.debug("첫번째  while문");
 
-				
-				if(!HL7Data.contains("SS100")) {
-					
-					int bytesRead = socketChannel.read(readBuf); // read into buffer. 일단은 버퍼 초과 신경쓰지 않고
-					while (bytesRead != -1) {// 만약 소켓채널을 통해 buffer에 데이터를 받아왔으면
+                // 무한 루프
+                String result = ""; // 요기서 초기화
 
-						readBuf.flip(); // make buffer ready for read
-						// 10240로 정의한 buffer의 크기를 실제 데이터의 크기로 flip() 함
+                while (byteCount >= 0) {
 
-						while (readBuf.hasRemaining()) {
-							// System.out.print((char) readBuf.get()); // read 1 byte at a time
-							hl7Response = hl7Response + String.valueOf(((char) readBuf.get()));
-						}
+                    try {
 
-						// logger.debug("읽기 끝 " + bytesRead);
-						// logger.debug("hl7Response data1: "+hl7Response);
-						readBuf.clear(); //make buffer ready for writing
+                        byteCount = schn.read(readBuf); // 소켓채널에서 한번에 초과되는 버퍼사이즈의 데이터가 들어오면..
+
+                        logger.debug("[gwEmulThread #100] TID[" + "] byteCount :  " + byteCount);
+                        // logger.debug("isRunning why: " + isRunning);
+                    } catch (Exception e) {
+                        // e.printStackTrace();
+                        logger.debug("갑자기 클라이언트 소켓이 닫혔을 시");
+                        schn.close();
+                        isRunning = false;
+                        break;
+                    }
+
+                    int i = 0;
+
+                    // 버퍼에 값이 있다면 계속 버퍼에서 값을 읽어 result 를 완성한다.
+                    while (byteCount > 0) {
+
+                        readBuf.flip(); // 입력된 데이터를 읽기 위해 read-mode로 바꿈, positon이 데이터의 시작인 0으로 이동
+                        readByteArr = new byte[readBuf.remaining()]; // 현재 위치에서 limit까지 읽어드릴 수 있는 데이터의 개수를 리턴
+                        readBuf.get(readByteArr); // 데이터 읽기
+
+                        result = result + new String(readByteArr, Charset.forName("UTF-8"));
+
+                        logger.debug("[gwEmulThread #200] TID[ " + lThId + "] socketRead Start[" + result
+                                + "], byteCount[" + byteCount + "], i[" + i + "]");
+                        i++;
+
+                        try {
+                            byteCount = schn.read(readBuf);
+                            logger.debug("[gwEmulThread #210] TID[" + result + "] byteCount :  " + byteCount);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            // break;
+                        }
+
+                        boolean bEtxEnd = true; // 아래 while문을 실행할지 안할지
+
+                        // #ETX# 단위로 루프
+                        while (!result.equals("") && bEtxEnd) {
+
+                        	parsingHl7toJson(result);
+                            result = "";
+                            bEtxEnd = false;
+                            readBuf.clear();
+
+                        }
+
+                    } // #ETX# 단위로 루프
+                } // byteCount > 0
+
+                logger.debug("소켓 닫기");
+                schn.close(); // 소켓 닫기
+
+            } catch (Exception e) {
+                e.printStackTrace();
+                continue;
+            }
+        }
+    }
+	
+	
+	
+
+	
+	
+    public void writeSocket(String Hl7parsingData) throws JsonProcessingException {
+
+        logger.debug("CS에게 HL7 protocol 전송: " + Hl7parsingData);
+
+        ByteBuffer writBuf = ByteBuffer.allocate(10240);
+
+        SocketChannel schn = concurrentConfig.globalSocketMap.get("cs");
+
+        writBuf.flip();
+        writBuf = Common.str_to_bb(Hl7parsingData);        
+        
+		if(schn.isConnected()) {
+			logger.debug("cssocket channel이 정상적으로 연결되었습니다.");
 						
+			while (writBuf.hasRemaining()) {
 
-						logger.debug("읽기 끝1 " + bytesRead);
-						
-						bytesRead = socketChannel.read(readBuf);
-						
-						logger.debug("읽기 끝2 " + bytesRead);
-
-
-//						if (!readBuf.hasRemaining()) {
-//
-//							logger.debug("응답 안 함??");
-//							break;
-//						}
-
-					}
-
-					logger.debug("-------------- 응답 hl7Response ----------------");
-					logger.debug(hl7Response);
-
-					parsingHl7toJson(hl7Response, writeBuf);
-														
-				}
-				
-				
-
-				bConnect = false;
-				// socketChannel.close(); //AsynchronousCloseException 이 발생하지 않기 위해서
-				logger.debug("[## ##][#3 Socket Connect");
-
-			} catch (IOException e) {
-				// e.printStackTrace();
-				logger.debug("[####][#4 Not Connected!!! IO Exception Occured");
+				logger.debug("SocketChannel open-3");
+			     try {
+			            schn.write(writBuf);
+			        } catch (IOException e) {
+			            e.printStackTrace();
+			        }
 			}
-		} // while
-		logger.debug("[## ##][#5 Socket send complete");
 
-	}
+		}else if(!schn.isConnected()) {
+			logger.debug("cssocket channel이 연결이 끊어졌습니다.");
+		}
+        
+   
+        writBuf.clear();
+    }
 
-	public void parsingHl7toJson(String HL7Data, ByteBuffer wriBuf) throws IOException {
+	
+	
+
+	public void parsingHl7toJson(String HL7Data) throws IOException {
 
 		logger.debug("patient 측정 response => json 파싱준비");
 		
-		boolean a = concurrentConfig.globalQtsocketMap == null ? true : false;
-				
-		logger.debug("확인: " + a);
+//		boolean a = concurrentConfig.globalQtsocketMap == null ? true : false;			
+//		logger.debug("확인: " + a);
 
 		logger.debug("csServer로부터 응답받은 데이터: " + HL7Data);
 		
-		SocketChannel channel = concurrentConfig.globalQtsocketMap.get("mySchn");
+		SocketChannel channel = concurrentConfig.globalSocketMap.get("qt");
 
 		String[] splitEnterArray = HL7Data.split("[\\r\\n]+"); // 개행문자 기준으로 1차 파싱
 		String[] mshArray = splitEnterArray[0].split("[|]");
 		String trId = mshArray[9];
 		logger.debug("trid: " + trId);
 
-		if (splitEnterArray.length == 1) {
+		if (splitEnterArray.length == 1) { ///MS100
 			CMRespDto cmRespDto = new CMRespDto();
 
 			cmRespDto.setResultCode("100");
