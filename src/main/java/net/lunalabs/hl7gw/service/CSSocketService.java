@@ -94,7 +94,7 @@ public class CSSocketService {
                 byte[] readByteArr;
 
                 // ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
-                ByteBuffer readBuf = ByteBuffer.allocate(10240);
+                ByteBuffer readBuf = ByteBuffer.allocate(102400);
 
                 logger.debug("첫번째  while문");
 

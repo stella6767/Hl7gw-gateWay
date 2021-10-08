@@ -18,7 +18,7 @@ spring:
     
 
 # CentralStation    172.16.81.180   bilabcsapi.lunalabs.net
-ip: localhost #매니저님 컴터에서 실행한 c.s ip주소로 바꿔주시면 됩니다.
+ip: bilabcsapi.lunalabs.net #매니저님 컴터에서 실행한 c.s ip주소로 바꿔주시면 됩니다.
 
 #socket
 qtPort: 5050
