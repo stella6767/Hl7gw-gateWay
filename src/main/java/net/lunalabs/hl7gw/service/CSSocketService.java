@@ -32,8 +32,6 @@ public class CSSocketService {
 	private final Common common;
 	private final ConcurrentConfig concurrentConfig;
 
-	
-
 	public SocketChannel socketChannel2 = null; // 일단은 public으로
 	ObjectMapper mapper = new ObjectMapper();
 
@@ -41,179 +39,236 @@ public class CSSocketService {
 	@Async
 	public void csSocketStart() throws IOException {
 		// HL7 Test Panel에 보낼 프로토콜
-		
+
 		boolean bLoop = true;
-		
-		while(bLoop) {
-			
+
+		while (bLoop) {
+
 			socketChannel2 = SocketChannel.open();
 
-			logger.debug("central로 보내는 socket channel: " + common.ip+ " , " + common.csPort);
+			logger.debug("central로 보내는 socket channel: " + common.ip + " , " + common.csPort);
 
 			try {
 				socketChannel2.connect(new InetSocketAddress(common.ip, common.csPort));
 
 				logger.debug("socketChannel connected to port " + common.csPort);
-				socketChannel2.configureBlocking(true);// Non-Blocking I/O
-				readSocketData(socketChannel2);
+				socketChannel2.configureBlocking(false);// Non-Blocking I/O
+				readSocketData2(socketChannel2);
+
 
 			} catch (Exception e2) {
 				logger.debug("connected refused!!!");
 				// e2.printStackTrace();
 			}
 
-			
 		}
-		
 
-		//return socketChannel2; // 다른 대안 탐색중..
+		// return socketChannel2; // 다른 대안 탐색중..
 	}
 
 
+
+	public void readSocketData2(SocketChannel schn) throws IOException {
+
+		concurrentConfig.globalSocketMap.put("cs", schn);
+
+		logger.debug("CS-socket 담김: " + schn);
+
+		boolean isRunning = true; // 일단 추가, socketWork 중지할지 안 중지할지
+
+//		while (isRunning && schn.isConnected()) {
+			
+			ByteBuffer readBuf = ByteBuffer.allocate(100); // 버퍼 메모리 공간확보
+			int bytesRead = schn.read(readBuf);
+			
+			String result = "";
+			
+			while (bytesRead != -1) {// 만약 소켓채널을 통해 buffer에 데이터를 받아왔으면
+
+                readBuf.flip(); // make buffer ready for read
+                // 10240로 정의한 buffer의 크기를 실제 데이터의 크기로 flip() 함
+
+                while (readBuf.hasRemaining()) {
+                   //System.out.print((char) readBuf.get()); // read 1 byte at a time
+                	//logger.debug("readBuf.hasRemaining1():  " + readBuf.hasRemaining() );
+                   result = result + String.valueOf(((char) readBuf.get()));
+                   //logger.debug("result1: " + result);
+                }
+                //logger.debug("가"+result);
+                readBuf.clear(); //make buffer ready for writing
+                //readBuf.compact();
+                bytesRead = schn.read(readBuf);
+                //logger.debug("byteRead size: " + bytesRead);
+                //logger.debug("resultLength: " + result.length());
+                
+                if(bytesRead == 0 && result.length() > 0 ) {
+                	
+                	logger.debug("totalResult: " + result);
+                	parsingHl7toJson(result);
+                	
+                	result="";
+                	break;
+                }
+                
+            	//logger.debug("readBuf.hasRemaining2():  " + readBuf.hasRemaining() );
+                //이걸 어떻게 처리해야 되지.
+             }
+			
+		
+			
+
+//		}
+	}
 	
-	//@Async
-    public void readSocketData(SocketChannel schn) throws IOException {
+	
+	
+	public void readSocketData(SocketChannel schn) throws IOException {
 
-        //SocketChannel schn = globalVar.globalSocket.get("schn");
+		// SocketChannel schn = globalVar.globalSocket.get("schn");
 
-        //SocketChannel schn = csSocketStart();
-        concurrentConfig.globalSocketMap.put("cs", schn);
+		// SocketChannel schn = csSocketStart();
+		concurrentConfig.globalSocketMap.put("cs", schn);
 
-        logger.debug("CS-socket 담김: " +  schn);
+		logger.debug("CS-socket 담김: " + schn);
 
 //        CMRespDto initResp = new CMRespDto<>(Opcode.INIT, globalVar.chargerid);
 //        writeSocket(initResp); //최초 자기 chargeId 전송
 
-        boolean isRunning = true; // 일단 추가, socketWork 중지할지 안 중지할지
+		boolean isRunning = true; // 일단 추가, socketWork 중지할지 안 중지할지
 
-        while (isRunning && schn.isConnected()) {
+		while (isRunning && schn.isConnected()) {
 
-            try {
-                long lThId = Thread.currentThread().getId();
-                int byteCount = 0;
-                byte[] readByteArr;
+			try {
+				long lThId = Thread.currentThread().getId();
+				int byteCount = 0;
+				byte[] readByteArr;
 
-                // ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
-                ByteBuffer readBuf = ByteBuffer.allocate(102400);
+				ByteBuffer readBuf = ByteBuffer.allocate(10); // 버퍼 메모리 공간확보
+				// ByteBuffer readBuf = ByteBuffer.allocate(102400);
 
-                logger.debug("첫번째  while문");
+				logger.debug("첫번째  while문");
 
-                // 무한 루프
-                String result = ""; // 요기서 초기화
+				// 무한 루프
+				String result = ""; // 요기서 초기화
 
-                while (byteCount >= 0) {
+				while (byteCount >= 0) {
 
-                    try {
+					try {
 
-                        byteCount = schn.read(readBuf); // 소켓채널에서 한번에 초과되는 버퍼사이즈의 데이터가 들어오면..
+						byteCount = schn.read(readBuf); // 소켓채널에서 한번에 초과되는 버퍼사이즈의 데이터가 들어오면..
 
-                        logger.debug("[gwEmulThread #100] TID[" + "] byteCount :  " + byteCount);
-                        // logger.debug("isRunning why: " + isRunning);
-                    } catch (Exception e) {
-                        // e.printStackTrace();
-                        logger.debug("갑자기 클라이언트 소켓이 닫혔을 시");
-                        schn.close();
-                        isRunning = false;
-                        break;
-                    }
+						logger.debug("[gwEmulThread #100] TID[" + "] byteCount :  " + byteCount);
+						// logger.debug("isRunning why: " + isRunning);
+					} catch (Exception e) {
+						// e.printStackTrace();
+						logger.debug("갑자기 클라이언트 소켓이 닫혔을 시");
+						schn.close();
+						isRunning = false;
+						break;
+					}
 
-                    int i = 0;
+					int i = 0;
 
-                    // 버퍼에 값이 있다면 계속 버퍼에서 값을 읽어 result 를 완성한다.
-                    while (byteCount > 0) {
+					// 버퍼에 값이 있다면 계속 버퍼에서 값을 읽어 result 를 완성한다.
+					while (byteCount > 0) {
 
-                        readBuf.flip(); // 입력된 데이터를 읽기 위해 read-mode로 바꿈, positon이 데이터의 시작인 0으로 이동
-                        readByteArr = new byte[readBuf.remaining()]; // 현재 위치에서 limit까지 읽어드릴 수 있는 데이터의 개수를 리턴
-                        readBuf.get(readByteArr); // 데이터 읽기
+						readBuf.flip(); // 입력된 데이터를 읽기 위해 read-mode로 바꿈, positon이 데이터의 시작인 0으로 이동
+						readByteArr = new byte[readBuf.remaining()]; // 현재 위치에서 limit까지 읽어드릴 수 있는 데이터의 개수를 리턴
+						readBuf.get(readByteArr); // 데이터 읽기
 
-                        result = result + new String(readByteArr, Charset.forName("UTF-8"));
+						result = result + new String(readByteArr, Charset.forName("UTF-8"));
 
-                        logger.debug("[gwEmulThread #200] TID[ " + lThId + "] socketRead Start[" + result
-                                + "], byteCount[" + byteCount + "], i[" + i + "]");
-                        i++;
+						logger.debug("[gwEmulThread #200] TID[ " + lThId + "] socketRead Start[" + result
+								+ "], byteCount[" + byteCount + "], i[" + i + "]");
+						i++;
 
-                        try {
-                            byteCount = schn.read(readBuf);
-                            logger.debug("[gwEmulThread #210] TID[" + result + "] byteCount :  " + byteCount);
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            // break;
-                        }
+						try {
+							byteCount = schn.read(readBuf);
+							logger.debug("[gwEmulThread #210] TID[" + result + "] byteCount :  " + byteCount);
+						} catch (Exception e) {
+							e.printStackTrace();
+							// break;
+						}
 
-                        boolean bEtxEnd = true; // 아래 while문을 실행할지 안할지
+						boolean bEtxEnd = true; // 아래 while문을 실행할지 안할지
 
-                        // #ETX# 단위로 루프
-                        while (!result.equals("") && bEtxEnd) {
+						// #ETX# 단위로 루프
+						while (!result.equals("") && bEtxEnd) {
+							logger.debug("완성 전 result: " + result);
 
-                        	parsingHl7toJson(result);
-                            result = "";
-                            bEtxEnd = false;
-                            readBuf.clear();
+							Thread.sleep(1000);
 
-                        }
+							if (readBuf.hasRemaining()) {
 
-                    } // #ETX# 단위로 루프
-                } // byteCount > 0
+								// - 계속 버퍼에서 읽어 append 함
+								logger.debug("position: " + readBuf.position());
+								logger.debug("result append: " + result);
+								readBuf.clear(); // position 초기화
+								logger.debug("position: " + readBuf.position());
 
-                logger.debug("소켓 닫기");
-                schn.close(); // 소켓 닫기
+								break; // 이 블록에서 빠져나온다.
+							}
 
-            } catch (Exception e) {
-                e.printStackTrace();
-                continue;
-            }
-        }
-    }
-	
-	
-	
+//                         	parsingHl7toJson(result);
+//                            result = "";
+//                            bEtxEnd = false;
+//                            readBuf.clear();                            
 
-	
-	
-    public void writeSocket(String Hl7parsingData) throws JsonProcessingException {
+						}
 
-        logger.debug("CS에게 HL7 protocol 전송: " + Hl7parsingData);
+					} // #ETX# 단위로 루프
+				} // byteCount > 0
 
-        ByteBuffer writBuf = ByteBuffer.allocate(10240);
+				logger.debug("소켓 닫기");
+				schn.close(); // 소켓 닫기
 
-        SocketChannel schn = concurrentConfig.globalSocketMap.get("cs");
+			} catch (Exception e) {
+				e.printStackTrace();
+				continue;
+			}
+		}
+	}
 
-        writBuf.flip();
-        writBuf = Common.str_to_bb(Hl7parsingData);        
-        
-		if(schn.isConnected()) {
+	public void writeSocket(String Hl7parsingData) throws JsonProcessingException {
+
+		logger.debug("CS에게 HL7 protocol 전송: " + Hl7parsingData);
+
+		ByteBuffer writBuf = ByteBuffer.allocate(10240);
+
+		SocketChannel schn = concurrentConfig.globalSocketMap.get("cs");
+
+		writBuf.flip();
+		writBuf = Common.str_to_bb(Hl7parsingData);
+
+		if (schn.isConnected()) {
 			logger.debug("cssocket channel이 정상적으로 연결되었습니다.");
-						
+
 			while (writBuf.hasRemaining()) {
 
 				logger.debug("SocketChannel open-3");
-			     try {
-			            schn.write(writBuf);
-			        } catch (IOException e) {
-			            e.printStackTrace();
-			        }
+				try {
+					schn.write(writBuf);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 			}
 
-		}else if(!schn.isConnected()) {
+		} else if (!schn.isConnected()) {
 			logger.debug("cssocket channel이 연결이 끊어졌습니다.");
 		}
-        
-   
-        writBuf.clear();
-    }
 
-	
-	
+		writBuf.clear();
+	}
 
 	public void parsingHl7toJson(String HL7Data) throws IOException {
 
 		logger.debug("patient 측정 response => json 파싱준비");
-		
+
 //		boolean a = concurrentConfig.globalQtsocketMap == null ? true : false;			
 //		logger.debug("확인: " + a);
 
 		logger.debug("csServer로부터 응답받은 데이터: " + HL7Data);
-		
+
 		SocketChannel channel = concurrentConfig.globalSocketMap.get("qt");
 
 		String[] splitEnterArray = HL7Data.split("[\\r\\n]+"); // 개행문자 기준으로 1차 파싱
@@ -221,7 +276,7 @@ public class CSSocketService {
 		String trId = mshArray[9];
 		logger.debug("trid: " + trId);
 
-		if (splitEnterArray.length == 1) { ///MS100
+		if (splitEnterArray.length == 1) { /// MS100
 			CMRespDto cmRespDto = new CMRespDto();
 
 			cmRespDto.setResultCode("100");
@@ -249,21 +304,15 @@ public class CSSocketService {
 				for (int j = 0; j < splitSecondArray.length; j++) {
 					logger.debug("| 기준으로 2차 파싱: " + splitSecondArray[j]);
 
-					//일단 여기까지 빌드해서 올릴테니 라즈베리파이에서 다시 pull 받아서 빌드하시고 로그를 같이 볼 수 있을까요. -> 넵
-					
-					dto = PR100RespDto.builder()
-							.firstName(splitSecondArray[5])
-							.lastName(splitSecondArray[6])
-							.patientUserId(splitSecondArray[2])
-							.age(Integer.parseInt(splitSecondArray[3]))
+					// 일단 여기까지 빌드해서 올릴테니 라즈베리파이에서 다시 pull 받아서 빌드하시고 로그를 같이 볼 수 있을까요. -> 넵
+
+					dto = PR100RespDto.builder().firstName(splitSecondArray[5]).lastName(splitSecondArray[6])
+							.patientUserId(splitSecondArray[2]).age(Integer.parseInt(splitSecondArray[3]))
 							.height(Double.parseDouble(splitSecondArray[4]))
 							.weight(Double.parseDouble(splitSecondArray[7]))
-							.gender(Integer.parseInt(splitSecondArray[8]))							
-							.comment(splitSecondArray[9])
-							.lastSession(splitSecondArray[10])
-							.pid(Integer.parseInt(splitSecondArray[11]))
-							.build();
-										
+							.gender(Integer.parseInt(splitSecondArray[8])).comment(splitSecondArray[9])
+							.lastSession(splitSecondArray[10]).pid(Integer.parseInt(splitSecondArray[11])).build();
+
 				}
 
 				dtos.add(dto);

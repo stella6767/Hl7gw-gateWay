@@ -119,17 +119,22 @@ public class QTSocketService {
 
 				long lThId = Thread.currentThread().getId();
 
-				// ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
+				//ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
 				ByteBuffer readBuf = ByteBuffer.allocate(10240);
 
 				logger.debug("첫번째  while문");
 
 				/*
-				 * ### STX 가 없는 경우 CASE 1 : #ETX# 가 있는 경우 - #ETX# 까지 잘라서 이전 값은 버리고 이 후 값만 버퍼에서
+				 * ### STX 가 없는 경우 
+				 * 
+				 * CASE 1 : #ETX# 가 있는 경우 - #ETX# 까지 잘라서 이전 값은 버리고 이 후 값만 버퍼에서
 				 * 읽음
 				 * 
-				 * CASE 2 : #ETX# 가 없는 경우 - #ETX# 가 나올때까지 계속 버퍼에서 읽어서 버림 * ### STX 가 있는 경우 CASE
-				 * 3 : #ETX# 가 없는 경우 - 계속 버퍼에서 읽어 append 함
+				 * CASE 2 : #ETX# 가 없는 경우 - #ETX# 가 나올때까지 계속 버퍼에서 읽어서 버림 
+				 * 
+				 * 
+				 * * ### STX 가 있는 경우 
+				 * CASE 3 : #ETX# 가 없는 경우 - 계속 버퍼에서 읽어 append 함
 				 * 
 				 * CASE 4 : #ETX# 가 1개 있고 버퍼의 끝인 경우 - #ETX# 만 버리고 opCodeAction 호출
 				 * 
