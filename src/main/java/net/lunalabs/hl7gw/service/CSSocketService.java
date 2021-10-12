@@ -76,7 +76,7 @@ public class CSSocketService {
 
 		boolean isRunning = true; // 일단 추가, socketWork 중지할지 안 중지할지
 
-//		while (isRunning && schn.isConnected()) {
+		while (isRunning && schn.isConnected()) {
 			
 			ByteBuffer readBuf = ByteBuffer.allocate(300); // 버퍼 메모리 공간확보
 			int bytesRead = schn.read(readBuf);
@@ -115,11 +115,11 @@ public class CSSocketService {
              }
 			
 		
-			logger.debug("소켓 닫기");
-			schn.close(); // 소켓 닫기
+//			logger.debug("소켓 닫기");
+//			schn.close(); // 소켓 닫기
 
 
-//		}
+		}
 	}
 	
 	
@@ -234,23 +234,21 @@ public class CSSocketService {
 	public void writeSocket(String Hl7parsingData) throws JsonProcessingException {
 
 		logger.debug("CS에게 HL7 protocol 전송: " + Hl7parsingData);
-
 		ByteBuffer writBuf = ByteBuffer.allocate(10240);
-
+		
 		SocketChannel schn = concurrentConfig.globalSocketMap.get("cs");
-
-		writBuf.flip();
-		writBuf = Common.str_to_bb(Hl7parsingData);
+		
+		 writBuf.flip();		
+		 writBuf = Common.str_to_bb(Hl7parsingData);
 
 		if (schn.isConnected()) {
 			logger.debug("cssocket channel이 정상적으로 연결되었습니다.");
-
 			while (writBuf.hasRemaining()) {
-
 				logger.debug("SocketChannel open-3");
-				try {
+			try {
 					schn.write(writBuf);
 				} catch (IOException e) {
+					logger.debug("close exception?  " + e.getMessage());
 					e.printStackTrace();
 				}
 			}
@@ -260,6 +258,10 @@ public class CSSocketService {
 		}
 
 		writBuf.clear();
+		
+		
+
+		
 	}
 
 	public void parsingHl7toJson(String HL7Data) throws IOException {

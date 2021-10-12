@@ -117,7 +117,7 @@ public class Common {
 	
 	
 	public static void sendJsonToQT(String jsonData, SocketChannel schn) throws IOException, InterruptedException, ExecutionException {
-		ByteBuffer writeBuf = ByteBuffer.allocate(10240);
+		ByteBuffer writeBuf = ByteBuffer.allocate(500);
 
 		//SocketChannel이 QT여야 된다.
 		
