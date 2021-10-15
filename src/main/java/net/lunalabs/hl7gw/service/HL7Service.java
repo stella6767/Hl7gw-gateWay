@@ -15,6 +15,7 @@ import net.lunalabs.hl7gw.config.ConcurrentConfig;
 import net.lunalabs.hl7gw.dto.req.CMParam;
 import net.lunalabs.hl7gw.dto.req.MS100ReqDto;
 import net.lunalabs.hl7gw.dto.req.PR100ReqDto;
+import net.lunalabs.hl7gw.dto.req.SS100ReqDto;
 import net.lunalabs.hl7gw.utills.Common;
 
 
@@ -84,14 +85,37 @@ public class HL7Service {
 	
 	public <T> void parseToSS100Req(String jsonReqData) throws JsonMappingException, JsonProcessingException {
 
+		sb.delete(0, sb.length()); //초기화
+		
+		logger.debug("SS100Req HL7 parsing start");		
+		logger.debug(jsonReqData);
+		
+		SS100ReqDto reqDto = mapper.readValue(jsonReqData, SS100ReqDto.class);
+		
+		logger.debug("convert to java object: " + reqDto);
+
+		// protocol enter 문자는 필요한가.
+		sb.append("MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |" + Common.parseLocalDateTime() + "|"+ reqDto.getDeviceId() +"|SS100|" + reqDto.getTrId() +"|P|2.8\r\n" + "");
+
+		if(!reqDto.getStartTime().isBlank()) {
+		
+			sb.append("SID1|"+reqDto.getSid()+"|" + reqDto.getPid() + "|"+reqDto.getStartTime()+"|NULL||NULL|NULL||||||||||||\r\n" + "");
+			
+		}else {
+			
+			sb.append("SID2|"+reqDto.getSid()+"|" + reqDto.getPid() + "|"+reqDto.getEndTime()+"|NULL||NULL|NULL||||||||||||\r\n" + "");
+		
+		}
+				
+		logger.debug("SS100 파싱결과: " + sb.toString());
+		
 		
 		try {
-			csSocketService.writeSocket(jsonReqData);
+			csSocketService.writeSocket(sb.toString());
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
-		
 		
 		
 	}
