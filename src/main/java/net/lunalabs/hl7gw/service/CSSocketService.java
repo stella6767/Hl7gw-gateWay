@@ -126,7 +126,7 @@ public class CSSocketService {
 	
 	
 	
-	//@Scheduled(initialDelay = 5000, fixedRate = 500)
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	public void 전송테스트() {
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0000|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||1|Patient_NHS_ID|NULL|patient1|NULL|NULL||||||||||||\r\n"
@@ -148,7 +148,7 @@ public class CSSocketService {
 	}
 	
 	
-	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Scheduled(initialDelay = 5000, fixedRate = 10)
 	public void 전송테스트2() {
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0001|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
