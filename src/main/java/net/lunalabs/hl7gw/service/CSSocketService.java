@@ -8,6 +8,7 @@ import java.nio.channels.SocketChannel;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
 import org.slf4j.Logger;
@@ -35,6 +36,7 @@ public class CSSocketService {
 
 	public SocketChannel socketChannel2 = null; // 일단은 public으로
 	ObjectMapper mapper = new ObjectMapper();
+	Random random = new Random();
 
 //globalVar.globalSocket.put("schn", schn);
 	@Async
@@ -124,7 +126,7 @@ public class CSSocketService {
 	
 	
 	
-	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	//@Scheduled(initialDelay = 5000, fixedRate = 500)
 	public void 전송테스트() {
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0000|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||1|Patient_NHS_ID|NULL|patient1|NULL|NULL||||||||||||\r\n"
@@ -132,6 +134,28 @@ public class CSSocketService {
 				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
 				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
 				+ "OBX|3|NA|rvs||-5.30485E+6^-2.40058E+7|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	public void 전송테스트2() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0001|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||10_kangmin|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
 				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
 				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
 				+ "";
