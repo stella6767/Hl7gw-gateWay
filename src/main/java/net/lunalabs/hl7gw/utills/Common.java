@@ -35,6 +35,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import lombok.RequiredArgsConstructor;
+import net.lunalabs.hl7gw.config.ConcurrentConfig;
 import net.lunalabs.hl7gw.dto.req.Parameter;
 import net.lunalabs.hl7gw.dto.resp.PR100RespDto;
 
@@ -53,9 +54,7 @@ public class Common {
 
 	private static final Logger log = LoggerFactory.getLogger(Common.class);
 	
-	
-//	public static final String bilabCsIp = "172.16.81.180"; //나중에는 yml 파일로 관리	
-//	public static final String localIp = "localhost"; 
+
 	
 	@Value("${ip}") 
 	public String ip; 
@@ -115,28 +114,67 @@ public class Common {
      }
 	
 	
-	
+		public static String getNowTime(Integer i){ //1이면 startTime, 아니면 endTime
+		    long now = System.currentTimeMillis();
+		    Date mDate = new Date(now);
+		    
+		    Calendar cal = Calendar.getInstance();
+	        cal.setTime(mDate);
+	        
+	        cal.add(Calendar.MILLISECOND, 20);
+
+		    SimpleDateFormat sdfNow = new SimpleDateFormat("yy.MM.dd-HH:mm:ss.SSS");
+		    
+		    String Time;
+		    
+		    if(i==1) {
+		    	
+			    Time = sdfNow.format(mDate);
+
+		    }else {
+		    	 Time = sdfNow.format(cal.getTime());
+		    }
+		    
+		    String nowTime =Time;
+		    return nowTime;
+
+		    }
+	 
+	 
 	public static void sendJsonToQT(String jsonData, SocketChannel schn) throws IOException, InterruptedException, ExecutionException {
 		ByteBuffer writeBuf = ByteBuffer.allocate(500);
 
 		//SocketChannel이 QT여야 된다.
 		
 		log.debug("jsonData: " + jsonData);
-			
-	
-		if(schn.isConnected()) {
-			log.debug("qtSocket channel이 정상적으로 연결되었습니다.");
-	        writeBuf.flip();
-	        writeBuf = str_to_bb(jsonData);
-	        schn.write(writeBuf);
-	        writeBuf.clear();
-
+					
 		
-		}else if(!schn.isConnected()) {
-			log.debug("qtSocket channel이 연결이 끊어졌습니다.");
+		if(schn != null) {
+			
+			try {
+				if(schn.isConnected()) {
+					log.debug("qtSocket channel이 정상적으로 연결되었습니다.");
+			        writeBuf.flip();
+			        writeBuf = str_to_bb(jsonData);
+			        schn.write(writeBuf);
+			        writeBuf.clear();
+
+				
+				}else if(!schn.isConnected()) {
+					log.debug("qtSocket channel이 연결이 끊어졌습니다.");
+				}
+				
+			} catch (Exception e) {
+				log.debug("qt socket 연결문제");
+				schn.close();
+				e.printStackTrace();
+			}	
+			
+			
+			
 		}
 		
-		
+	
 		
 	}
 	
