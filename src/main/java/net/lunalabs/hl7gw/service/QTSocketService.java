@@ -69,12 +69,12 @@ public class QTSocketService {
 				try {
 					socketChannel = serverSocketChannel.accept();
 					socketChannel.configureBlocking(true);
+					concurrentConfig.globalSocketMap.put("qt", socketChannel);
 
 					// System.out.println("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread
 					// Start");
 					logger.info("[ESMLC Listen[" + "] 5050 port Socket Accept EsmlcIfWorkThread Start");
-
-					socketWork(socketChannel);
+					socketWork();
 
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -105,11 +105,15 @@ public class QTSocketService {
 	}
 
 	
-	private void socketWork(SocketChannel schn) {
+	private void socketWork() {
+
+		SocketChannel schn = concurrentConfig.globalSocketMap.get("qt");
 
 		// String result = "";
 		boolean isRunning = true; // 일단 추가, socketWork 중지할지 안 중지할지
-
+			
+	
+		
 		while (isRunning) {
 
 			try {
@@ -283,7 +287,7 @@ public class QTSocketService {
 								if (result.length() == indEtx && countETX == 1) { // case4
 
 									logger.debug("case4");
-									jsonParseService.opCodeAction(result, schn, lThId);
+									jsonParseService.opCodeAction(result, lThId);
 
 									logger.debug("[gwEmulThread #220] TID[ " + lThId + "] socketRead Start[" + result
 											+ "], byteCount[" + byteCount + "], i[" + i + "]");
@@ -298,7 +302,7 @@ public class QTSocketService {
 									logger.debug("case6 길이: " + resultArray.length);
 									for (int a = 0; a < resultArray.length; a++) {
 										logger.debug(resultArray[a]); // 마지막은 짤리는구만,
-										jsonParseService.opCodeAction(resultArray[a], schn, lThId);
+										jsonParseService.opCodeAction(resultArray[a], lThId);
 									}
 									result = "";
 									readBuf.clear();
@@ -316,7 +320,7 @@ public class QTSocketService {
 
 									if (!(resultArray[resultArray.length - 1].contains("#ETX#"))) {
 										for (int a = 0; a < resultArray.length - 1; a++) {
-											jsonParseService.opCodeAction(resultArray[a], schn, lThId);
+											jsonParseService.opCodeAction(resultArray[a], lThId);
 										}
 
 										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장
@@ -338,7 +342,7 @@ public class QTSocketService {
 									if (!(resultArray[resultArray.length - 1].contains("#ETX#"))) {
 										logger.debug("case7");
 										for (int a = 0; a < resultArray.length - 1; a++) {
-											jsonParseService.opCodeAction(resultArray[a], schn, lThId);
+											jsonParseService.opCodeAction(resultArray[a], lThId);
 										}
 
 										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장

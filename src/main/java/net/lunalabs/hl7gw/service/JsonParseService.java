@@ -32,11 +32,15 @@ public class JsonParseService {
 	
 	private final HL7Service hl7Service;
 
-	public <T> void opCodeAction(String strMessage, SocketChannel schn, 
+	public <T> void opCodeAction(String strMessage,
 			long lThId) {
 		
 		logger.debug("strMessage:" + strMessage);
 						
+		
+		SocketChannel schn = concurrentConfig.globalSocketMap.get("qt");
+
+		
 		
 		try {
 			if (!strMessage.equals("")) {
@@ -63,8 +67,8 @@ public class JsonParseService {
 				
 				CMRespDto cmRespDto = new CMRespDto();
 				
-				concurrentConfig.globalSocketMap.put("qt", schn);
-				logger.debug("여기서 분명 socketChannel을 집어넣었을텐데?? " + concurrentConfig.globalSocketMap.get("qt"));
+				//concurrentConfig.globalSocketMap.put("qt", schn);
+				//logger.debug("여기서 분명 socketChannel을 집어넣었을텐데?? " + concurrentConfig.globalSocketMap.get("qt"));
 				
 
 				switch (strOpCode) {
