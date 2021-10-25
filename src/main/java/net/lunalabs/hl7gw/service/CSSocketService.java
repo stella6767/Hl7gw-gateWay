@@ -11,6 +11,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.concurrent.ExecutionException;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.scheduling.annotation.Async;
@@ -58,6 +59,7 @@ public class CSSocketService {
 				socketChannel2.configureBlocking(false);// Non-Blocking I/O
 				readSocketData2(socketChannel2);
 
+				//readSocketData(socketChannel2);
 
 			} catch (Exception e2) {
 				logger.debug("connected refused!!!");
@@ -70,7 +72,133 @@ public class CSSocketService {
 	}
 
 
-
+	  
+//	    public void readSocketData(SocketChannel schn) throws IOException {
+//
+//	        
+//			concurrentConfig.globalSocketMap.put("cs", schn);
+//
+//			logger.debug("CS-socket 담김: " + schn);
+//
+//	        boolean isRunning = true; // 일단 추가, socketWork 중지할지 안 중지할지
+//
+//	        while (isRunning && schn.isConnected()) {
+//
+//	            try {
+//	                long lThId = Thread.currentThread().getId();
+//	                int byteCount = 0;
+//	                byte[] readByteArr;
+//
+//	                // ByteBuffer readBuf = ByteBuffer.allocate(10); //버퍼 메모리 공간확보
+//	                ByteBuffer readBuf = ByteBuffer.allocate(500);
+//
+//	                logger.debug("첫번째  while문");
+//
+//	                // 무한 루프
+//	                String result = ""; // 요기서 초기화
+//
+//	                while (byteCount >= 0) {
+//
+//	                    try {
+//
+//	                        byteCount = schn.read(readBuf); // 소켓채널에서 한번에 초과되는 버퍼사이즈의 데이터가 들어오면..
+//
+//	                        //log.info("[gwEmulThread #100] TID[" + "] byteCount :  " + byteCount);
+//	                        // logger.debug("isRunning why: " + isRunning);
+//	                    } catch (Exception e) {
+//	                        // e.printStackTrace();
+//	                        logger.info("갑자기 클라이언트 소켓이 닫혔을 시");
+//	                        schn.close();
+//	                        isRunning = false;
+//	                        break;
+//	                    }
+//	                    
+//	                    
+//	                    // 버퍼에 값이 있다면 계속 버퍼에서 값을 읽어 result 를 완성한다.
+//	                    while (byteCount > 0) {
+//
+//
+//	                        readBuf.flip(); // 입력된 데이터를 읽기 위해 read-mode로 바꿈, positon이 데이터의 시작인 0으로 이동
+//	                        readByteArr = new byte[readBuf.remaining()]; // 현재 위치에서 limit까지 읽어드릴 수 있는 데이터의 개수를 리턴
+//	                        readBuf.get(readByteArr); // 데이터 읽기
+//
+//	                        result = result + new String(readByteArr, Charset.forName("UTF-8"));
+//
+//	                        try {
+//	                            byteCount = schn.read(readBuf);
+//	                            //log.info("[gwEmulThread #210] TID[" + result + "] byteCount :  " + byteCount);
+//	                        } catch (Exception e) {
+//	                            e.printStackTrace();
+//	                            // break;
+//	                        }
+//
+//	                        boolean bEtxEnd = true; // 아래 while문을 실행할지 안할지
+//
+//	                        while (!result.equals("") && bEtxEnd) {
+//	                            
+//	                        	logger.info("#ETX#단위로 루프 돌기 전 result: " + result);
+//	                        	
+//								Integer countMSH = StringUtils.countMatches(result, "MSH");
+//
+//								int lastIndex = (result.lastIndexOf("|"));
+//															
+//								int indMSH = (result.lastIndexOf("MSH"));
+//
+//								logger.debug("indEtx: " + indMSH + " result.length:  " + result.length() + "  countMSH: " + countMSH);							
+//								logger.debug("lastIndex: " + lastIndex);
+//								
+//								
+//	                        	Thread.sleep(1000);
+//								
+//								
+//	                        	//string1.split("(?=-)");
+//	                        	
+//	            				if ( (indMSH == 0 || indMSH== result.length()) && countMSH == 1) { 
+//
+//									
+//									parsingHl7toJson(result);
+//									
+//
+//									result = "";
+//									bEtxEnd = false;
+//									readBuf.clear();
+//								} else if (result.length() != indMSH && countMSH > 1) { // case5
+//
+//									String[] resultArray = result.split("(?=MSH)");
+//
+//									logger.debug("case5 길이: " + resultArray.length);
+//
+//										for (int i = 0; i < resultArray.length - 1; i++) {
+//											
+//											logger.debug("정규표현식활용: " + resultArray[i]);
+//											parsingHl7toJson(result);
+//											
+//										}
+//
+//										// 예를 들어 #ETX# #STX#{sdfsfdsdf data가 있을시 #STX#로 이어지는 데이터를 저장
+//										result = resultArray[resultArray.length - 1];
+//										// 다시 버퍼를 읽음
+//										readBuf.clear();
+//										break;
+//						
+//								} 
+//	                        
+//	                        }
+//
+//	                    } // #ETX# 단위로 루프
+//	                } // byteCount > 0
+//
+//	                logger.debug("소켓 닫기");
+//	                schn.close(); // 소켓 닫기
+//
+//	            } catch (Exception e) {
+//	                e.printStackTrace();
+//	                continue;
+//	            }
+//	        }
+//	    }
+	
+	
 	public void readSocketData2(SocketChannel schn) throws IOException {
 
 		concurrentConfig.globalSocketMap.put("cs", schn);
@@ -107,7 +235,7 @@ public class CSSocketService {
                 if(bytesRead == 0 && result.length() > 0 ) {
                 	
                 	logger.debug("totalResult: " + result);
-                	parsingHl7toJson(result);
+                	MSHClsfy(result);
                 	
                 	result="";
                 	break;
@@ -125,51 +253,7 @@ public class CSSocketService {
 	}
 	
 	
-	
-	//@Scheduled(initialDelay = 5000, fixedRate = 100)
-	public void 전송테스트() {
-		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0000|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
-				+ "PID||1|Patient_NHS_ID|NULL|patient1|NULL|NULL||||||||||||\r\n"
-				+ "OBR||10_kangmin|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
-				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
-				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
-				+ "OBX|3|NA|rvs||-5.30485E+6^-2.40058E+7|mL||||||||2021-09-02 14:27:06|\r\n"
-				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
-				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
-				+ "";
-		
-		try {
-			writeSocket(data);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
-	@Scheduled(initialDelay = 5000, fixedRate = 10)
-	public void 전송테스트2() {
-		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0001|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
-				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
-				+ "OBR||10_kangmin|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
-				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
-				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
-				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
-				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
-				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
-				+ "";
-		
-		try {
-			writeSocket(data);
-		} catch (JsonProcessingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
-	
-	
+
 
 	public void writeSocket(String Hl7parsingData) throws JsonProcessingException {
 
@@ -205,6 +289,29 @@ public class CSSocketService {
 		
 		
 	}
+	
+	
+	public void MSHClsfy(String data) {
+		
+		logger.debug("응답받은 버퍼: " + data);
+		
+		String[] resultArray = data.split("(?=MSH)");
+
+		logger.debug("case5 길이: " + resultArray.length);
+
+			for (int i = 0; i < resultArray.length; i++) {
+				
+				logger.debug("정규표현식활용: " + resultArray[i]);
+				try {
+					parsingHl7toJson(resultArray[i]);
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				
+			}
+	}
+	
 
 	public void parsingHl7toJson(String HL7Data) throws IOException {
 
@@ -214,6 +321,7 @@ public class CSSocketService {
 //		logger.debug("확인: " + a);
 
 		logger.debug("csServer로부터 응답받은 데이터: " + HL7Data);
+		
 
 		SocketChannel channel = concurrentConfig.globalSocketMap.get("qt");
 
@@ -289,5 +397,193 @@ public class CSSocketService {
 		}
 
 	}
+	
+	
+	
+	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0000|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||1|Patient_NHS_ID|NULL|patient1|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||-5.30485E+6^-2.40058E+7|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트2() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0001|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트3() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0002|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트4() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0003|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트5() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0004|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	
+	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트6() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0005|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트7() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0006|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트8() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0007|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
 
 }
