@@ -492,7 +492,7 @@ public class CSSocketService {
 	}
 	
 	
-	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트5() {
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0004|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
@@ -516,7 +516,7 @@ public class CSSocketService {
 	
 	
 	
-	@Scheduled(initialDelay = 5000, fixedRate = 100)
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트6() {
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0005|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
@@ -584,6 +584,190 @@ public class CSSocketService {
 		
 	}
 	
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트9() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0008|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트10() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0009|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트11() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0010|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트12() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0011|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트13() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0012|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트14() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0013|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트15() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0014|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+	
+	
+	//@Scheduled(initialDelay = 5000, fixedRate = 100)
+	@Async
+	public void 전송테스트16() {
+		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0015|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
+				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
+				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|4|NM|spo2||123|%||||||||2021-09-02 14:27:06|\r\n"
+				+ "OBX|5|NM|tv||198|mL||||||||2021-09-02 14:27:06|\r\n"
+				+ "";
+		
+		try {
+			writeSocket(data);
+		} catch (JsonProcessingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 	
 
 }
