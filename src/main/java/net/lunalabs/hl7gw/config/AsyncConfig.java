@@ -32,9 +32,10 @@ public class AsyncConfig  extends AsyncConfigurerSupport {
     public Executor getAsyncExecutor() {
 
         ThreadPoolTaskExecutor executor = new ThreadPoolTaskExecutor();
-		executor.setCorePoolSize(10);
-		executor.setMaxPoolSize(100);
+		executor.setCorePoolSize(100);
+		executor.setMaxPoolSize(200);
 		executor.setQueueCapacity(500);
+		executor.setRejectedExecutionHandler(new RejectedExecutionHandlerImpl());
 		executor.setThreadNamePrefix("kang-async-");
         executor.initialize();
 
