@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 
 import lombok.RequiredArgsConstructor;
 import net.lunalabs.hl7gw.config.ConcurrentConfig;
+import net.lunalabs.hl7gw.utills.Common;
 
 
 /**
@@ -41,7 +42,8 @@ public class QTSocketService {
 
 	private final JsonParseService jsonParseService;
 	private final ConcurrentConfig concurrentConfig; 
-
+	private final Common common;
+	
 	
 	
 	//Test data
@@ -56,12 +58,12 @@ public class QTSocketService {
 	public void socketThread() {
 		
 		
-		logger.debug( "3차 스레드 di test: "   + concurrentConfig.toString());
+		logger.debug( "QT와 연결할 소켓포트 "   + common.qtPort);
 
 		try {
 
 			serverSocketChannel = ServerSocketChannel.open();
-			serverSocketChannel.socket().bind(new InetSocketAddress(5050));
+			serverSocketChannel.socket().bind(new InetSocketAddress(common.qtPort));
 
 			boolean bLoop = true;
 
@@ -73,7 +75,7 @@ public class QTSocketService {
 
 					// System.out.println("[ESMLC Listen[" + "] Socket Accept EsmlcIfWorkThread
 					// Start");
-					logger.info("[ESMLC Listen[" + "] 5050 port Socket Accept EsmlcIfWorkThread Start");
+					logger.info("[ESMLC Listen[" + "] "+ common.qtPort + " port Socket Accept EsmlcIfWorkThread Start");
 					socketWork();
 
 				} catch (Exception e) {
