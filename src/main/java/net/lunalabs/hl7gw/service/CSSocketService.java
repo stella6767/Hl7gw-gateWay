@@ -62,8 +62,8 @@ public class CSSocketService {
 				//readSocketData(socketChannel2);
 
 			} catch (Exception e2) {
-				logger.debug("connected refused!!!");
-				e2.printStackTrace();
+				logger.debug("csSocket connected refused!!!");
+				//e2.printStackTrace();
 			}
 
 		}
@@ -400,7 +400,7 @@ public class CSSocketService {
 	
 	
 	
-	//@Scheduled(initialDelay = 5000, fixedRate = 3000)
+	//@Scheduled(initialDelay = 5000, fixedRate = 1000)
 	//@Async
 	public void 전송테스트() {
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0000|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
@@ -423,12 +423,12 @@ public class CSSocketService {
 	}
 	
 	
-	//@Scheduled(initialDelay = 5000, fixedRate = 3000)
+	//@Scheduled(initialDelay = 5000, fixedRate = 1000)
 	//@Async
 	public void 전송테스트2() {
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0001|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
-				+ "OBR||patient99_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
+				+ "OBR||patient2_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
 				+ "OBX|1|NM|mv||123|L/min||||||||2021-09-02 14:27:06|\r\n"
 				+ "OBX|2|NM|rr||17|bpm||||||||2021-09-02 14:27:06|\r\n"
 				+ "OBX|3|NA|rvs||"+(random.nextInt(100)+1) + "^" +(random.nextInt(100)+1)+"|mL||||||||2021-09-02 14:27:06|\r\n"

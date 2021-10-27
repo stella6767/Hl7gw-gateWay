@@ -1,38 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <configuration>
-    <property name="LOGS_ABSOLUTE_PATH" value="./logs" />
-    
-<!--    <springProperty scope="context" name="LOG_LEVEL" source="logging.level.root"/> -->
+	<property name="LOGS_ABSOLUTE_PATH" value="./logs" />
+
+	<!-- <springProperty scope="context" name="LOG_LEVEL" source="logging.level.root"/> -->
+
+	<!--로그 파일 저장 위치 -->
+<!-- 	<springProfile name="dev"> -->
+		<property name="LOGS_PATH" value="./logs" />
+	<!-- </springProfile> -->
 
 
-    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
-    	<withJansi>true</withJansi>
-    	
-        <layout class="ch.qos.logback.classic.PatternLayout">
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+		<withJansi>true</withJansi>
+
+		<layout class="ch.qos.logback.classic.PatternLayout">
 			<pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %green(%-5level) %logger{35} %cyan(%logger{15}) - %msg %n</pattern>
-        </layout>
-    </appender>
+		</layout>
+	</appender>
 
-    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
-        <file>${LOGS_ABSOLUTE_PATH}/logback.log</file>
-        <encoder>
-            <pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern>
-        </encoder>
-        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-            <fileNamePattern>${LOGS_ABSOLUTE_PATH}/logback.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
-            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
-                <maxFileSize>5MB</maxFileSize>
-            </timeBasedFileNamingAndTriggeringPolicy>
-            <maxHistory>30</maxHistory>
-        </rollingPolicy>
-    </appender>
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<filter class="ch.qos.logback.classic.filter.LevelFilter">
+			<level>error</level>
+			<onMatch>ACCEPT</onMatch>
+			<onMismatch>DENY</onMismatch>
+		</filter>
+		<file>${LOGS_PATH}/logback.log</file>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}:%-3relative][%thread] %-5level %logger{35} - %msg%n</pattern>
+		</encoder>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${LOGS_PATH}/logback.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+			<timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+				<maxFileSize>5MB</maxFileSize>
+			</timeBasedFileNamingAndTriggeringPolicy>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+	</appender>
 
 	<root level="debug">
-    	<appender-ref ref="STDOUT" />
-    </root>
-    
-    <logger name="net.lunalabs.hl7gw.emul.Emulator" level="DEBUG">
-        <appender-ref ref="FILE" />
-    </logger>
+		<appender-ref ref="STDOUT" />
+	</root>
+
+	<logger name="net.lunalabs.hl7gw.emul.Emulator" level="warn">
+		<appender-ref ref="FILE" />
+	</logger>
 
 </configuration>
