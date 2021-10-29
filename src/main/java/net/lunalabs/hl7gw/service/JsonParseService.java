@@ -27,7 +27,6 @@ public class JsonParseService {
 	private final ConcurrentConfig concurrentConfig;
 	private final FTPService ftpService;
 
-	Gson gson = new Gson();
 	
 	
 	private final HL7Service hl7Service;
@@ -146,7 +145,8 @@ public class JsonParseService {
 	
 	
 	public void qtSendCheck(CMRespDto cmRespDto, SocketChannel schn) throws IOException {
-		
+		Gson gson = new Gson();
+
 		String jsonData = gson.toJson(cmRespDto);  //알아서 null값은 걸러냄	
 		
 		logger.debug("3차 스레드 put test:  " + concurrentConfig);			

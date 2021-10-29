@@ -36,8 +36,6 @@ public class CSSocketService {
 	private final ConcurrentConfig concurrentConfig;
 
 	public SocketChannel socketChannel2 = null; // 일단은 public으로
-	ObjectMapper mapper = new ObjectMapper();
-	Random random = new Random();
 
 //globalVar.globalSocket.put("schn", schn);
 	@Async
@@ -239,6 +237,12 @@ public class CSSocketService {
                 	
                 	result="";
                 	break;
+                }else if(bytesRead == 0){
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
                 }
                 
             	//logger.debug("readBuf.hasRemaining2():  " + readBuf.hasRemaining() );
@@ -316,6 +320,7 @@ public class CSSocketService {
 	public void parsingHl7toJson(String HL7Data) throws IOException {
 
 		logger.debug("응답 response => json 파싱준비");
+		ObjectMapper mapper = new ObjectMapper();
 
 //		boolean a = concurrentConfig.globalQtsocketMap == null ? true : false;			
 //		logger.debug("확인: " + a);
@@ -403,6 +408,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 1000)
 	//@Async
 	public void 전송테스트() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0000|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||1|Patient_NHS_ID|NULL|patient1|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -426,6 +433,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 1000)
 	//@Async
 	public void 전송테스트2() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0001|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient2_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -449,6 +458,9 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	//@Async
 	public void 전송테스트3() {
+		Random random = new Random();
+
+		
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0002|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -472,6 +484,9 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	//@Async
 	public void 전송테스트4() {
+		Random random = new Random();
+
+		
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0003|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -495,6 +510,9 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 500)
 	@Async
 	public void 전송테스트5() {
+		Random random = new Random();
+
+		
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0004|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -519,6 +537,9 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 500)
 	@Async
 	public void 전송테스트6() {
+		Random random = new Random();
+
+		
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0005|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -542,6 +563,9 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 1000)
 	@Async
 	public void 전송테스트7() {
+		
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0006|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -565,6 +589,9 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트8() {
+		
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0007|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -589,6 +616,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트9() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0008|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -612,6 +641,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트10() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0009|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -635,6 +666,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트11() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0010|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -658,6 +691,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트12() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0011|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -681,6 +716,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트13() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0012|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -704,6 +741,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트14() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0013|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -727,6 +766,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트15() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0014|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
@@ -750,6 +791,8 @@ public class CSSocketService {
 	//@Scheduled(initialDelay = 5000, fixedRate = 100)
 	@Async
 	public void 전송테스트16() {
+		Random random = new Random();
+
 		String data = "MSH|^~\\&|BILABGW|NULL|RECEIVER|RECEIVER_FACILITY |2021-09-02 14:27:06|CPM0015|ORU^R01|767c2024-23ff-43a8-a165-e47bb1e3a2fe|P|2.8\r\n"
 				+ "PID||2|Patient_NHS_ID|NULL|patient2|NULL|NULL||||||||||||\r\n"
 				+ "OBR||patient100_20211021_171700|NULL|NULL|||"+ Common.getNowTime(1) +"|" +Common.getNowTime(2)+"|||||||||||||||||\r\n"
